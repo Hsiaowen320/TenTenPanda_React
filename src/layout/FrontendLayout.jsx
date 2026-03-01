@@ -77,28 +77,28 @@ function FrontendLayout() {
                     aria-labelledby="productList"
                   >
                     <li>
-                      <a
+                      <Link
                         className="dropdown-item p-4 text-neutral-100"
-                        href="productList-classic.html"
+                        to="/productList-classic"
                       >
                         經典口味
-                      </a>
+                      </Link>
                     </li>
                     <li>
-                      <a
+                      <Link
                         className="dropdown-item p-4 text-neutral-100"
-                        href="productList-seasonal.html"
+                        to="/productList-seasonal"
                       >
                         季節限定
-                      </a>
+                      </Link>
                     </li>
                     <li>
-                      <a
+                      <Link
                         className="dropdown-item p-4 text-neutral-100"
-                        href="productList-giftbox.html"
+                        to="/productList-giftbox"
                       >
                         甜甜禮盒
-                      </a>
+                      </Link>
                     </li>
                   </ul>
                 </li>
@@ -224,28 +224,28 @@ function FrontendLayout() {
                       aria-labelledby="productList"
                     >
                       <li>
-                        <a
+                        <Link
                           className="dropdown-item mx-4 py-3 ps-1 mb-2 text-neutral-100"
-                          href="productList-classic.html"
+                          to="/productList-classic"
                         >
                           經典口味
-                        </a>
+                        </Link>
                       </li>
                       <li>
-                        <a
+                        <Link
                           className="dropdown-item mx-4 py-3 ps-1 mb-2 text-neutral-100"
-                          href="productList-seasonal.html"
+                          to="/productList-seasonal"
                         >
                           季節限定
-                        </a>
+                        </Link>
                       </li>
                       <li>
-                        <a
+                        <Link
                           className="dropdown-item mx-4 py-3 ps-1 text-neutral-100"
-                          href="productList-giftbox.html"
+                          to="/productList-giftbox"
                         >
                           甜甜禮盒
-                        </a>
+                        </Link>
                       </li>
                     </ul>
                   </li>

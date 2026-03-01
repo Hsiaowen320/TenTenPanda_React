@@ -23,8 +23,82 @@ import matchaImage from "@/assets/images/抹茶甜甜.webp";
 import creamLemonImage from "@/assets/images/生乳檸檬甜甜.webp";
 import caramelCocoaImage from "@/assets/images/焦糖可可甜甜.webp";
 import sectionListDonutImage from "@/assets/images/section-list-donut.webp";
+import { useEffect, useRef } from "react";
+
+import Swiper from "swiper";
+import "swiper/css";
 
 const Home = () => {
+  const swiperRef = useRef(null);
+  const swiperInstance = useRef(null);
+  const newsRef = useRef(null);
+
+  useEffect(() => {
+    swiperInstance.current = new Swiper(swiperRef.current, {
+      // Optional parameters
+      slidesPerView: "auto",
+      loop: true,
+      initialSlide: 3,
+      centeredSlides: true,
+      spaceBetween: 12,
+      breakpoints: {
+        992: {
+          spaceBetween: 40,
+        },
+      },
+
+      // If we need pagination
+      pagination: {
+        el: ".swiper-pagination",
+        clickable: true,
+      },
+    });
+
+    return () => {
+      if (swiperInstance.current) {
+        swiperInstance.current.destroy(true, true);
+        swiperInstance.current = null;
+      }
+    };
+  }, []);
+
+  useEffect(() => {
+    // newsChange 的邏輯
+    const news = newsRef.current;
+    if (news) {
+      const list = news.querySelector(".list-group");
+      if (list) {
+        const handleMouseOver = (e) => {
+          const lab = e.target.closest('label[for^="n"]');
+          if (!lab || !list.contains(lab)) return;
+          news.setAttribute("data-hover", lab.htmlFor.replace("n", "")); // "n3" -> "3"
+        };
+
+        const handleFocusIn = (e) => {
+          const lab = e.target.closest('label[for^="n"]');
+          if (!lab || !list.contains(lab)) return;
+          news.setAttribute("data-hover", lab.htmlFor.replace("n", ""));
+        };
+
+        const handleMouseLeave = () => news.removeAttribute("data-hover");
+        const handleFocusOut = () => news.removeAttribute("data-hover");
+
+        list.addEventListener("mouseover", handleMouseOver);
+        list.addEventListener("focusin", handleFocusIn);
+        list.addEventListener("mouseleave", handleMouseLeave);
+        list.addEventListener("focusout", handleFocusOut);
+
+        // Cleanup
+        return () => {
+          list.removeEventListener("mouseover", handleMouseOver);
+          list.removeEventListener("focusin", handleFocusIn);
+          list.removeEventListener("mouseleave", handleMouseLeave);
+          list.removeEventListener("focusout", handleFocusOut);
+        };
+      }
+    }
+  }, []);
+
   return (
     <>
       {/* section 1 雪夜莓語主視覺 */}
@@ -82,7 +156,7 @@ const Home = () => {
           </h2>
         </div>
         <div>
-          <div className="swiper">
+          <div className="swiper" ref={swiperRef}>
             {/* 滑動區塊 */}
             <div className="swiper-wrapper">
               {/* AD-3 */}
