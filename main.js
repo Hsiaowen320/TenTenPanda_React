@@ -1,4 +1,4 @@
-import "./assets/scss/all.scss";
+import "./src/assets/all.scss";
 import "bootstrap/dist/js/bootstrap.min.js";
 
 // 下拉選單的 icon 變化效果

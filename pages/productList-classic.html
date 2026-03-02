@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -22,21 +22,14 @@
     <title>商品列表 - 經典口味｜甜甜熊貓 TenTen Donut</title>
   </head>
   <body>
-    <div id="userHeader" style="visibility: hidden">
-      <%- include('./layout/header-profile'); -%>
-    </div>
-    <div id="guestHeader" style="visibility: hidden">
-      <%- include('./layout/header'); -%>
-    </div>
-
     <section class="p-lg-0 mt-8 mt-lg-14 container mx-lg-auto mb-lg-16">
       <!-- 麵包屑 -->
       <div class="mb-lg-12 mb-4">
         <nav aria-label="breadcrumb">
-          <ol class="breadcrumb" style="--bs-breadcrumb-divider: ''">
+          <ol class="breadcrumb" style="--bs-breadcrumb-divider: &quot;&quot;">
             <li class="breadcrumb-item d-flex align-items-center ms-5">
               <a href="./index.html"
-                ><img src="../assets/images/home.svg" alt="首頁超連結"
+                ><img src="/home.webp" alt="首頁超連結"
               /></a>
             </li>
             <span class="text-neutral-60 material-symbols-outlined ms-5"
@@ -94,7 +87,7 @@
                   >
                     <div class="img-box">
                       <img
-                        src="../assets/images/經典甜甜.png"
+                        src="/經典甜甜.webp"
                         alt="經典甜甜"
                         class="img-fluid"
                       />
@@ -105,7 +98,10 @@
                       class="favorite-btn position-absolute top-0 end-0 fs-3 fs-lg-1"
                       data-bs-toggle="modal"
                       data-bs-target="#favoriteModal"
-                      onclick="event.preventDefault(); event.stopPropagation();"
+                      onclick="
+                        event.preventDefault();
+                        event.stopPropagation();
+                      "
                     >
                       <i class="bi bi-heart empty"></i>
                       <i class="bi bi-heart-fill full"></i>
@@ -138,7 +134,7 @@
                   >
                     <div class="img-box">
                       <img
-                        src="../assets/images/莓果甜甜.png"
+                        src="/莓果甜甜.webp"
                         alt="莓果甜甜"
                         class="img-fluid"
                       />
@@ -181,7 +177,7 @@
                   >
                     <div class="img-box">
                       <img
-                        src="../assets/images/芝麻甜甜.png"
+                        src="/芝麻甜甜.webp"
                         alt="芝麻甜甜"
                         class="img-fluid"
                       />
@@ -224,7 +220,7 @@
                   >
                     <div class="img-box">
                       <img
-                        src="../assets/images/抹茶甜甜.png"
+                        src="/抹茶甜甜.webp"
                         alt="抹茶甜甜"
                         class="img-fluid"
                       />
@@ -267,7 +263,7 @@
                   >
                     <div class="img-box">
                       <img
-                        src="../assets/images/生乳檸檬甜甜.png"
+                        src="/生乳檸檬甜甜.webp"
                         alt="生乳檸檬甜甜"
                         class="img-fluid"
                       />
@@ -310,7 +306,7 @@
                   >
                     <div class="img-box">
                       <img
-                        src="../assets/images/焦糖可可甜甜.png"
+                        src="/焦糖可可甜甜.webp"
                         alt="焦糖可可甜甜"
                         class="img-fluid"
                       />
@@ -424,7 +420,6 @@
         </div>
       </div>
     </div>
-    <%- include('./layout/footer'); -%>
 
     <script type="module" src="../main.js"></script>
     <script>

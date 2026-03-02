@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -22,27 +22,22 @@
     <title>商品列表 - 季節限定｜甜甜熊貓 TenTen Donut</title>
   </head>
   <body>
-    <div id="userHeader" style="visibility: hidden">
-      <%- include('./layout/header-profile'); -%>
-    </div>
-    <div id="guestHeader" style="visibility: hidden">
-      <%- include('./layout/header'); -%>
-    </div>
-
     <section class="p-lg-0 mt-8 mt-lg-14 container mx-lg-auto mb-lg-16">
       <!-- 麵包屑 -->
       <div class="mb-lg-12 mb-4">
         <nav aria-label="breadcrumb">
-          <ol class="breadcrumb" style="--bs-breadcrumb-divider: ''">
+          <ol class="breadcrumb" style="--bs-breadcrumb-divider: &quot;&quot;">
             <li class="breadcrumb-item d-flex align-items-center ms-5">
               <a href="./index.html"
-                ><img src="../assets/images/home.svg" alt="首頁超連結"
+                ><img src="/home.webp" alt="首頁超連結"
               /></a>
             </li>
             <span class="text-neutral-60 material-symbols-outlined ms-5"
               >keyboard_double_arrow_right</span
             >
-            <li class="text-neutral-60 breadcrumb-item d-flex align-items-center ms-5">
+            <li
+              class="text-neutral-60 breadcrumb-item d-flex align-items-center ms-5"
+            >
               <p>商品列表</p>
             </li>
             <span class="text-neutral-60 material-symbols-outlined ms-5"
@@ -92,7 +87,7 @@
                   >
                     <div class="img-box p-18">
                       <img
-                        src="../assets/images/星塵草莓（光暈）.png"
+                        src="/星塵草莓（光暈）.webp"
                         alt="星塵草莓"
                         class="img-fluid"
                       />
@@ -135,7 +130,7 @@
                   >
                     <div class="img-box p-18">
                       <img
-                        src="../assets/images/白雪綿霜莓（光暈）.png"
+                        src="/白雪綿霜莓（光暈）.webp"
                         alt="白雪綿霜莓"
                         class="img-fluid"
                       />
@@ -146,7 +141,10 @@
                       class="favorite-btn position-absolute top-0 end-0 fs-3 fs-lg-1"
                       data-bs-toggle="modal"
                       data-bs-target="#favoriteModal"
-                      onclick="event.preventDefault(); event.stopPropagation();"
+                      onclick="
+                        event.preventDefault();
+                        event.stopPropagation();
+                      "
                     >
                       <i class="bi bi-heart empty"></i>
                       <i class="bi bi-heart-fill full"></i>
@@ -179,7 +177,7 @@
                   >
                     <div class="img-box p-18">
                       <img
-                        src="../assets/images/莓果可可（光暈）.png"
+                        src="/莓果可可（光暈）.webp"
                         alt="莓果可可"
                         class="img-fluid"
                       />
@@ -190,7 +188,10 @@
                       class="favorite-btn position-absolute top-0 end-0 fs-3 fs-lg-1"
                       data-bs-toggle="modal"
                       data-bs-target="#favoriteModal"
-                      onclick="event.preventDefault(); event.stopPropagation();"
+                      onclick="
+                        event.preventDefault();
+                        event.stopPropagation();
+                      "
                     >
                       <i class="bi bi-heart empty"></i>
                       <i class="bi bi-heart-fill full"></i>
@@ -223,7 +224,7 @@
                   >
                     <div class="img-box p-18">
                       <img
-                        src="../assets/images/雪莓蒙布朗（光暈）.png"
+                        src="/雪莓蒙布朗（光暈）.webp"
                         alt="雪莓蒙布朗"
                         class="img-fluid"
                       />
@@ -234,7 +235,10 @@
                       class="favorite-btn position-absolute top-0 end-0 fs-3 fs-lg-1"
                       data-bs-toggle="modal"
                       data-bs-target="#favoriteModal"
-                      onclick="event.preventDefault(); event.stopPropagation();"
+                      onclick="
+                        event.preventDefault();
+                        event.stopPropagation();
+                      "
                     >
                       <i class="bi bi-heart empty"></i>
                       <i class="bi bi-heart-fill full"></i>
@@ -267,7 +271,7 @@
                   >
                     <div class="img-box p-18">
                       <img
-                        src="../assets/images/熱紅酒莓果（光暈）.png"
+                        src="/熱紅酒莓果（光暈）.webp"
                         alt="熱紅酒莓果"
                         class="img-fluid"
                       />
@@ -278,7 +282,10 @@
                       class="favorite-btn position-absolute top-0 end-0 fs-3 fs-lg-1"
                       data-bs-toggle="modal"
                       data-bs-target="#favoriteModal"
-                      onclick="event.preventDefault(); event.stopPropagation();"
+                      onclick="
+                        event.preventDefault();
+                        event.stopPropagation();
+                      "
                     >
                       <i class="bi bi-heart empty"></i>
                       <i class="bi bi-heart-fill full"></i>
@@ -311,7 +318,7 @@
                   >
                     <div class="img-box p-18">
                       <img
-                        src="../assets/images/莓果夾心（光暈）.png"
+                        src="/莓果夾心（光暈）.webp"
                         alt="莓果夾心"
                         class="img-fluid"
                       />
@@ -322,7 +329,10 @@
                       class="favorite-btn position-absolute top-0 end-0 fs-3 fs-lg-1"
                       data-bs-toggle="modal"
                       data-bs-target="#favoriteModal"
-                      onclick="event.preventDefault(); event.stopPropagation();"
+                      onclick="
+                        event.preventDefault();
+                        event.stopPropagation();
+                      "
                     >
                       <i class="bi bi-heart empty"></i>
                       <i class="bi bi-heart-fill full"></i>
@@ -426,7 +436,6 @@
         </div>
       </div>
     </div>
-    <%- include('./layout/footer'); -%>
 
     <script type="module" src="../main.js"></script>
     <script>

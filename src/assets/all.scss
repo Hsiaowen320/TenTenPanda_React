@@ -1,0 +1,45 @@
+// 字體
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;700&display=swap");
+
+// 變數、通用樣式
+@import "./utils/variables-custom";
+@import "./utils/utilities";
+@import "../../node_modules/bootstrap";
+@import "bootstrap/scss/utilities/api";
+
+// Bootstrap
+// @import "bootstrap/scss/bootstrap";
+
+// 註記討論 : 這裡是又改回來這樣的形式嗎?
+// 變數、通用樣式
+// @import "./utils/variables-custom";
+// @import "./utils/utilities";
+// @import "../../node_modules/bootstrap";
+// @import "bootstrap/scss/utilities/api";
+
+// base
+@import "./base/reset";
+@import "./base/base";
+
+// layout
+// @import "../layout-ejs/footer";
+// @import "../layout-ejs/header";
+// @import "../layout-ejs/header-profile.ejs";
+
+//page
+@import "./pages-scss/index";
+@import "./pages-scss/productList";
+@import "./pages-scss/item_details";
+@import "./pages-scss/order";
+@import "./pages-scss/cart";
+@import "./pages-scss/news";
+@import "./pages-scss/login";
+@import "./pages-scss/join";
+@import "./pages-scss/password";
+@import "./pages-scss/item_details";
+@import "./pages-scss/privacy";
+@import "./pages-scss/return";
+@import "./pages-scss/story";
+@import "./pages-scss/productList";
+@import "./pages-scss/myOrders";
+@import "./pages-scss/myInfo";

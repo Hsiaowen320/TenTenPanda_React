@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="zh-TW">
   <html lang="zh-TW">
     <head>
@@ -7,10 +7,6 @@
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <link rel="preconnect" href="https://fonts.googleapis.com" />
       <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-      <link
-        href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@100..900&display=swap"
-        rel="stylesheet"
-      />
       <!-- Bootstrap CSS/Js -->
       <link
         href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@100..900&display=swap"
@@ -38,9 +34,6 @@
     </head>
 
     <body>
-      <div id="userHeader"><%- include('./layout/header-profile'); -%></div>
-      <div id="guestHeader"><%- include('./layout/header'); -%></div>
-
       <!-- 商品詳情-經典甜甜禮盒_12入 頁面 -->
       <section>
         <!-- 麵包屑 -->
@@ -48,9 +41,7 @@
           <nav>
             <ol class="breadcrumb">
               <li class="bread-item">
-                <a href="#"
-                  ><img src="../assets/images/icon-home.svg" alt=""
-                /></a>
+                <a href="#"><img src="/icon-home.webp" alt="" /></a>
               </li>
               <li class="d-flex align-items-center">
                 <span class="material-symbols-outlined text-neutral-60 mx-2"
@@ -62,7 +53,10 @@
                 <a
                   href="#"
                   class="text-neutral-60"
-                  onclick="history.back(); return false;"
+                  onclick="
+                    history.back();
+                    return false;
+                  "
                   >⋯</a
                 >
               </li>
@@ -100,10 +94,7 @@
           <div class="row">
             <div class="col-lg-5">
               <div class="mb-lg-8">
-                <img
-                  src="../assets/images/經典甜甜-禮盒-12入-去背.png"
-                  alt=""
-                />
+                <img src="/經典甜甜-禮盒-12入-去背.webp" alt="" />
               </div>
             </div>
             <div class="col-lg-7">
@@ -226,7 +217,7 @@
                   class="card bg-transparent border-0 h-100 align-items-center text-center"
                 >
                   <img
-                    src="/assets/images/經典甜甜.png"
+                    src="/經典甜甜.webp"
                     class="img-limited img-fluid h-100"
                     alt="經典甜甜"
                   />
@@ -246,7 +237,7 @@
                   class="card bg-transparent border-0 h-100 align-items-center text-center"
                 >
                   <img
-                    src="/assets/images/經典甜甜-禮盒-6入-去背.png"
+                    src="/經典甜甜-禮盒-6入-去背.webp"
                     class="img-limited img-fluid h-100"
                     alt="經典甜甜-禮盒-6入"
                   />
@@ -267,7 +258,7 @@
                   class="card bg-transparent border-0 h-100 align-items-center text-center"
                 >
                   <img
-                    src="/assets/images/綜合甜甜-禮盒-6入-去背.png"
+                    src="/綜合甜甜-禮盒-6入-去背.webp"
                     class="img-limited img-fluid h-100"
                     alt="綜合甜甜-禮盒-6入"
                   />
@@ -287,7 +278,7 @@
                   class="card bg-transparent border-0 h-100 align-items-center text-center"
                 >
                   <img
-                    src="/assets/images/綜合甜甜-禮盒-12入-去背.png"
+                    src="/綜合甜甜-禮盒-12入-去背.webp"
                     class="img-limited img-fluid h-100"
                     alt="綜合甜甜-禮盒-12入"
                   />
@@ -363,8 +354,6 @@
           </div>
         </div>
       </div>
-
-      <%- include('./layout/footer'); -%>
       <script type="module" src="../main.js"></script>
     </body>
   </html>

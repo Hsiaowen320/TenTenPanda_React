@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="zh-TW">
   <head>
     <meta charset="UTF-8" />
@@ -6,10 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@100..900&display=swap"
-      rel="stylesheet"
-    />
     <!-- Bootstrap CSS/Js -->
     <link
       href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@100..900&display=swap"
@@ -35,13 +31,6 @@
     <title>甜甜熊貓｜TenTen Donut - 最新消息</title>
   </head>
   <body>
-    <div id="userHeader" style="visibility: hidden">
-      <%- include('./layout/header-profile'); -%>
-    </div>
-    <div id="guestHeader" style="visibility: hidden">
-      <%- include('./layout/header'); -%>
-    </div>
-
     <main class="news-bg position-relative">
       <section class="py-lg-12 py-8 container">
         <div
@@ -55,7 +44,7 @@
             甜甜報你知，第一手掌握最新資訊與優惠!
           </h2>
           <img
-            src="../assets/images/news/news-bright.svg"
+            src="/news/news-bright.webp"
             alt=""
             class="img-fluid position-absolute top-0 news-deco-img-bright"
           />
@@ -77,7 +66,7 @@
             >
               <div class="d-flex gap-5 flex-column flex-lg-row">
                 <div class="news-img rounded-4 overflow-hidden flex-shrink-0">
-                  <img src="../assets/images/ad-news-1.png" alt="" />
+                  <img src="/ad-news-1.webp" alt="" />
                 </div>
                 <div class="d-flex flex-column justify-content-between gap-2">
                   <p class="text-neutral-60 fs-lg-9 fs-7">
@@ -117,11 +106,7 @@
             <div id="news-list-1" class="accordion-collapse collapse">
               <div class="accordion-body px-lg-10 py-lg-10 p-2">
                 <div class="news-img-open rounded-4 overflow-hidden">
-                  <img
-                    src="../assets/images/ad-news-1.png"
-                    alt=""
-                    class="img-fluid"
-                  />
+                  <img src="/ad-news-1.webp" alt="" class="img-fluid" />
                 </div>
                 <div class="d-flex flex-column mt-lg-8 mt-5">
                   <div
@@ -248,7 +233,7 @@
             >
               <div class="d-flex gap-5 flex-column flex-lg-row">
                 <div class="news-img rounded-4 overflow-hidden flex-shrink-0">
-                  <img src="../assets/images/ad-news-2.jpg" alt="" />
+                  <img src="/ad-news-2.webp" alt="" />
                 </div>
                 <div class="d-flex flex-column justify-content-between gap-2">
                   <p class="text-neutral-60 fs-lg-9 fs-7">
@@ -290,11 +275,7 @@
             <div id="news-list-2" class="accordion-collapse collapse">
               <div class="accordion-body px-lg-10 py-lg-10 p-2">
                 <div class="news-img-open rounded-4 overflow-hidden">
-                  <img
-                    src="../assets/images/ad-news-2.jpg"
-                    alt=""
-                    class="img-fluid"
-                  />
+                  <img src="/ad-news-2.webp" alt="" class="img-fluid" />
                 </div>
                 <div class="d-flex flex-column mt-lg-8 mt-5">
                   <div
@@ -409,7 +390,7 @@
             >
               <div class="d-flex gap-5 flex-column flex-lg-row w-100">
                 <div class="news-img rounded-4 overflow-hidden flex-shrink-0">
-                  <img src="../assets/images/ad-news-3.png" alt="" />
+                  <img src="/ad-news-3.webp" alt="" />
                 </div>
                 <div class="d-flex flex-column justify-content-between gap-2">
                   <p class="text-neutral-60 fs-lg-9 fs-7">
@@ -448,11 +429,7 @@
             <div id="news-list-3" class="accordion-collapse collapse">
               <div class="accordion-body px-lg-10 py-lg-10 p-2">
                 <div class="news-img-open rounded-4 overflow-hidden">
-                  <img
-                    src="../assets/images/ad-news-3.png"
-                    alt=""
-                    class="img-fluid"
-                  />
+                  <img src="/ad-news-3.webp" alt="" class="img-fluid" />
                 </div>
                 <div class="d-flex flex-column mt-lg-8 mt-5">
                   <div
@@ -536,7 +513,7 @@
             >
               <div class="d-flex gap-5 flex-column flex-lg-row w-100">
                 <div class="news-img rounded-4 overflow-hidden flex-shrink-0">
-                  <img src="../assets/images/ad-news-4.png" alt="" />
+                  <img src="/ad-news-4.webp" alt="" />
                 </div>
                 <div class="d-flex flex-column justify-content-between gap-2">
                   <p class="text-neutral-60 fs-lg-9 fs-7">
@@ -578,11 +555,7 @@
             <div id="news-list-4" class="accordion-collapse collapse">
               <div class="accordion-body px-lg-10 py-lg-10 p-2">
                 <div class="news-img-open rounded-4 overflow-hidden">
-                  <img
-                    src="../assets/images/ad-news-4.png"
-                    alt=""
-                    class="img-fluid"
-                  />
+                  <img src="/ad-news-4.webp" alt="" class="img-fluid" />
                 </div>
                 <div class="d-flex flex-column mt-lg-8 mt-5">
                   <div
@@ -654,13 +627,12 @@
         </div>
       </section>
       <img
-        src="../assets/images/news/news-letter.svg"
+        src="/news/news-letter.webp"
         alt=""
         class="position-absolute news-deco-img-letter"
       />
     </main>
 
-    <%- include('./layout/footer'); -%>
     <script type="module" src="../main.js"></script>
   </body>
 </html>

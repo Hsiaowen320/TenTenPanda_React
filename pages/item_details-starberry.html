@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="zh-TW">
   <html lang="zh-TW">
     <head>
@@ -7,10 +7,6 @@
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <link rel="preconnect" href="https://fonts.googleapis.com" />
       <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-      <link
-        href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@100..900&display=swap"
-        rel="stylesheet"
-      />
       <!-- Bootstrap CSS/Js -->
       <link
         href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@100..900&display=swap"
@@ -38,13 +34,6 @@
     </head>
 
     <body>
-      <div id="userHeader" style="visibility: hidden">
-        <%- include('./layout/header-profile'); -%>
-      </div>
-      <div id="guestHeader" style="visibility: hidden">
-        <%- include('./layout/header'); -%>
-      </div>
-
       <!-- 商品詳情-星塵草莓 頁面 -->
       <section class="py-lg-14 py-8">
         <!-- 麵包屑 -->
@@ -52,9 +41,7 @@
           <nav>
             <ol class="breadcrumb">
               <li class="bread-item">
-                <a href="index.html"
-                  ><img src="../assets/images/icon-home.svg" alt=""
-                /></a>
+                <a href="index.html"><img src="/icon-home.webp" alt="" /></a>
               </li>
               <li class="d-flex align-items-center">
                 <span class="material-symbols-outlined text-neutral-60 mx-2"
@@ -66,7 +53,10 @@
                 <a
                   href="#"
                   class="text-neutral-60"
-                  onclick="history.back(); return false;"
+                  onclick="
+                    history.back();
+                    return false;
+                  "
                   >⋯</a
                 >
               </li>
@@ -80,7 +70,9 @@
                 <a href="#"></a>
               </li>
               <li class="bread-item d-none d-lg-block">
-                <a href="./productList-seasonal.html" class="text-neutral-60">季節限定</a>
+                <a href="./productList-seasonal.html" class="text-neutral-60"
+                  >季節限定</a
+                >
               </li>
               <li class="d-lg-flex align-items-center d-none">
                 <span class="material-symbols-outlined text-neutral-60 mx-2"
@@ -102,7 +94,7 @@
           <div class="row">
             <div class="col-lg-5">
               <div class="mb-lg-8">
-                <img src="../assets/images/星塵草莓2-光暈.png" alt="" />
+                <img src="/星塵草莓2-光暈.webp" alt="" />
               </div>
             </div>
             <div class="col-lg-7">
@@ -225,7 +217,7 @@
                   class="card bg-transparent border-0 h-100 align-items-center text-center"
                 >
                   <img
-                    src="/assets/images/莓果夾心2-光暈.png"
+                    src="/莓果夾心2-光暈.webp"
                     class="img-limited img-fluid h-100"
                     alt="星塵草莓"
                   />
@@ -245,7 +237,7 @@
                   class="card bg-transparent border-0 h-100 align-items-center text-center"
                 >
                   <img
-                    src="/assets/images/莓果可可2-光暈.png"
+                    src="/莓果可可2-光暈.webp"
                     class="img-limited img-fluid h-100"
                     alt="星塵草莓"
                   />
@@ -265,7 +257,7 @@
                   class="card bg-transparent border-0 h-100 align-items-center text-center"
                 >
                   <img
-                    src="/assets/images/雪莓蒙布郎2-光暈.png"
+                    src="/雪莓蒙布郎2-光暈.webp"
                     class="img-limited img-fluid h-100"
                     alt="星塵草莓"
                   />
@@ -285,7 +277,7 @@
                   class="card bg-transparent border-0 h-100 align-items-center text-center"
                 >
                   <img
-                    src="/assets/images/熱紅酒莓果2-光暈.png"
+                    src="/熱紅酒莓果2-光暈.webp"
                     class="img-limited img-fluid h-100"
                     alt="星塵草莓"
                   />
@@ -364,7 +356,6 @@
         </div>
       </div>
 
-      <%- include('./layout/footer'); -%>
       <script type="module" src="../main.js"></script>
     </body>
   </html>

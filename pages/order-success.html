@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="zh-TW">
   <head>
     <meta charset="UTF-8" />
@@ -6,10 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@100..900&display=swap"
-      rel="stylesheet"
-    />
     <!-- Bootstrap CSS/Js -->
     <link
       href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@100..900&display=swap"
@@ -32,13 +28,6 @@
   </head>
 
   <body>
-    <div id="userHeader" style="visibility: hidden">
-      <%- include('./layout/header-profile'); -%>
-    </div>
-    <div id="guestHeader" style="visibility: hidden">
-      <%- include('./layout/header'); -%>
-    </div>
-
     <main class="order-bg">
       <section class="py-lg-14 py-8 container">
         <!-- 進度條 -->
@@ -82,7 +71,7 @@
         >
           <div class="d-none d-lg-block">
             <img
-              src="../assets/images/order-success/order-success-img.png"
+              src="/order-success/order-success-img.webp"
               alt=""
               class="img-fluid"
             />
@@ -92,7 +81,7 @@
           >
             <div>
               <img
-                src="../assets/images/order-success/order-success-done.png"
+                src="/order-success/order-success-done.webp"
                 alt=""
                 class="img-fluid"
               />
@@ -125,8 +114,6 @@
         </div>
       </section>
     </main>
-
-    <%- include('./layout/footer'); -%>
 
     <script type="module" src="../main.js"></script>
   </body>

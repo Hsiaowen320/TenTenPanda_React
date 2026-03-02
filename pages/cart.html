@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="zh-TW">
   <head>
     <meta charset="UTF-8" />
@@ -6,10 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@100..900&display=swap"
-      rel="stylesheet"
-    />
     <!-- Bootstrap CSS/Js -->
     <link
       href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@100..900&display=swap"
@@ -31,13 +27,6 @@
     <title>甜甜熊貓｜TenTen Donut - 購物清單</title>
   </head>
   <body>
-    <div id="userHeader" style="visibility: hidden">
-      <%- include('./layout/header-profile'); -%>
-    </div>
-    <div id="guestHeader" style="visibility: hidden">
-      <%- include('./layout/header'); -%>
-    </div>
-
     <main class="order-bg">
       <section class="py-lg-14 py-8 container">
         <!-- 進度條 -->
@@ -102,7 +91,7 @@
                     class="cart-img rounded-4 overflow-hidden border border-neutral-40"
                   >
                     <img
-                      src="../assets/images/cart/order-cart-1.png"
+                      src="/cart/order-cart-1.webp"
                       alt=""
                       class="img-fluid"
                     />
@@ -186,7 +175,7 @@
                     class="cart-img rounded-4 overflow-hidden border border-neutral-40"
                   >
                     <img
-                      src="../assets/images/cart/order-cart-2.png"
+                      src="/cart/order-cart-2.webp"
                       alt=""
                       class="img-fluid"
                     />
@@ -272,7 +261,7 @@
                     class="cart-img rounded-4 overflow-hidden border border-neutral-40"
                   >
                     <img
-                      src="../assets/images/cart/order-cart-3.png"
+                      src="/cart/order-cart-3.webp"
                       alt=""
                       class="img-fluid"
                     />
@@ -346,7 +335,9 @@
           <div class="col-lg-4 mt-8 mt-lg-0">
             <!-- 下面的 div 用於 sticky -->
             <div class="sticky-top">
-              <div class="orer-details-bg py-lg-8 py-6 px-4 px-lg-6 rounded-4 sticky-top">
+              <div
+                class="orer-details-bg py-lg-8 py-6 px-4 px-lg-6 rounded-4 sticky-top"
+              >
                 <h2 class="fw-bold fs-4 text-neutral-100">優惠折扣</h2>
                 <div class="mt-lg-5 mt-3">
                   <label
@@ -395,8 +386,6 @@
         </div>
       </section>
     </main>
-
-    <%- include('./layout/footer'); -%>
     <script type="module" src="../main.js"></script>
   </body>
 </html>

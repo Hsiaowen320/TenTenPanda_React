@@ -1,0 +1,465 @@
+// <------------ section 1.2 Start ------------> //
+.banner-img {
+  max-width: 1520px;
+  height: 81.9vh;
+  @include media-breakpoint-up(lg) {
+    height: 73.59756vh;
+  }
+}
+.banner-boder-radius-lg {
+  border-radius: 40px;
+  @include media-breakpoint-up(lg) {
+    border-radius: 56px;
+  }
+}
+
+// 雪夜莓語-標題區塊
+.banner-seasonal-title {
+  width: 184px;
+  height: 143px;
+  left: -1px;
+  top: 0;
+  border-bottom-right-radius: 56px;
+  position: relative;
+  @include media-breakpoint-up(lg) {
+    all: unset;
+    box-sizing: border-box;
+    width: 294px;
+    height: 237px;
+    border-top-right-radius: 56px;
+    left: -1px;
+    bottom: -1%;
+  }
+  ::before {
+    content: "";
+    position: absolute;
+    content: url("@/assets/images/corner-l.webp");
+    width: 40px;
+    height: 40px;
+    bottom: 1px;
+    left: -1px;
+    transform: translateY(140%) translateX(0%) rotateX(180deg);
+    @include media-breakpoint-up(lg) {
+      width: 56px;
+      height: 56px;
+      top: 0;
+      left: 0;
+      transform: translateY(-90%);
+    }
+  }
+  ::after {
+    content: "";
+    position: absolute;
+    content: url("@/assets/images/corner-l.webp");
+    width: 40px;
+    height: 40px;
+    top: 0;
+    right: 1px;
+    transform: translateX(100%) translateY(40%) rotateX(180deg);
+    @include media-breakpoint-up(lg) {
+      width: 56px;
+      height: 56px;
+      top: auto;
+      bottom: 0;
+      right: 0;
+      transform: translateX(95%) translateY(0) rotateX(0);
+    }
+  }
+}
+.banner-seasonal-title-img {
+  width: 132px;
+  height: 40px;
+  @include media-breakpoint-up(lg) {
+    width: 200px;
+    height: 60px;
+  }
+}
+
+// 雪夜莓語-日期
+.banner-seasonal-date {
+  width: 223px;
+  height: 66px;
+  left: -1px;
+  bottom: -2px;
+  border-top-right-radius: 32px;
+  position: relative;
+  @include media-breakpoint-up(lg) {
+    all: unset;
+    box-sizing: border-box;
+    width: 362px;
+    height: 94px;
+    border-top-left-radius: 40px;
+    right: -1px;
+    bottom: -1%;
+  }
+  ::before {
+    content: "";
+    position: absolute;
+    content: url("@/assets/images/corner-s.webp");
+    top: 5px;
+    left: -1px;
+    transform: translateY(-100%) rotateY(180deg);
+    @include media-breakpoint-up(lg) {
+      transform: translateY(120%) translateX(-90%) scale(90%) rotateY(0deg);
+    }
+  }
+  ::after {
+    content: "";
+    position: absolute;
+    content: url("@/assets/images/corner-s.webp");
+    right: 1px;
+    bottom: -3px;
+    transform: translateX(100%) rotateY(180deg);
+    @include media-breakpoint-up(lg) {
+      all: unset;
+      content: "";
+      position: absolute;
+      content: url("@/assets/images/corner-s.webp");
+      top: 7px;
+      right: 0;
+      transform: translateY(-100%);
+    }
+  }
+}
+// 封面裝飾線條甜甜圈
+.banner-deco {
+  display: none;
+  @media (min-width: 1650px) {
+    display: block;
+  }
+}
+
+//section 甜甜圈標題圖片
+.section-list-donut {
+  width: 30px;
+  height: 24px;
+  @include media-breakpoint-up(lg) {
+    width: 60px;
+    height: 48px;
+  }
+}
+
+.swiper-slide {
+  width: 320px;
+  @include media-breakpoint-up(lg) {
+    width: 1000px;
+  }
+}
+.swiper-pagination {
+  position: relative;
+  &-bullet {
+    width: 12px;
+    height: 12px;
+    &-active {
+      background: $primary-40;
+    }
+  }
+}
+.swiper-horizontal > .swiper-pagination-bullets .swiper-pagination-bullet,
+.swiper-pagination-horizontal.swiper-pagination-bullets
+  .swiper-pagination-bullet {
+  margin: 0 16px;
+}
+
+.sales-ad {
+  width: 320px;
+  height: 200px;
+  border-radius: 24px;
+  @include media-breakpoint-up(lg) {
+    width: 1000px;
+    height: 500px;
+    border-radius: 56px;
+  }
+  &-1 {
+    background-image: url(@/assets/images/ad1.webp);
+    background-size: cover;
+    background-position: center;
+    padding: 24px;
+    @include media-breakpoint-up(lg) {
+      padding-left: 160px;
+    }
+  }
+  &-title {
+    width: 100px;
+    height: 32px;
+    @include media-breakpoint-up(lg) {
+      width: 256px;
+      height: 80px;
+    }
+  }
+  &-2 {
+    background-image: url(@/assets/images/ad2.webp);
+    background-size: 200%;
+    background-position: 30% 50%;
+    @include media-breakpoint-up(lg) {
+      background-size: 160%;
+      background-position: left;
+    }
+  }
+  &-span {
+    border-radius: 16px 32px 32px 0px;
+    @include media-breakpoint-up(lg) {
+      border-radius: 32px 80px 80px 0px;
+    }
+  }
+  &-3 {
+    background-image: url(@/assets/images/ad3.webp);
+    background-size: cover;
+    background-position: center;
+  }
+}
+
+.deco-bg-circle {
+  width: 264px;
+  height: 264px;
+  border-radius: 50%;
+  background-color: #fff;
+  top: -40%;
+  left: -25%;
+  @include media-breakpoint-up(lg) {
+    width: 631px;
+    height: 631px;
+    top: -15%;
+    left: -15%;
+  }
+}
+// <------------ section 1.2 End ------------> //
+
+// <------------ section 3 甜甜推薦-recommend Start ------------> //
+.recommend-main {
+  background-color: $primary-20;
+  border-top-left-radius: 32px;
+  border-top-right-radius: 32px;
+  @include media-breakpoint-up(lg) {
+    border-top-left-radius: 120px;
+  }
+  position: relative; // 確保偽元素定位參考點
+
+  //container 左邊圖片
+  .recommend-bigtitle {
+    z-index: 0; // 視需要調整，確保在內容底下
+    left: -152px;
+    bottom: 64px;
+  }
+
+  //container 右邊背景顏色
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 120px;
+    bottom: 0;
+    /* 背景要延伸到螢幕最右邊 */
+    width: calc(100vw); // 或直接 100vw，但會蓋到左邊，要依需求調整
+    background-color: $primary-20; // 你要的顏色
+    z-index: -1; // 放在最底層
+  }
+
+  button {
+    background-color: white;
+    color: $neutral-60;
+    // 預設「已啟用」狀態
+    &.active {
+      background: $primary-60;
+      color: white;
+      font-weight: 700;
+    }
+    // 滑鼠按下 or 鍵盤聚焦
+    &:active,
+    &:focus {
+      background: $primary-60;
+      color: white;
+      font-weight: 700;
+    }
+  }
+
+  //商品圖片大小調整
+  .recommend-commodity {
+    // 限定口味圖片
+    .img-limited {
+      width: 90%; //
+      height: auto; /* 保持比例 */
+      @include media-breakpoint-up(lg) {
+        width: 50%; //
+        height: auto; /* 保持比例 */
+      }
+    }
+
+    // 經典口味圖片
+    .img-classic {
+      width: 90%; //
+      height: auto; /* 保持比例 */
+      @include media-breakpoint-up(lg) {
+        width: 60%; //
+        height: auto; /* 保持比例 */
+        max-width: 230px;
+      }
+    }
+  }
+}
+// <------------ section 3 甜甜推薦-recommend End ------------> //
+
+// <------------ section 4 Slogan start ------------> //
+.slogan-section {
+  background-image: url(@/assets/images/bg-slogan-mb.webp);
+  width: auto;
+  height: 375px;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  position: relative;
+  z-index: 0;
+
+  //背景左至右 白色漸層色
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+      to right,
+      rgba(255, 255, 255, 1),
+      rgba(255, 255, 255, 0)
+    );
+    z-index: -1;
+  }
+
+  @include media-breakpoint-up(lg) {
+    background-position: 75% 95%;
+    height: 473px;
+  }
+
+  .slogan-text {
+    color: white;
+    @include media-breakpoint-up(lg) {
+      color: $neutral-100;
+    }
+  }
+}
+// <------------ section 4 Slogan End ------------> //
+
+// <------------ section 5 甜甜報你知-news Start ------------> //
+.news {
+  /* 右側清單區塊 */
+  .list-group {
+    .list-group-item {
+      background-color: $primary-tint; // odd：奇數背景顏色
+      border: 0;
+
+      &:nth-child(even) {
+        background-color: $white; // even：偶數背景顏色
+      }
+
+      /* 消息標題顏色 ＆ hover / focus 效果  */
+      .news-title {
+        color: $neutral-100;
+      }
+      &:hover,
+      &:focus-visible {
+        .news-title {
+          color: $primary-40;
+        }
+      }
+    }
+  }
+
+  /* 左側預覽圖區塊 */
+  .news-preview {
+    position: relative;
+
+    /* 左側預覽圖容器 */
+    .preview-img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0;
+      transition: opacity 0.25s;
+    }
+  }
+
+  /* 預設先顯示 n1 圖，不靠 checked */
+  .news-preview [data-key="1"] {
+    opacity: 1;
+  }
+
+  /* radio:hover → 顯示對應圖片 */
+  #n1:hover ~ .row .news-preview [data-key="1"],
+  #n2:hover ~ .row .news-preview [data-key="2"],
+  #n3:hover ~ .row .news-preview [data-key="3"],
+  #n4:hover ~ .row .news-preview [data-key="4"] {
+    opacity: 1;
+  }
+
+  /* checked 或 hover 才讓文字上色 */
+  #n1:checked ~ .row label[for="n1"] .news-title,
+  #n2:checked ~ .row label[for="n2"] .news-title,
+  #n3:checked ~ .row label[for="n3"] .news-title,
+  #n4:checked ~ .row label[for="n4"] .news-title,
+  .row label:hover .news-title {
+    color: $primary-40;
+  }
+
+  /* 文字 RWD */
+  .news-detail {
+    font-size: 14px;
+    @include media-breakpoint-up(lg) {
+      font-size: 16px;
+    }
+  }
+
+  /* 按鈕 */
+  .btn.more-btn {
+    background-color: $white;
+    color: $primary-80;
+    border: 1px solid $primary-80;
+
+    &:hover {
+      background-color: $primary-40;
+      color: $white;
+      border-color: $primary-40;
+    }
+    &:focus,
+    &:focus-visible {
+      background-color: $primary-40;
+      color: $white;
+      border-color: $primary-40;
+    }
+  }
+}
+// <------------ section 5 甜甜報你知-news End ------------> //
+
+// <------------ section 6 甜甜在這裡-map Start ------------> //
+.map {
+  background-image: url(@/assets/images/s6-bg.webp);
+  .s6-bg {
+    background-color: $white;
+    .store {
+      max-width: 327px;
+      @include media-breakpoint-up(lg) {
+        max-width: 1152px;
+      }
+      .map-img-col {
+        max-width: 327px;
+        height: 335px;
+        @include media-breakpoint-up(lg) {
+          max-width: 1152px;
+          height: 634px;
+        }
+      }
+    }
+  }
+}
+// <------------ section 6 甜甜在這裡-map End ------------> //
+
+// 補
+.fz18-72-Jenna {
+  font-size: 18px;
+  @include media-breakpoint-up(lg) {
+    font-size: 72px;
+  }
+}
