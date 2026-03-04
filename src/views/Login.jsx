@@ -2,6 +2,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useMemo, useRef, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import CommonSwiper from "@/components/CommonSwiper";
+import { loginUser } from "@/api/auth";
 
 import login3 from "@/assets/images/login-3.webp";
 import login4 from "@/assets/images/login-4.webp";
@@ -20,6 +21,9 @@ const Login = () => {
   // 密碼是否顯示
   const [showPassword, setShowPassword] = useState(false);
 
+  // 是否正在送出
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
   /**
    * react-hook-form
    *
@@ -33,6 +37,7 @@ const Login = () => {
     register,
     handleSubmit,
     getValues,
+    setValue,
     formState: { errors, touchedFields, isValid },
   } = useForm({
     mode: "onBlur",
@@ -104,13 +109,24 @@ const Login = () => {
   }, []);
 
   /**
+   * 如果有勾選記住帳號，進頁面時自動帶入 email
+   */
+  useEffect(() => {
+    const rememberedEmail = localStorage.getItem("rememberEmail");
+
+    if (rememberedEmail) {
+      setValue("email", rememberedEmail);
+      setValue("remember", true);
+    }
+  }, [setValue]);
+
+  /**
    * 顯示登入成功後，1.5 秒跳轉首頁
    */
   useEffect(() => {
     if (!showSuccess) return;
 
     const timer = setTimeout(() => {
-      localStorage.setItem("isLogin", "true");
       setShowSuccess(false);
       navigate("/");
     }, 1500);
@@ -164,11 +180,32 @@ const Login = () => {
    * data 由 react-hook-form 提供
    */
   const onSubmit = async (data) => {
-    // 這裡先示範前端成功流程
-    // 若之後接 API，可在這裡用 axios/fetch
-    // console.log(data);
+    try {
+      setIsSubmitting(true);
 
-    setShowSuccess(true);
+      const user = await loginUser({
+        email: data.email.trim(),
+        password: data.password,
+      });
+
+      // 記住帳號
+      if (data.remember) {
+        localStorage.setItem("rememberEmail", user.email);
+      } else {
+        localStorage.removeItem("rememberEmail");
+      }
+
+      // 存登入狀態
+      localStorage.setItem("isLogin", "true");
+      localStorage.setItem("user", JSON.stringify(user));
+
+      setShowSuccess(true);
+    } catch (error) {
+      console.error("登入失敗：", error);
+      alert(error.message || "登入失敗，請稍後再試");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -316,9 +353,9 @@ const Login = () => {
                         type="submit"
                         className="btn login-btn fs-6 br-8 w-100 py-4"
                         id="loginBtn"
-                        disabled={!isValid}
+                        disabled={!isValid || isSubmitting}
                       >
-                        立即登入
+                        {isSubmitting ? "登入中..." : "立即登入"}
                       </button>
                     </div>
 

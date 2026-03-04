@@ -7,6 +7,7 @@ import Join from "./views/Join";
 import Password from "./views/Password";
 import Return from "./views/Return";
 import Privacy from "./views/Privacy";
+import News from "./views/News";
 import ProductListClassic from "./views/ProductListClassic";
 import ProductListGiftbox from "./views/ProductListGiftbox";
 import ProductListSeasonal from "./views/ProductListSeasonal";
@@ -58,6 +59,10 @@ const router = createHashRouter([
       {
         path: "privacy",
         element: <Privacy />,
+      },
+      {
+        path: "news",
+        element: <News />,
       },
       {
         path: "productList-classic",
