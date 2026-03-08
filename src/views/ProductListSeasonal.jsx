@@ -1,6 +1,10 @@
 import { Link, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { supabase } from "../../supabaseClient";
+import { updateCart } from "@/api/cart";
+import { getFavorite, toggleFavorite } from "@/api/favorite";
+import { Modal } from "bootstrap";
+
 import home from "@/assets/images/home.webp";
 import starberryImage from "@/assets/images/星塵草莓（光暈）.webp";
 import snowberryImage from "@/assets/images/白雪綿霜莓（光暈）.webp";
@@ -8,8 +12,6 @@ import berryCocoImage from "@/assets/images/莓果可可（光暈）.webp";
 import snowberryMontImage from "@/assets/images/雪莓蒙布朗（光暈）.webp";
 import wineberryImage from "@/assets/images/熱紅酒莓果（光暈）.webp";
 import frostberryImage from "@/assets/images/莓果夾心（光暈）.webp";
-import { updateCart } from "@/api/cart";
-import { Modal } from "bootstrap";
 
 const ProductListSeasonal = () => {
   const navigate = useNavigate();
@@ -22,6 +24,8 @@ const ProductListSeasonal = () => {
 
   // 錯誤訊息
   const [errorMessage, setErrorMessage] = useState("");
+
+  const [favoriteIds, setFavoriteIds] = useState([]);
 
   /**
    * english_name 對應本地圖片
@@ -61,7 +65,12 @@ const ProductListSeasonal = () => {
    * 進頁面時撈資料
    */
   useEffect(() => {
-    getClassicProducts();
+    const initPage = async () => {
+      await getClassicProducts();
+      await loadFavoriteIds();
+    };
+
+    initPage();
   }, []);
 
   /**
@@ -90,6 +99,49 @@ const ProductListSeasonal = () => {
       modalInstance.show();
     }
   };
+
+  //收藏清單踩入
+  const loadFavoriteIds = async () => {
+    const favoriteList = await getFavorite();
+
+    if (!favoriteList) {
+      setFavoriteIds([]);
+      return;
+    }
+
+    const ids = favoriteList.map((item) => item.product_id);
+    setFavoriteIds(ids);
+  };
+
+  //收藏切換
+  const handleToggleFavorite = async (productId, event) => {
+  if (event) {
+    event.preventDefault();
+    event.stopPropagation();
+  }
+
+  const result = await toggleFavorite(productId);
+
+  if (!result.success) return;
+
+  if (result.isFavorite) {
+    setFavoriteIds((prev) => [...prev, productId]);
+
+    const modalElement = document.getElementById("favoriteModal");
+    if (modalElement) {
+      const modalInstance = new Modal(modalElement);
+      modalInstance.show();
+    }
+  } else {
+    setFavoriteIds((prev) => prev.filter((id) => id !== productId));
+
+    const modalElement = document.getElementById("cancelFavoriteModal");
+    if (modalElement) {
+      const modalInstance = new Modal(modalElement);
+      modalInstance.show();
+    }
+  }
+};
 
   return (
     <>
@@ -181,6 +233,8 @@ const ProductListSeasonal = () => {
                 <>
                   <div className="row">
                     {products.map((product) => {
+                      const isFavorite = favoriteIds.includes(product.id);
+
                       /**
                        * 商品列表圖：
                        * 1. 優先使用資料庫的 image_title_url
@@ -216,13 +270,9 @@ const ProductListSeasonal = () => {
                               {/* 加入收藏 */}
                               <button
                                 type="button"
-                                className="favorite-btn position-absolute top-0 end-0 fs-3 fs-lg-1"
-                                data-bs-toggle="modal"
-                                data-bs-target="#favoriteModal"
-                                onClick={(event) => {
-                                  event.preventDefault();
-                                  event.stopPropagation();
-                                }}
+                                className={`favorite-btn position-absolute top-0 end-0 fs-3 fs-lg-1 ${isFavorite ? "active" : ""
+                                  }`}
+                                onClick={(event) => handleToggleFavorite(product.id, event)}
                               >
                                 <i className="bi bi-heart empty"></i>
                                 <i className="bi bi-heart-fill full"></i>

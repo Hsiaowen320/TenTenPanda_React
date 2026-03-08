@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { supabase } from "../../supabaseClient";
 import { updateCart } from "@/api/cart";
 import { Modal } from "bootstrap";
+import { getFavorite, toggleFavorite } from "@/api/favorite";
 
 import home from "@/assets/images/home.webp";
 import 莓果甜甜 from "@/assets/images/莓果甜甜.webp";
@@ -12,7 +13,6 @@ import 焦糖可可甜甜 from "@/assets/images/焦糖可可甜甜.webp";
 
 const SingleProductClassic = () => {
   const navigate = useNavigate();
-  const [showCartSuccess, setShowCartSuccess] = useState(false);
 
   // 從網址取得 id
   const { id } = useParams();
@@ -29,12 +29,14 @@ const SingleProductClassic = () => {
   // 商品數量
   const [quantity, setQuantity] = useState(1);
 
+  const [isFavorite, setIsFavorite] = useState(false);
+
+
   /**
    * 依 id 取得單筆商品資料
    * 主圖使用 image_content_url
    */
   const getProductDetail = async () => {
-    console.log("step1");
     try {
       setLoading(true);
       setErrorMessage("");
@@ -50,6 +52,7 @@ const SingleProductClassic = () => {
       }
 
       setProduct(data);
+      await checkIsFavorite(data.id);
     } catch (error) {
       console.error("取得商品詳情失敗：", error.message);
       setErrorMessage("商品資料取得失敗，請稍後再試");
@@ -93,6 +96,28 @@ const SingleProductClassic = () => {
         const modalInstance = new Modal(modalElement);
         modalInstance.show();
       }
+    }
+  };
+
+  /**
+* 檢查目前商品是否已收藏
+*/
+  const checkIsFavorite = async (productId) => {
+    const favoriteList = await getFavorite();
+    const exists = favoriteList.some((item) => item.product_id === productId);
+    setIsFavorite(exists);
+  };
+
+  const handleToggleFavorite = async () => {
+    if (!product) return;
+    const result = await toggleFavorite(product.id);
+    if (!result.success) return;
+    setIsFavorite(result.isFavorite);
+    const modalId = result.isFavorite ? "joinFavorite" : "cancelFavorite";
+    const modalElement = document.getElementById(modalId);
+    if (modalElement) {
+      const modalInstance = new Modal(modalElement);
+      modalInstance.show();
     }
   };
 
@@ -277,11 +302,10 @@ const SingleProductClassic = () => {
                     <div className="col-6 ps-2 ps-lg-3">
                       <button
                         type="button"
-                        data-bs-toggle="modal"
-                        data-bs-target="#joinFavorite"
                         className="btn border-primary-80 text-primary-80 w-100 py-4 br-8"
+                        onClick={handleToggleFavorite}
                       >
-                        加入願望清單
+                        {isFavorite ? "已收藏" : "加入願望清單"}
                         <span className="material-symbols-outlined align-bottom mx-2">
                           favorite
                         </span>
@@ -474,6 +498,27 @@ const SingleProductClassic = () => {
                 </span>
               </div>
               <p className="fs-6 fs-lg-5 fw-bold">已加入願望清單！</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      {/* 取消收藏 modal */}   
+      <div
+        className="modal fade"
+        tabIndex="-1"
+        id="cancelFavorite"
+        aria-labelledby="cancelFavoriteLabel"
+        aria-hidden="true"
+      >
+        <div className="modal-dialog modal-dialog-centered">
+          <div className="modal-content modal_set br-32 py-10 mx-auto">
+            <div className="d-flex flex-column justify-content-center align-items-center">
+              <div>
+                <span className="material-symbols-outlined align-bottom fs-lg-2 text-primary-40 bg-primary-20 p-4 p-lg-6 mb-5 rounded-circle d-inline-block">
+                  check
+                </span>
+              </div>
+              <p className="fs-6 fs-lg-5 fw-bold">已取消收藏！</p>
             </div>
           </div>
         </div>
