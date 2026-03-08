@@ -14,7 +14,7 @@ import starberryImage from "@/assets/images/星塵草莓2-光暈.webp";
 import snowberryImage from "@/assets/images/白雪綿霜莓2-光暈.webp";
 import berryCocoImage from "@/assets/images/莓果可可2-光暈.webp";
 import wineberryImage from "@/assets/images/熱紅酒莓果2-光暈.webp";
-import snowberryMontImage from "@/assets/images/雪莓蒙布郎2-光暈.webp";
+import snowberryMontImage from "@/assets/images/雪莓蒙布朗2-光暈.webp";
 import frostberryImage from "@/assets/images/莓果夾心2-光暈.webp";
 import classicImage from "@/assets/images/經典甜甜.webp";
 import berryImage from "@/assets/images/莓果甜甜.webp";
@@ -23,19 +23,14 @@ import matchaImage from "@/assets/images/抹茶甜甜.webp";
 import creamLemonImage from "@/assets/images/生乳檸檬甜甜.webp";
 import caramelCocoaImage from "@/assets/images/焦糖可可甜甜.webp";
 import sectionListDonutImage from "@/assets/images/section-list-donut.webp";
-import { useEffect, useRef } from "react";
-
-import Swiper from "swiper";
+import { useMemo } from "react";
+import { useSwiperInit } from "@/hooks/useSwiperInit";
+import { useNewsHoverPreview } from "@/hooks/useNewsHoverPreview";
 import "swiper/css";
 
 const Home = () => {
-  const swiperRef = useRef(null);
-  const swiperInstance = useRef(null);
-  const newsRef = useRef(null);
-
-  useEffect(() => {
-    swiperInstance.current = new Swiper(swiperRef.current, {
-      // Optional parameters
+  const swiperOptions = useMemo(
+    () => ({
       slidesPerView: "auto",
       loop: true,
       initialSlide: 3,
@@ -46,58 +41,16 @@ const Home = () => {
           spaceBetween: 40,
         },
       },
-
-      // If we need pagination
       pagination: {
         el: ".swiper-pagination",
         clickable: true,
       },
-    });
+    }),
+    [],
+  );
 
-    return () => {
-      if (swiperInstance.current) {
-        swiperInstance.current.destroy(true, true);
-        swiperInstance.current = null;
-      }
-    };
-  }, []);
-
-  useEffect(() => {
-    // newsChange 的邏輯
-    const news = newsRef.current;
-    if (news) {
-      const list = news.querySelector(".list-group");
-      if (list) {
-        const handleMouseOver = (e) => {
-          const lab = e.target.closest('label[for^="n"]');
-          if (!lab || !list.contains(lab)) return;
-          news.setAttribute("data-hover", lab.htmlFor.replace("n", "")); // "n3" -> "3"
-        };
-
-        const handleFocusIn = (e) => {
-          const lab = e.target.closest('label[for^="n"]');
-          if (!lab || !list.contains(lab)) return;
-          news.setAttribute("data-hover", lab.htmlFor.replace("n", ""));
-        };
-
-        const handleMouseLeave = () => news.removeAttribute("data-hover");
-        const handleFocusOut = () => news.removeAttribute("data-hover");
-
-        list.addEventListener("mouseover", handleMouseOver);
-        list.addEventListener("focusin", handleFocusIn);
-        list.addEventListener("mouseleave", handleMouseLeave);
-        list.addEventListener("focusout", handleFocusOut);
-
-        // Cleanup
-        return () => {
-          list.removeEventListener("mouseover", handleMouseOver);
-          list.removeEventListener("focusin", handleFocusIn);
-          list.removeEventListener("mouseleave", handleMouseLeave);
-          list.removeEventListener("focusout", handleFocusOut);
-        };
-      }
-    }
-  }, []);
+  const { swiperRef, paginationRef } = useSwiperInit(swiperOptions);
+  const { newsRef } = useNewsHoverPreview();
 
   return (
     <>
@@ -215,7 +168,10 @@ const Home = () => {
               </div>
             </div>
             {/* If we need pagination */}
-            <div className="swiper-pagination d-none d-lg-block"></div>
+            <div
+              className="swiper-pagination d-none d-lg-block"
+              ref={paginationRef}
+            ></div>
           </div>
         </div>
       </section>
@@ -628,7 +584,7 @@ const Home = () => {
           </h4>
         </div>
         {/* 消息區塊 */}
-        <div className="news container p-lg-0">
+        <div className="news container p-lg-0" ref={newsRef}>
           {/* radios 放最前，checked 控制預設圖 */}
           <input className="d-none" type="radio" name="news" id="n1" />
           <input className="d-none" type="radio" name="news" id="n2" />

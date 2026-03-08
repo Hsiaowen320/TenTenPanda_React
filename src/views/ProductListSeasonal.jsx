@@ -1,13 +1,14 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import home from "@/assets/images/home.webp";
-import 星塵草莓 from "@/assets/images/星塵草莓（光暈）.webp";
-import 白雪綿霜莓 from "@/assets/images/白雪綿霜莓（光暈）.webp";
-import 莓果可可 from "@/assets/images/莓果可可（光暈）.webp";
-import 雪莓蒙布朗 from "@/assets/images/雪莓蒙布朗（光暈）.webp";
-import 熱紅酒莓果 from "@/assets/images/熱紅酒莓果（光暈）.webp";
-import 莓果夾心 from "@/assets/images/莓果夾心（光暈）.webp";
+import starberryImage from "@/assets/images/星塵草莓（光暈）.webp";
+import snowberryImage from "@/assets/images/白雪綿霜莓（光暈）.webp";
+import berryCocoImage from "@/assets/images/莓果可可（光暈）.webp";
+import snowberryMontImage from "@/assets/images/雪莓蒙布朗（光暈）.webp";
+import wineberryImage from "@/assets/images/熱紅酒莓果（光暈）.webp";
+import frostberryImage from "@/assets/images/莓果夾心（光暈）.webp";
 
 const ProductListSeasonal = () => {
+  const navigate = useNavigate();
   return (
     <>
       <section className="p-lg-0 mt-8 mt-lg-14 container mx-lg-auto mb-lg-16">
@@ -33,7 +34,7 @@ const ProductListSeasonal = () => {
                 keyboard_double_arrow_right
               </span>
               <li className="breadcrumb-item d-flex align-items-center ms-5">
-                <a href="./productList-seasonal.html">季節限定</a>
+                <Link to="/productList-seasonal">季節限定</Link>
               </li>
             </ol>
           </nav>
@@ -73,28 +74,30 @@ const ProductListSeasonal = () => {
               <div className="row">
                 <div className="col-12 col-lg-6 ps-lg-8 pe-lg-0 mb-8">
                   <div className="mb-lg-8 product" data-id="starberry">
-                    <a
-                      href="./item_details-starberry.html"
-                      className="position-relative d-inline-block"
+                    <div className="img-box p-18" role="button" tabIndex={0}>
+                      <img
+                        src={starberryImage}
+                        alt="星塵草莓"
+                        className="img-fluid"
+                        onClick={() => navigate("/itemDetails-Starberry")}
+                        onKeyDown={(e) => {
+                          if (e.key === "Enter" || e.key === " ") {
+                            navigate("itemDetails-Starberry");
+                          }
+                        }}
+                        style={{ cursor: "pointer" }}
+                      />
+                    </div>
+                    {/* 加入收藏 */}
+                    <button
+                      type="button"
+                      className="favorite-btn position-absolute top-0 end-0 fs-3 fs-lg-1"
+                      data-bs-toggle="modal"
+                      data-bs-target="#favoriteModal"
                     >
-                      <div className="img-box p-18">
-                        <img
-                          src={星塵草莓}
-                          alt="星塵草莓"
-                          className="img-fluid"
-                        />
-                      </div>
-                      {/* 加入收藏 */}
-                      <button
-                        type="button"
-                        className="favorite-btn position-absolute top-0 end-0 fs-3 fs-lg-1"
-                        data-bs-toggle="modal"
-                        data-bs-target="#favoriteModal"
-                      >
-                        <i className="bi bi-heart empty"></i>
-                        <i className="bi bi-heart-fill full"></i>
-                      </button>
-                    </a>
+                      <i className="bi bi-heart empty"></i>
+                      <i className="bi bi-heart-fill full"></i>
+                    </button>
                     <div className="d-flex justify-content-between align-items-center">
                       <div>
                         <h2 className="fs-6 mb-2">星塵草莓</h2>
@@ -114,32 +117,34 @@ const ProductListSeasonal = () => {
                 </div>
                 <div className="col-12 col-lg-6 ps-lg-8 pe-lg-0 mb-8">
                   <div className="mb-lg-8 product" data-id="snowberry">
-                    <a
-                      href="./item_details-snowberry.html"
-                      className="position-relative d-inline-block"
-                    >
-                      <div className="img-box p-18">
-                        <img
-                          src={白雪綿霜莓}
-                          alt="白雪綿霜莓"
-                          className="img-fluid"
-                        />
-                      </div>
-                      {/* 加入收藏 */}
-                      <button
-                        type="button"
-                        className="favorite-btn position-absolute top-0 end-0 fs-3 fs-lg-1"
-                        data-bs-toggle="modal"
-                        data-bs-target="#favoriteModal"
-                        onClick={(event) => {
-                          event.preventDefault();
-                          event.stopPropagation();
+                    <div className="img-box p-18">
+                      <img
+                        src={snowberryImage}
+                        alt="白雪綿霜莓"
+                        className="img-fluid"
+                        onClick={() => navigate("/itemDetails-Snowberry")}
+                        onKeyDown={(e) => {
+                          if (e.key === "Enter" || e.key === " ") {
+                            navigate("itemDetails-Snowberry");
+                          }
                         }}
-                      >
-                        <i className="bi bi-heart empty"></i>
-                        <i className="bi bi-heart-fill full"></i>
-                      </button>
-                    </a>
+                        style={{ cursor: "pointer" }}
+                      />
+                    </div>
+                    {/* 加入收藏 */}
+                    <button
+                      type="button"
+                      className="favorite-btn position-absolute top-0 end-0 fs-3 fs-lg-1"
+                      data-bs-toggle="modal"
+                      data-bs-target="#favoriteModal"
+                      onClick={(event) => {
+                        event.preventDefault();
+                        event.stopPropagation();
+                      }}
+                    >
+                      <i className="bi bi-heart empty"></i>
+                      <i className="bi bi-heart-fill full"></i>
+                    </button>
                     <div className="d-flex justify-content-between align-items-center">
                       <div>
                         <h2 className="fs-6 mb-2">白雪綿霜莓</h2>
@@ -159,15 +164,22 @@ const ProductListSeasonal = () => {
                 </div>
                 <div className="col-12 col-lg-6 ps-lg-8 pe-lg-0 mb-8">
                   <div className="mb-lg-8 product" data-id="berrycoco">
-                    <a
-                      href="./item_details-berrycoco.html"
+                    <Link
+                      to="/itemDetails-Berrycoco"
                       className="position-relative d-inline-block"
                     >
                       <div className="img-box p-18">
                         <img
-                          src={莓果可可}
+                          src={berryCocoImage}
                           alt="莓果可可"
                           className="img-fluid"
+                          onClick={() => navigate("/itemDetails-Berrycoco")}
+                          onKeyDown={(e) => {
+                            if (e.key === "Enter" || e.key === " ") {
+                              navigate("itemDetails-Berrycoco");
+                            }
+                          }}
+                          style={{ cursor: "pointer" }}
                         />
                       </div>
                       {/* 加入收藏 */}
@@ -184,7 +196,7 @@ const ProductListSeasonal = () => {
                         <i className="bi bi-heart empty"></i>
                         <i className="bi bi-heart-fill full"></i>
                       </button>
-                    </a>
+                    </Link>
                     <div className="d-flex justify-content-between align-items-center">
                       <div>
                         <h2 className="fs-6 mb-2">莓果可可</h2>
@@ -204,15 +216,21 @@ const ProductListSeasonal = () => {
                 </div>
                 <div className="col-12 col-lg-6 ps-lg-8 pe-lg-0 mb-8">
                   <div className="mb-lg-8 product" data-id="SnowberryMont">
-                    <a
-                      href="./item_details-SnowberryMont.html"
+                    <Link
+                      to="itemDetails-SnowberryMont"
                       className="position-relative d-inline-block"
                     >
                       <div className="img-box p-18">
                         <img
-                          src={雪莓蒙布朗}
+                          src={snowberryMontImage}
                           alt="雪莓蒙布朗"
                           className="img-fluid"
+                          onClick={() => navigate("/itemDetails-SnowberryMont")}
+                          onKeyDown={(e) => {
+                            if (e.key === "Enter" || e.key === " ") {
+                              navigate("itemDetails-SnowberryMont");
+                            }
+                          }}
                         />
                       </div>
                       {/* 加入收藏 */}
@@ -229,7 +247,7 @@ const ProductListSeasonal = () => {
                         <i className="bi bi-heart empty"></i>
                         <i className="bi bi-heart-fill full"></i>
                       </button>
-                    </a>
+                    </Link>
                     <div className="d-flex justify-content-between align-items-center">
                       <div>
                         <h2 className="fs-6 mb-2">雪莓蒙布朗</h2>
@@ -249,13 +267,13 @@ const ProductListSeasonal = () => {
                 </div>
                 <div className="col-12 col-lg-6 ps-lg-8 pe-lg-0 mb-8">
                   <div className="mb-lg-8 product" data-id="wineberry">
-                    <a
-                      href="./item_details-wineberry.html"
+                    <Link
+                      to="itemDetails-Wineberry"
                       className="position-relative d-inline-block"
                     >
                       <div className="img-box p-18">
                         <img
-                          src={熱紅酒莓果}
+                          src={wineberryImage}
                           alt="熱紅酒莓果"
                           className="img-fluid"
                         />
@@ -274,7 +292,7 @@ const ProductListSeasonal = () => {
                         <i className="bi bi-heart empty"></i>
                         <i className="bi bi-heart-fill full"></i>
                       </button>
-                    </a>
+                    </Link>
                     <div className="d-flex justify-content-between align-items-center">
                       <div>
                         <h2 className="fs-6 mb-2">熱紅酒莓果</h2>
@@ -294,15 +312,21 @@ const ProductListSeasonal = () => {
                 </div>
                 <div className="col-12 col-lg-6 ps-lg-8 pe-lg-0 mb-8">
                   <div className="mb-lg-8 product" data-id="frostBerry">
-                    <a
-                      href="./item_details-frostBerry.html"
+                    <Link
+                      to="itemDetails-Frostberry"
                       className="position-relative d-inline-block"
                     >
                       <div className="img-box p-18">
                         <img
-                          src={莓果夾心}
+                          src={frostberryImage}
                           alt="莓果夾心"
                           className="img-fluid"
+                          onClick={() => navigate("/itemDetails-Frostberry")}
+                          onKeyDown={(e) => {
+                            if (e.key === "Enter" || e.key === " ") {
+                              navigate("itemDetails-Frostberry");
+                            }
+                          }}
                         />
                       </div>
                       {/* 加入收藏 */}
@@ -319,7 +343,7 @@ const ProductListSeasonal = () => {
                         <i className="bi bi-heart empty"></i>
                         <i className="bi bi-heart-fill full"></i>
                       </button>
-                    </a>
+                    </Link>
                     <div className="d-flex justify-content-between align-items-center">
                       <div>
                         <h2 className="fs-6 mb-2">莓果夾心</h2>

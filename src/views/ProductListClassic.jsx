@@ -8,10 +8,9 @@ import 焦糖可可甜甜 from "@/assets/images/焦糖可可甜甜.webp";
 import 莓果甜甜 from "@/assets/images/莓果甜甜.webp";
 
 const ProductListClassic = () => {
-
-  const handleView = (id) => {
-    navigate(`/product/${id}`);
-  };
+  // const handleView = (id) => {
+  //   navigate(`/product/${id}`);
+  // };
 
   return (
     <>
@@ -78,8 +77,8 @@ const ProductListClassic = () => {
               <div className="row">
                 <div className="col-12 col-lg-6 ps-lg-8 pe-lg-0 mb-8">
                   <div className="mb-lg-8 product" data-id="classic">
-                    <a
-                      href="./item_details-classic.html"
+                    <Link
+                      to="/itemDetails-Classic"
                       className="position-relative d-inline-block"
                     >
                       <div className="img-box">
@@ -103,7 +102,7 @@ const ProductListClassic = () => {
                         <i className="bi bi-heart empty"></i>
                         <i className="bi bi-heart-fill full"></i>
                       </button>
-                    </a>
+                    </Link>
                     <div className="d-flex justify-content-between align-items-center">
                       <div>
                         <h2 className="fs-6 mb-2">經典甜甜</h2>
@@ -123,8 +122,8 @@ const ProductListClassic = () => {
                 </div>
                 <div className="col-12 col-lg-6 ps-lg-8 pe-lg-0 mb-8">
                   <div className="mb-lg-8 product" data-id="berry">
-                    <a
-                      href="./item_details-berry.html"
+                    <Link
+                      to="/itemDetails-Berry"
                       className="position-relative d-inline-block"
                     >
                       <div className="img-box">
@@ -144,7 +143,7 @@ const ProductListClassic = () => {
                         <i className="bi bi-heart empty"></i>
                         <i className="bi bi-heart-fill full"></i>
                       </button>
-                    </a>
+                    </Link>
                     <div className="d-flex justify-content-between align-items-center">
                       <div>
                         <h2 className="fs-6 mb-2">莓果甜甜</h2>
@@ -164,8 +163,8 @@ const ProductListClassic = () => {
                 </div>
                 <div className="col-12 col-lg-6 ps-lg-8 pe-lg-0 mb-8">
                   <div className="mb-lg-8 product" data-id="sesame">
-                    <a
-                      href="./item_details-sesame.html"
+                    <Link
+                      to="/itemDetails-Sesame"
                       className="position-relative d-inline-block"
                     >
                       <div className="img-box">
@@ -185,7 +184,7 @@ const ProductListClassic = () => {
                         <i className="bi bi-heart empty"></i>
                         <i className="bi bi-heart-fill full"></i>
                       </button>
-                    </a>
+                    </Link>
                     <div className="d-flex justify-content-between align-items-center">
                       <div>
                         <h2 className="fs-6 mb-2">芝麻甜甜</h2>
@@ -205,8 +204,8 @@ const ProductListClassic = () => {
                 </div>
                 <div className="col-12 col-lg-6 ps-lg-8 pe-lg-0 mb-8">
                   <div className="mb-lg-8 product" data-id="matcha">
-                    <a
-                      href="./item_details-matcha.html"
+                    <Link
+                      to="/itemDetails-Matcha"
                       className="position-relative d-inline-block"
                     >
                       <div className="img-box">
@@ -226,7 +225,7 @@ const ProductListClassic = () => {
                         <i className="bi bi-heart empty"></i>
                         <i className="bi bi-heart-fill full"></i>
                       </button>
-                    </a>
+                    </Link>
                     <div className="d-flex justify-content-between align-items-center">
                       <div>
                         <h2 className="fs-6 mb-2">抹茶甜甜</h2>
@@ -246,8 +245,8 @@ const ProductListClassic = () => {
                 </div>
                 <div className="col-12 col-lg-6 ps-lg-8 pe-lg-0 mb-8">
                   <div className="mb-lg-8 product" data-id="creamlemon">
-                    <a
-                      href="./item_details-creamlemon.html"
+                    <Link
+                      to="/itemDetails-CreamLemon"
                       className="position-relative d-inline-block"
                     >
                       <div className="img-box">
@@ -267,7 +266,7 @@ const ProductListClassic = () => {
                         <i className="bi bi-heart empty"></i>
                         <i className="bi bi-heart-fill full"></i>
                       </button>
-                    </a>
+                    </Link>
                     <div className="d-flex justify-content-between align-items-center">
                       <div>
                         <h2 className="fs-6 mb-2">生乳檸檬甜甜</h2>
@@ -287,8 +286,8 @@ const ProductListClassic = () => {
                 </div>
                 <div className="col-12 col-lg-6 ps-lg-8 pe-lg-0 mb-8">
                   <div className="mb-lg-8 product" data-id="caramelcocoa">
-                    <a
-                      href="./item_details-caramelcocoa.html"
+                    <Link
+                      to="/itemDetails-CaramelCocoa"
                       className="position-relative d-inline-block"
                     >
                       <div className="img-box">
@@ -308,7 +307,7 @@ const ProductListClassic = () => {
                         <i className="bi bi-heart empty"></i>
                         <i className="bi bi-heart-fill full"></i>
                       </button>
-                    </a>
+                    </Link>
                     <div className="d-flex justify-content-between align-items-center">
                       <div>
                         <h2 className="fs-6 mb-2">焦糖可可甜甜</h2>
