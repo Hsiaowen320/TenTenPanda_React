@@ -11,6 +11,8 @@ const Header = () => {
 
   const [isLogin, setIsLogin] = useState(false);
   const [user, setUser] = useState(null);
+  const [isDesktopDropdownOpen, setIsDesktopDropdownOpen] = useState(false);
+  const [isMobileDropdownOpen, setIsMobileDropdownOpen] = useState(false);
 
   /**
    * 取得目前登入狀態
@@ -62,6 +64,8 @@ const Header = () => {
    */
   useEffect(() => {
     checkLoginStatus();
+    setIsDesktopDropdownOpen(false);
+    setIsMobileDropdownOpen(false);
   }, [location]);
 
   /**
@@ -213,64 +217,68 @@ const Header = () => {
           </button>
 
           {/* 導航選單（桌機） */}
-          <div
-            className="collapse navbar-collapse position-absolute start-0"
-            id="menu"
-          >
+          <div className="position-absolute start-0">
             <ul className="navbar-nav me-auto mb-2 mb-lg-0 d-none d-lg-flex">
               <li className="nav-item p-4 me-8 fs-6">
-                <Link className="nav-link text-neutral-100" to="/story">
+                <Link
+                  className="nav-link text-neutral-100 d-flex align-items-center"
+                  to="/story"
+                >
                   品牌故事
                 </Link>
               </li>
+
               <li className="nav-item p-4 me-8 fs-6">
-                <Link className="nav-link text-neutral-100" to="/news">
+                <Link
+                  className="nav-link text-neutral-100 d-flex align-items-center"
+                  to="/news"
+                >
                   最新消息
                 </Link>
               </li>
 
               {/* Dropdown */}
-              <li className="nav-item dropdown p-4">
-                <a
-                  className="nav-link dropdown-toggle no-caret fs-6 fw-700 text-neutral-100"
-                  href="#"
-                  id="productList"
-                  role="button"
-                  data-bs-toggle="dropdown"
-                  aria-expanded="false"
-                  onClick={(e) => e.preventDefault()}
+              <li className="nav-item dropdown p-4 position-relative">
+                <button
+                  type="button"
+                  className="nav-link dropdown-toggle no-caret fs-6 fw-700 text-neutral-100 bg-transparent p-0 d-flex align-items-center header-dropdown-btn"
+                  onClick={() => setIsDesktopDropdownOpen((prev) => !prev)}
+                  aria-expanded={isDesktopDropdownOpen}
                 >
                   商品列表
-                </a>
-                <ul
-                  className="dropdown-menu border-0 br-bl-16 br-br-16 text-center fs-6"
-                  aria-labelledby="productList"
-                >
-                  <li>
-                    <Link
-                      className="dropdown-item p-4 text-neutral-100"
-                      to="/productList-classic"
-                    >
-                      經典口味
-                    </Link>
-                  </li>
-                  <li>
-                    <Link
-                      className="dropdown-item p-4 text-neutral-100"
-                      to="/productList-seasonal"
-                    >
-                      季節限定
-                    </Link>
-                  </li>
-                  <li>
-                    <Link
-                      className="dropdown-item p-4 text-neutral-100"
-                      to="/productList-giftbox"
-                    >
-                      甜甜禮盒
-                    </Link>
-                  </li>
-                </ul>
+                </button>
+
+                {isDesktopDropdownOpen && (
+                  <ul
+                    className="dropdown-menu show border-0 br-bl-16 br-br-16 text-center fs-6"
+                    style={{ display: "block" }}
+                  >
+                    <li>
+                      <Link
+                        className="dropdown-item p-4 text-neutral-100"
+                        to="/productList-classic"
+                      >
+                        經典口味
+                      </Link>
+                    </li>
+                    <li>
+                      <Link
+                        className="dropdown-item p-4 text-neutral-100"
+                        to="/productList-seasonal"
+                      >
+                        季節限定
+                      </Link>
+                    </li>
+                    <li>
+                      <Link
+                        className="dropdown-item p-4 text-neutral-100"
+                        to="/productList-giftbox"
+                      >
+                        甜甜禮盒
+                      </Link>
+                    </li>
+                  </ul>
+                )}
               </li>
             </ul>
           </div>
@@ -408,56 +416,54 @@ const Header = () => {
 
                 {/* 下拉選單 */}
                 <li className="nav-item dropdown">
-                  <a
-                    href="#"
-                    className="nav-link d-flex justify-content-between align-items-center no-caret dropdown-toggle p-0 mb-4 fw-400"
-                    id="productListMobile"
-                    role="button"
-                    data-bs-toggle="dropdown"
-                    aria-expanded="false"
-                    onClick={(e) => e.preventDefault()}
+                  <button
+                    type="button"
+                    className="nav-link d-flex justify-content-between align-items-center no-caret p-0 mb-4 fw-400 border-0 bg-transparent w-100"
+                    onClick={() => setIsMobileDropdownOpen((prev) => !prev)}
+                    aria-expanded={isMobileDropdownOpen}
                   >
                     <span className="py-3 ps-1 text-neutral-100">商品列表</span>
-                    <span
-                      className="material-symbols-outlined"
-                      id="dropdownIcon"
-                    >
-                      keyboard_arrow_down
+                    <span className="material-symbols-outlined">
+                      {isMobileDropdownOpen
+                        ? "keyboard_arrow_up"
+                        : "keyboard_arrow_down"}
                     </span>
-                  </a>
+                  </button>
 
-                  <ul
-                    className="dropdown-menu border-0 bg-primary-tint"
-                    aria-labelledby="productListMobile"
-                  >
-                    <li>
-                      <Link
-                        className="dropdown-item mx-4 py-3 ps-1 mb-2 text-neutral-100"
-                        to="/productList-classic"
-                        data-bs-dismiss="modal"
-                      >
-                        經典口味
-                      </Link>
-                    </li>
-                    <li>
-                      <Link
-                        className="dropdown-item mx-4 py-3 ps-1 mb-2 text-neutral-100"
-                        to="/productList-seasonal"
-                        data-bs-dismiss="modal"
-                      >
-                        季節限定
-                      </Link>
-                    </li>
-                    <li>
-                      <Link
-                        className="dropdown-item mx-4 py-3 ps-1 text-neutral-100"
-                        to="/productList-giftbox"
-                        data-bs-dismiss="modal"
-                      >
-                        甜甜禮盒
-                      </Link>
-                    </li>
-                  </ul>
+                  {isMobileDropdownOpen && (
+                    <ul
+                      className="dropdown-menu show border-0 bg-primary-tint position-static w-100"
+                      style={{ display: "block" }}
+                    >
+                      <li>
+                        <Link
+                          className="dropdown-item mx-4 py-3 ps-1 mb-2 text-neutral-100"
+                          to="/productList-classic"
+                          data-bs-dismiss="modal"
+                        >
+                          經典口味
+                        </Link>
+                      </li>
+                      <li>
+                        <Link
+                          className="dropdown-item mx-4 py-3 ps-1 mb-2 text-neutral-100"
+                          to="/productList-seasonal"
+                          data-bs-dismiss="modal"
+                        >
+                          季節限定
+                        </Link>
+                      </li>
+                      <li>
+                        <Link
+                          className="dropdown-item mx-4 py-3 ps-1 text-neutral-100"
+                          to="/productList-giftbox"
+                          data-bs-dismiss="modal"
+                        >
+                          甜甜禮盒
+                        </Link>
+                      </li>
+                    </ul>
+                  )}
                 </li>
               </ul>
             </div>

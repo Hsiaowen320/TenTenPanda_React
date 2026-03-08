@@ -141,3 +141,22 @@
   font-weight: 700;
   border-bottom: 2px solid $primary-40;
 }
+
+.header-dropdown-btn {
+  line-height: 2;
+  min-height: auto;
+  box-shadow: none;
+  vertical-align: middle;
+}
+
+.header-dropdown-btn:focus{
+  box-shadow: none;
+}
+
+.header-dropdown-btn:active,
+.header-dropdown-btn:hover {
+  box-shadow: none;
+  color: #e89018 !important;
+  font-weight: 700;
+  border-bottom: 2px solid #e89018!important;
+}

@@ -1,10 +1,12 @@
 import { Link, Outlet } from "react-router-dom";
 import logo from "@/assets/images/logo.webp";
 import Header from "@/components/Header";
+import ScrollToTop from "../components/ScrollToTop";
 
 function FrontendLayout() {
   return (
     <>
+    <ScrollToTop />
       <Header/>
       <main>
         <Outlet />
