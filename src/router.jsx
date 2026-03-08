@@ -8,6 +8,9 @@ import Password from "./views/Password";
 import Return from "./views/Return";
 import Privacy from "./views/Privacy";
 import News from "./views/News";
+import Cart from "./views/Cart";
+import Checkout from "./views/Checkout";
+import OrderSuccess from "./views/OrderSuccess";
 import ProductListClassic from "./views/ProductListClassic";
 import ProductListGiftbox from "./views/ProductListGiftbox";
 import ProductListSeasonal from "./views/ProductListSeasonal";
@@ -26,6 +29,7 @@ import ItemDetailsSnowberry from "./views/ItemDetailsSnowberry";
 import ItemDetailsSnowberryMont from "./views/ItemDetailsSnowberryMont";
 import ItemDetailsWineberry from "./views/ItemDetailsWineberry";
 import ItemDetailsStarberry from "./views/ItemDetailsStarberry";
+import ProtectedRoute from "./components/ProtectedRoute";
 
 const router = createHashRouter([
   {
@@ -63,6 +67,30 @@ const router = createHashRouter([
       {
         path: "news",
         element: <News />,
+      },
+      {
+        path: "cart",
+        element: (
+          <ProtectedRoute>
+            <Cart />
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: "cart/checkout",
+        element: (
+          <ProtectedRoute>
+            <Checkout />
+          </ProtectedRoute>
+        )
+      },
+      {
+        path: "cart/checkout/order-success",
+        element: (
+          <ProtectedRoute>
+            <OrderSuccess />
+          </ProtectedRoute>
+        )
       },
       {
         path: "productList-classic",
