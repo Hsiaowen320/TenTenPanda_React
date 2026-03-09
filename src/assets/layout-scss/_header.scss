@@ -141,3 +141,15 @@
   font-weight: 700;
   border-bottom: 2px solid $primary-40;
 }
+
+.header-dropdown-btn {
+  line-height: 2;
+  min-height: auto;
+  box-shadow: none;
+  vertical-align: middle;
+}
+
+.header-dropdown-btn:focus,
+.header-dropdown-btn:active {
+  box-shadow: none;
+}

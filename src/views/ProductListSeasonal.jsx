@@ -1,4 +1,6 @@
 import { Link, useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { supabase } from "../../supabaseClient";
 import home from "@/assets/images/home.webp";
 import starberryImage from "@/assets/images/星塵草莓（光暈）.webp";
 import snowberryImage from "@/assets/images/白雪綿霜莓（光暈）.webp";
@@ -6,9 +8,89 @@ import berryCocoImage from "@/assets/images/莓果可可（光暈）.webp";
 import snowberryMontImage from "@/assets/images/雪莓蒙布朗（光暈）.webp";
 import wineberryImage from "@/assets/images/熱紅酒莓果（光暈）.webp";
 import frostberryImage from "@/assets/images/莓果夾心（光暈）.webp";
+import { updateCart } from "@/api/cart";
+import { Modal } from "bootstrap";
 
 const ProductListSeasonal = () => {
   const navigate = useNavigate();
+
+  // 商品資料
+  const [products, setProducts] = useState([]);
+
+  // 載入中
+  const [loading, setLoading] = useState(true);
+
+  // 錯誤訊息
+  const [errorMessage, setErrorMessage] = useState("");
+
+  /**
+   * english_name 對應本地圖片
+   * 如果資料庫 image_title_url 暫時沒有值
+   * 就先退回本地圖片
+   */
+
+  /**
+   * 取得經典口味商品
+   * category_id = 1
+   */
+  const getClassicProducts = async () => {
+    try {
+      setLoading(true);
+      setErrorMessage("");
+
+      const { data, error } = await supabase
+        .from("products")
+        .select("*")
+        .eq("category_id", 2)
+        .order("id", { ascending: true });
+
+      if (error) {
+        throw error;
+      }
+
+      setProducts(data || []);
+    } catch (error) {
+      console.error("取得商品失敗：", error.message);
+      setErrorMessage("商品資料取得失敗，請稍後再試");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  /**
+   * 進頁面時撈資料
+   */
+  useEffect(() => {
+    getClassicProducts();
+  }, []);
+
+  /**
+   * 點商品卡片 / 圖片 / 標題時，進商品詳情頁
+   * 使用 english_name 當 id
+   */
+  const handleGoDetail = (id) => {
+    navigate(`/productList-Seasonal/${id}`);
+  };
+
+  const handleAddToCart = async (productId, event) => {
+    // 避免點購物車按鈕時觸發外層商品卡片點擊
+    if (event) {
+      event.preventDefault();
+      event.stopPropagation();
+    }
+
+    const success = await updateCart(productId, 1, true);
+
+    // 沒成功（例如未登入）就直接結束，不開 modal
+    if (success !== true) return;
+
+    const modalElement = document.getElementById("cartModal");
+    if (modalElement) {
+      const modalInstance = new Modal(modalElement);
+      modalInstance.show();
+    }
+  };
+
   return (
     <>
       <section className="p-lg-0 mt-8 mt-lg-14 container mx-lg-auto mb-lg-16">
@@ -34,11 +116,12 @@ const ProductListSeasonal = () => {
                 keyboard_double_arrow_right
               </span>
               <li className="breadcrumb-item d-flex align-items-center ms-5">
-                <Link to="/productList-seasonal">季節限定</Link>
+                <Link to="/productList-Seasonal">季節限定</Link>
               </li>
             </ol>
           </nav>
         </div>
+
         {/* 商品列表 */}
         <div className="container">
           <div className="row">
@@ -70,318 +153,132 @@ const ProductListSeasonal = () => {
                 </li>
               </ul>
             </div>
+
             <div className="col-12 col-lg-9">
-              <div className="row">
-                <div className="col-12 col-lg-6 ps-lg-8 pe-lg-0 mb-8">
-                  <div className="mb-lg-8 product" data-id="starberry">
-                    <div className="img-box p-18" role="button" tabIndex={0}>
-                      <img
-                        src={starberryImage}
-                        alt="星塵草莓"
-                        className="img-fluid"
-                        onClick={() => navigate("/itemDetails-Starberry")}
-                        onKeyDown={(e) => {
-                          if (e.key === "Enter" || e.key === " ") {
-                            navigate("itemDetails-Starberry");
-                          }
-                        }}
-                        style={{ cursor: "pointer" }}
-                      />
-                    </div>
-                    {/* 加入收藏 */}
-                    <button
-                      type="button"
-                      className="favorite-btn position-absolute top-0 end-0 fs-3 fs-lg-1"
-                      data-bs-toggle="modal"
-                      data-bs-target="#favoriteModal"
-                    >
-                      <i className="bi bi-heart empty"></i>
-                      <i className="bi bi-heart-fill full"></i>
-                    </button>
-                    <div className="d-flex justify-content-between align-items-center">
-                      <div>
-                        <h2 className="fs-6 mb-2">星塵草莓</h2>
-                        <p className="fs-6">$ 95</p>
-                      </div>
-                      {/* 加入購物車 */}
-                      <button
-                        type="button"
-                        className="producList-cart-btn br-999"
-                        data-bs-toggle="modal"
-                        data-bs-target="#cartModal"
-                      >
-                        <i className="bi bi-cart2 fs-3 fs-lg-2"></i>
-                      </button>
-                    </div>
-                  </div>
+              {/* 載入中 */}
+              {loading && (
+                <div className="text-center py-10">
+                  <p className="fs-5 text-neutral-100">商品載入中...</p>
                 </div>
-                <div className="col-12 col-lg-6 ps-lg-8 pe-lg-0 mb-8">
-                  <div className="mb-lg-8 product" data-id="snowberry">
-                    <div className="img-box p-18">
-                      <img
-                        src={snowberryImage}
-                        alt="白雪綿霜莓"
-                        className="img-fluid"
-                        onClick={() => navigate("/itemDetails-Snowberry")}
-                        onKeyDown={(e) => {
-                          if (e.key === "Enter" || e.key === " ") {
-                            navigate("itemDetails-Snowberry");
-                          }
-                        }}
-                        style={{ cursor: "pointer" }}
-                      />
-                    </div>
-                    {/* 加入收藏 */}
-                    <button
-                      type="button"
-                      className="favorite-btn position-absolute top-0 end-0 fs-3 fs-lg-1"
-                      data-bs-toggle="modal"
-                      data-bs-target="#favoriteModal"
-                      onClick={(event) => {
-                        event.preventDefault();
-                        event.stopPropagation();
-                      }}
-                    >
-                      <i className="bi bi-heart empty"></i>
-                      <i className="bi bi-heart-fill full"></i>
-                    </button>
-                    <div className="d-flex justify-content-between align-items-center">
-                      <div>
-                        <h2 className="fs-6 mb-2">白雪綿霜莓</h2>
-                        <p className="fs-6">$ 95</p>
-                      </div>
-                      {/* 加入購物車 */}
-                      <button
-                        type="button"
-                        className="producList-cart-btn br-999"
-                        data-bs-toggle="modal"
-                        data-bs-target="#cartModal"
-                      >
-                        <i className="bi bi-cart2 fs-3 fs-lg-2"></i>
-                      </button>
-                    </div>
-                  </div>
+              )}
+
+              {/* 錯誤 */}
+              {!loading && errorMessage && (
+                <div className="text-center py-10">
+                  <p className="fs-5 text-danger">{errorMessage}</p>
                 </div>
-                <div className="col-12 col-lg-6 ps-lg-8 pe-lg-0 mb-8">
-                  <div className="mb-lg-8 product" data-id="berrycoco">
-                    <Link
-                      to="/itemDetails-Berrycoco"
-                      className="position-relative d-inline-block"
-                    >
-                      <div className="img-box p-18">
-                        <img
-                          src={berryCocoImage}
-                          alt="莓果可可"
-                          className="img-fluid"
-                          onClick={() => navigate("/itemDetails-Berrycoco")}
-                          onKeyDown={(e) => {
-                            if (e.key === "Enter" || e.key === " ") {
-                              navigate("itemDetails-Berrycoco");
-                            }
-                          }}
-                          style={{ cursor: "pointer" }}
-                        />
-                      </div>
-                      {/* 加入收藏 */}
-                      <button
-                        type="button"
-                        className="favorite-btn position-absolute top-0 end-0 fs-3 fs-lg-1"
-                        data-bs-toggle="modal"
-                        data-bs-target="#favoriteModal"
-                        onClick={(event) => {
-                          event.preventDefault();
-                          event.stopPropagation();
-                        }}
-                      >
-                        <i className="bi bi-heart empty"></i>
-                        <i className="bi bi-heart-fill full"></i>
-                      </button>
-                    </Link>
-                    <div className="d-flex justify-content-between align-items-center">
-                      <div>
-                        <h2 className="fs-6 mb-2">莓果可可</h2>
-                        <p className="fs-6">$ 95</p>
-                      </div>
-                      {/* 加入購物車 */}
-                      <button
-                        type="button"
-                        className="producList-cart-btn br-999"
-                        data-bs-toggle="modal"
-                        data-bs-target="#cartModal"
-                      >
-                        <i className="bi bi-cart2 fs-3 fs-lg-2"></i>
-                      </button>
-                    </div>
-                  </div>
+              )}
+
+              {/* 無資料 */}
+              {!loading && !errorMessage && products.length === 0 && (
+                <div className="text-center py-10">
+                  <p className="fs-5 text-neutral-100">目前沒有商品資料</p>
                 </div>
-                <div className="col-12 col-lg-6 ps-lg-8 pe-lg-0 mb-8">
-                  <div className="mb-lg-8 product" data-id="SnowberryMont">
-                    <Link
-                      to="itemDetails-SnowberryMont"
-                      className="position-relative d-inline-block"
-                    >
-                      <div className="img-box p-18">
-                        <img
-                          src={snowberryMontImage}
-                          alt="雪莓蒙布朗"
-                          className="img-fluid"
-                          onClick={() => navigate("/itemDetails-SnowberryMont")}
-                          onKeyDown={(e) => {
-                            if (e.key === "Enter" || e.key === " ") {
-                              navigate("itemDetails-SnowberryMont");
-                            }
-                          }}
-                        />
-                      </div>
-                      {/* 加入收藏 */}
-                      <button
-                        type="button"
-                        className="favorite-btn position-absolute top-0 end-0 fs-3 fs-lg-1"
-                        data-bs-toggle="modal"
-                        data-bs-target="#favoriteModal"
-                        onClick={(event) => {
-                          event.preventDefault();
-                          event.stopPropagation();
-                        }}
-                      >
-                        <i className="bi bi-heart empty"></i>
-                        <i className="bi bi-heart-fill full"></i>
-                      </button>
-                    </Link>
-                    <div className="d-flex justify-content-between align-items-center">
-                      <div>
-                        <h2 className="fs-6 mb-2">雪莓蒙布朗</h2>
-                        <p className="fs-6">$ 95</p>
-                      </div>
-                      {/* 加入購物車 */}
-                      <button
-                        type="button"
-                        className="producList-cart-btn br-999"
-                        data-bs-toggle="modal"
-                        data-bs-target="#cartModal"
-                      >
-                        <i className="bi bi-cart2 fs-3 fs-lg-2"></i>
-                      </button>
-                    </div>
+              )}
+
+              {/* 商品卡片 */}
+              {!loading && !errorMessage && products.length > 0 && (
+                <>
+                  <div className="row">
+                    {products.map((product) => {
+                      /**
+                       * 商品列表圖：
+                       * 1. 優先使用資料庫的 image_title_url
+                       * 2. 若沒有值，才退回本地圖片
+                       */
+                      const imageSrc =
+                        product.image_title_url ||
+                        "";
+
+                      return (
+                        <div
+                          className="col-12 col-lg-6 ps-lg-8 pe-lg-0 mb-8"
+                          key={product.id}
+                        >
+                          <div
+                            className="mb-lg-8 product"
+                            data-id={product.english_name}
+                          >
+                            <div
+                              className="position-relative d-inline-block w-100 cursor-pointer"
+                              onClick={() =>
+                                handleGoDetail(product.id)
+                              }
+                            >
+                              <div className="img-box p-18">
+                                <img
+                                  src={imageSrc}
+                                  alt={product.name}
+                                  className="img-fluid"
+                                />
+                              </div>
+
+                              {/* 加入收藏 */}
+                              <button
+                                type="button"
+                                className="favorite-btn position-absolute top-0 end-0 fs-3 fs-lg-1"
+                                data-bs-toggle="modal"
+                                data-bs-target="#favoriteModal"
+                                onClick={(event) => {
+                                  event.preventDefault();
+                                  event.stopPropagation();
+                                }}
+                              >
+                                <i className="bi bi-heart empty"></i>
+                                <i className="bi bi-heart-fill full"></i>
+                              </button>
+                            </div>
+
+                            <div className="d-flex justify-content-between align-items-center">
+                              <div>
+                                <h2
+                                  className="fs-6 mb-2 cursor-pointer"
+                                  onClick={() =>
+                                    handleGoDetail(product.id)
+                                  }
+                                >
+                                  {product.name}
+                                </h2>
+                                <p className="fs-6">$ {product.price}</p>
+                              </div>
+
+                              {/* 加入購物車 */}
+                              <button
+                                type="button"
+                                className="producList-cart-btn br-999"
+                                onClick={(event) =>
+                                  handleAddToCart(product.id, event)
+                                }
+                              >
+                                <i className="bi bi-cart2 fs-3 fs-lg-2"></i>
+                              </button>
+                            </div>
+                          </div>
+                        </div>
+                      );
+                    })}
                   </div>
-                </div>
-                <div className="col-12 col-lg-6 ps-lg-8 pe-lg-0 mb-8">
-                  <div className="mb-lg-8 product" data-id="wineberry">
-                    <Link
-                      to="itemDetails-Wineberry"
-                      className="position-relative d-inline-block"
-                    >
-                      <div className="img-box p-18">
-                        <img
-                          src={wineberryImage}
-                          alt="熱紅酒莓果"
-                          className="img-fluid"
-                        />
-                      </div>
-                      {/* 加入收藏 */}
-                      <button
-                        type="button"
-                        className="favorite-btn position-absolute top-0 end-0 fs-3 fs-lg-1"
-                        data-bs-toggle="modal"
-                        data-bs-target="#favoriteModal"
-                        onClick={(event) => {
-                          event.preventDefault();
-                          event.stopPropagation();
-                        }}
-                      >
-                        <i className="bi bi-heart empty"></i>
-                        <i className="bi bi-heart-fill full"></i>
-                      </button>
-                    </Link>
-                    <div className="d-flex justify-content-between align-items-center">
-                      <div>
-                        <h2 className="fs-6 mb-2">熱紅酒莓果</h2>
-                        <p className="fs-6">$ 95</p>
-                      </div>
-                      {/* 加入購物車 */}
-                      <button
-                        type="button"
-                        className="producList-cart-btn br-999"
-                        data-bs-toggle="modal"
-                        data-bs-target="#cartModal"
-                      >
-                        <i className="bi bi-cart2 fs-3 fs-lg-2"></i>
-                      </button>
-                    </div>
-                  </div>
-                </div>
-                <div className="col-12 col-lg-6 ps-lg-8 pe-lg-0 mb-8">
-                  <div className="mb-lg-8 product" data-id="frostBerry">
-                    <Link
-                      to="itemDetails-Frostberry"
-                      className="position-relative d-inline-block"
-                    >
-                      <div className="img-box p-18">
-                        <img
-                          src={frostberryImage}
-                          alt="莓果夾心"
-                          className="img-fluid"
-                          onClick={() => navigate("/itemDetails-Frostberry")}
-                          onKeyDown={(e) => {
-                            if (e.key === "Enter" || e.key === " ") {
-                              navigate("itemDetails-Frostberry");
-                            }
-                          }}
-                        />
-                      </div>
-                      {/* 加入收藏 */}
-                      <button
-                        type="button"
-                        className="favorite-btn position-absolute top-0 end-0 fs-3 fs-lg-1"
-                        data-bs-toggle="modal"
-                        data-bs-target="#favoriteModal"
-                        onClick={(event) => {
-                          event.preventDefault();
-                          event.stopPropagation();
-                        }}
-                      >
-                        <i className="bi bi-heart empty"></i>
-                        <i className="bi bi-heart-fill full"></i>
-                      </button>
-                    </Link>
-                    <div className="d-flex justify-content-between align-items-center">
-                      <div>
-                        <h2 className="fs-6 mb-2">莓果夾心</h2>
-                        <p className="fs-6">$ 95</p>
-                      </div>
-                      {/* 加入購物車 */}
-                      <button
-                        type="button"
-                        className="producList-cart-btn br-999"
-                        data-bs-toggle="modal"
-                        data-bs-target="#cartModal"
-                      >
-                        <i className="bi bi-cart2 fs-3 fs-lg-2"></i>
-                      </button>
-                    </div>
-                  </div>
-                </div>
-                {/*  */}
-              </div>
-              <ul className="d-flex justify-content-center align-items-center">
-                <li className="px-3">
-                  <span className="material-symbols-outlined">
-                    {" "}
-                    chevron_left{" "}
-                  </span>
-                </li>
-                <li className="px-3 text-primary-60">1</li>
-                <li className="px-3">
-                  <span className="material-symbols-outlined">
-                    {" "}
-                    chevron_right{" "}
-                  </span>
-                </li>
-              </ul>
+
+                  <ul className="d-flex justify-content-center align-items-center">
+                    <li className="px-3">
+                      <span className="material-symbols-outlined">
+                        chevron_left
+                      </span>
+                    </li>
+                    <li className="px-3 text-primary-60">1</li>
+                    <li className="px-3">
+                      <span className="material-symbols-outlined">
+                        chevron_right
+                      </span>
+                    </li>
+                  </ul>
+                </>
+              )}
             </div>
           </div>
         </div>
       </section>
+
       {/* Modal */}
       {/* 購物車 */}
       <div
@@ -402,6 +299,7 @@ const ProductListSeasonal = () => {
           </div>
         </div>
       </div>
+
       {/* 收藏 */}
       <div
         className="modal fade"
@@ -421,6 +319,7 @@ const ProductListSeasonal = () => {
           </div>
         </div>
       </div>
+
       {/* 取消收藏 */}
       <div
         className="modal fade"
@@ -443,5 +342,4 @@ const ProductListSeasonal = () => {
     </>
   );
 };
-
 export default ProductListSeasonal;

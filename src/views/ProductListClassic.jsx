@@ -1,4 +1,9 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { supabase } from "../../supabaseClient";
+import { updateCart } from "@/api/cart";
+import { Modal } from "bootstrap";
+
 import home from "@/assets/images/home.webp";
 import 經典甜甜 from "@/assets/images/經典甜甜.webp";
 import 芝麻甜甜 from "@/assets/images/芝麻甜甜.webp";
@@ -8,9 +13,84 @@ import 焦糖可可甜甜 from "@/assets/images/焦糖可可甜甜.webp";
 import 莓果甜甜 from "@/assets/images/莓果甜甜.webp";
 
 const ProductListClassic = () => {
-  // const handleView = (id) => {
-  //   navigate(`/product/${id}`);
-  // };
+  const navigate = useNavigate();
+
+  // 商品資料
+  const [products, setProducts] = useState([]);
+
+  // 載入中
+  const [loading, setLoading] = useState(true);
+
+  // 錯誤訊息
+  const [errorMessage, setErrorMessage] = useState("");
+
+  /**
+   * english_name 對應本地圖片
+   * 如果資料庫 image_title_url 暫時沒有值
+   * 就先退回本地圖片
+   */
+
+  /**
+   * 取得經典口味商品
+   * category_id = 1
+   */
+  const getClassicProducts = async () => {
+    try {
+      setLoading(true);
+      setErrorMessage("");
+
+      const { data, error } = await supabase
+        .from("products")
+        .select("*")
+        .eq("category_id", 1)
+        .order("id", { ascending: true });
+
+      if (error) {
+        throw error;
+      }
+
+      setProducts(data || []);
+    } catch (error) {
+      console.error("取得商品失敗：", error.message);
+      setErrorMessage("商品資料取得失敗，請稍後再試");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  /**
+   * 進頁面時撈資料
+   */
+  useEffect(() => {
+    getClassicProducts();
+  }, []);
+
+  /**
+   * 點商品卡片 / 圖片 / 標題時，進商品詳情頁
+   * 使用 english_name 當 id
+   */
+  const handleGoDetail = (id) => {
+    navigate(`/productList-classic/${id}`);
+  };
+
+  const handleAddToCart = async (productId, event) => {
+    // 避免點購物車按鈕時觸發外層商品卡片點擊
+    if (event) {
+      event.preventDefault();
+      event.stopPropagation();
+    }
+
+    const success = await updateCart(productId, 1, true);
+
+    // 沒成功（例如未登入）就直接結束，不開 modal
+    if (success !== true) return;
+
+    const modalElement = document.getElementById("cartModal");
+    if (modalElement) {
+      const modalInstance = new Modal(modalElement);
+      modalInstance.show();
+    }
+  };
 
   return (
     <>
@@ -42,6 +122,7 @@ const ProductListClassic = () => {
             </ol>
           </nav>
         </div>
+
         {/* 商品列表 */}
         <div className="container">
           <div className="row">
@@ -73,279 +154,128 @@ const ProductListClassic = () => {
                 </li>
               </ul>
             </div>
+
             <div className="col-12 col-lg-9">
-              <div className="row">
-                <div className="col-12 col-lg-6 ps-lg-8 pe-lg-0 mb-8">
-                  <div className="mb-lg-8 product" data-id="classic">
-                    <Link
-                      to="/itemDetails-Classic"
-                      className="position-relative d-inline-block"
-                    >
-                      <div className="img-box">
-                        <img
-                          src={經典甜甜}
-                          alt="經典甜甜"
-                          className="img-fluid"
-                        />
-                      </div>
-                      {/* 加入收藏 */}
-                      <button
-                        type="button"
-                        className="favorite-btn position-absolute top-0 end-0 fs-3 fs-lg-1"
-                        data-bs-toggle="modal"
-                        data-bs-target="#favoriteModal"
-                        onClick={(event) => {
-                          event.preventDefault();
-                          event.stopPropagation();
-                        }}
-                      >
-                        <i className="bi bi-heart empty"></i>
-                        <i className="bi bi-heart-fill full"></i>
-                      </button>
-                    </Link>
-                    <div className="d-flex justify-content-between align-items-center">
-                      <div>
-                        <h2 className="fs-6 mb-2">經典甜甜</h2>
-                        <p className="fs-6">$ 65</p>
-                      </div>
-                      {/* 加入購物車 */}
-                      <button
-                        type="button"
-                        className="producList-cart-btn br-999"
-                        data-bs-toggle="modal"
-                        data-bs-target="#cartModal"
-                      >
-                        <i className="bi bi-cart2 fs-3 fs-lg-2"></i>
-                      </button>
-                    </div>
-                  </div>
+              {/* 載入中 */}
+              {loading && (
+                <div className="text-center py-10">
+                  <p className="fs-5 text-neutral-100">商品載入中...</p>
                 </div>
-                <div className="col-12 col-lg-6 ps-lg-8 pe-lg-0 mb-8">
-                  <div className="mb-lg-8 product" data-id="berry">
-                    <Link
-                      to="/itemDetails-Berry"
-                      className="position-relative d-inline-block"
-                    >
-                      <div className="img-box">
-                        <img
-                          src={莓果甜甜}
-                          alt="莓果甜甜"
-                          className="img-fluid"
-                        />
-                      </div>
-                      {/* 加入收藏 */}
-                      <button
-                        type="button"
-                        className="favorite-btn position-absolute top-0 end-0 fs-3 fs-lg-1"
-                        data-bs-toggle="modal"
-                        data-bs-target="#favoriteModal"
-                      >
-                        <i className="bi bi-heart empty"></i>
-                        <i className="bi bi-heart-fill full"></i>
-                      </button>
-                    </Link>
-                    <div className="d-flex justify-content-between align-items-center">
-                      <div>
-                        <h2 className="fs-6 mb-2">莓果甜甜</h2>
-                        <p className="fs-6">$ 65</p>
-                      </div>
-                      {/* 加入購物車 */}
-                      <button
-                        type="button"
-                        className="producList-cart-btn br-999"
-                        data-bs-toggle="modal"
-                        data-bs-target="#cartModal"
-                      >
-                        <i className="bi bi-cart2 fs-3 fs-lg-2"></i>
-                      </button>
-                    </div>
-                  </div>
+              )}
+
+              {/* 錯誤 */}
+              {!loading && errorMessage && (
+                <div className="text-center py-10">
+                  <p className="fs-5 text-danger">{errorMessage}</p>
                 </div>
-                <div className="col-12 col-lg-6 ps-lg-8 pe-lg-0 mb-8">
-                  <div className="mb-lg-8 product" data-id="sesame">
-                    <Link
-                      to="/itemDetails-Sesame"
-                      className="position-relative d-inline-block"
-                    >
-                      <div className="img-box">
-                        <img
-                          src={芝麻甜甜}
-                          alt="芝麻甜甜"
-                          className="img-fluid"
-                        />
-                      </div>
-                      {/* 加入收藏 */}
-                      <button
-                        type="button"
-                        className="favorite-btn position-absolute top-0 end-0 fs-3 fs-lg-1"
-                        data-bs-toggle="modal"
-                        data-bs-target="#favoriteModal"
-                      >
-                        <i className="bi bi-heart empty"></i>
-                        <i className="bi bi-heart-fill full"></i>
-                      </button>
-                    </Link>
-                    <div className="d-flex justify-content-between align-items-center">
-                      <div>
-                        <h2 className="fs-6 mb-2">芝麻甜甜</h2>
-                        <p className="fs-6">$ 65</p>
-                      </div>
-                      {/* 加入購物車 */}
-                      <button
-                        type="button"
-                        className="producList-cart-btn br-999"
-                        data-bs-toggle="modal"
-                        data-bs-target="#cartModal"
-                      >
-                        <i className="bi bi-cart2 fs-3 fs-lg-2"></i>
-                      </button>
-                    </div>
-                  </div>
+              )}
+
+              {/* 無資料 */}
+              {!loading && !errorMessage && products.length === 0 && (
+                <div className="text-center py-10">
+                  <p className="fs-5 text-neutral-100">目前沒有商品資料</p>
                 </div>
-                <div className="col-12 col-lg-6 ps-lg-8 pe-lg-0 mb-8">
-                  <div className="mb-lg-8 product" data-id="matcha">
-                    <Link
-                      to="/itemDetails-Matcha"
-                      className="position-relative d-inline-block"
-                    >
-                      <div className="img-box">
-                        <img
-                          src={抹茶甜甜}
-                          alt="抹茶甜甜"
-                          className="img-fluid"
-                        />
-                      </div>
-                      {/* 加入收藏 */}
-                      <button
-                        type="button"
-                        className="favorite-btn position-absolute top-0 end-0 fs-3 fs-lg-1"
-                        data-bs-toggle="modal"
-                        data-bs-target="#favoriteModal"
-                      >
-                        <i className="bi bi-heart empty"></i>
-                        <i className="bi bi-heart-fill full"></i>
-                      </button>
-                    </Link>
-                    <div className="d-flex justify-content-between align-items-center">
-                      <div>
-                        <h2 className="fs-6 mb-2">抹茶甜甜</h2>
-                        <p className="fs-6">$ 65</p>
-                      </div>
-                      {/* 加入購物車 */}
-                      <button
-                        type="button"
-                        className="producList-cart-btn br-999"
-                        data-bs-toggle="modal"
-                        data-bs-target="#cartModal"
-                      >
-                        <i className="bi bi-cart2 fs-3 fs-lg-2"></i>
-                      </button>
-                    </div>
+              )}
+
+              {/* 商品卡片 */}
+              {!loading && !errorMessage && products.length > 0 && (
+                <>
+                  <div className="row">
+                    {products.map((product) => {
+                      /**
+                       * 商品列表圖：
+                       * 1. 優先使用資料庫的 image_title_url
+                       * 2. 若沒有值，才退回本地圖片
+                       */
+                      const imageSrc =
+                        product.image_title_url ||
+                        "";
+
+                      return (
+                        <div
+                          className="col-12 col-lg-6 ps-lg-8 pe-lg-0 mb-8"
+                          key={product.id}
+                        >
+                          <div
+                            className="mb-lg-8 product"
+                            data-id={product.english_name}
+                          >
+                            <div
+                              className="position-relative d-inline-block w-100 cursor-pointer"
+                              onClick={() => handleGoDetail(product.id)}
+                            >
+                              <div className="img-box">
+                                <img
+                                  src={imageSrc}
+                                  alt={product.name}
+                                  className="img-fluid"
+                                />
+                              </div>
+
+                              {/* 加入收藏 */}
+                              <button
+                                type="button"
+                                className="favorite-btn position-absolute top-0 end-0 fs-3 fs-lg-1"
+                                data-bs-toggle="modal"
+                                data-bs-target="#favoriteModal"
+                                onClick={(event) => {
+                                  event.preventDefault();
+                                  event.stopPropagation();
+                                }}
+                              >
+                                <i className="bi bi-heart empty"></i>
+                                <i className="bi bi-heart-fill full"></i>
+                              </button>
+                            </div>
+
+                            <div className="d-flex justify-content-between align-items-center">
+                              <div>
+                                <h2
+                                  className="fs-6 mb-2 cursor-pointer"
+                                  onClick={() => handleGoDetail(product.id)}
+                                >
+                                  {product.name}
+                                </h2>
+                                <p className="fs-6">$ {product.price}</p>
+                              </div>
+
+                              {/* 加入購物車 */}
+                              <button
+                                type="button"
+                                className="producList-cart-btn br-999"
+                                onClick={(event) =>
+                                  handleAddToCart(product.id, event)
+                                }
+                              >
+                                <i className="bi bi-cart2 fs-3 fs-lg-2"></i>
+                              </button>
+                            </div>
+                          </div>
+                        </div>
+                      );
+                    })}
                   </div>
-                </div>
-                <div className="col-12 col-lg-6 ps-lg-8 pe-lg-0 mb-8">
-                  <div className="mb-lg-8 product" data-id="creamlemon">
-                    <Link
-                      to="/itemDetails-CreamLemon"
-                      className="position-relative d-inline-block"
-                    >
-                      <div className="img-box">
-                        <img
-                          src={生乳檸檬甜甜}
-                          alt="生乳檸檬甜甜"
-                          className="img-fluid"
-                        />
-                      </div>
-                      {/* 加入收藏 */}
-                      <button
-                        type="button"
-                        className="favorite-btn position-absolute top-0 end-0 fs-3 fs-lg-1"
-                        data-bs-toggle="modal"
-                        data-bs-target="#favoriteModal"
-                      >
-                        <i className="bi bi-heart empty"></i>
-                        <i className="bi bi-heart-fill full"></i>
-                      </button>
-                    </Link>
-                    <div className="d-flex justify-content-between align-items-center">
-                      <div>
-                        <h2 className="fs-6 mb-2">生乳檸檬甜甜</h2>
-                        <p className="fs-6">$ 65</p>
-                      </div>
-                      {/* 加入購物車 */}
-                      <button
-                        type="button"
-                        className="producList-cart-btn br-999"
-                        data-bs-toggle="modal"
-                        data-bs-target="#cartModal"
-                      >
-                        <i className="bi bi-cart2 fs-3 fs-lg-2"></i>
-                      </button>
-                    </div>
-                  </div>
-                </div>
-                <div className="col-12 col-lg-6 ps-lg-8 pe-lg-0 mb-8">
-                  <div className="mb-lg-8 product" data-id="caramelcocoa">
-                    <Link
-                      to="/itemDetails-CaramelCocoa"
-                      className="position-relative d-inline-block"
-                    >
-                      <div className="img-box">
-                        <img
-                          src={焦糖可可甜甜}
-                          alt="焦糖可可甜甜"
-                          className="img-fluid"
-                        />
-                      </div>
-                      {/* 加入收藏 */}
-                      <button
-                        type="button"
-                        className="favorite-btn position-absolute top-0 end-0 fs-3 fs-lg-1"
-                        data-bs-toggle="modal"
-                        data-bs-target="#favoriteModal"
-                      >
-                        <i className="bi bi-heart empty"></i>
-                        <i className="bi bi-heart-fill full"></i>
-                      </button>
-                    </Link>
-                    <div className="d-flex justify-content-between align-items-center">
-                      <div>
-                        <h2 className="fs-6 mb-2">焦糖可可甜甜</h2>
-                        <p className="fs-6">$ 65</p>
-                      </div>
-                      {/* 加入購物車 */}
-                      <button
-                        type="button"
-                        className="producList-cart-btn br-999"
-                        data-bs-toggle="modal"
-                        data-bs-target="#cartModal"
-                      >
-                        <i className="bi bi-cart2 fs-3 fs-lg-2"></i>
-                      </button>
-                    </div>
-                  </div>
-                </div>
-                {/*  */}
-              </div>
-              <ul className="d-flex justify-content-center align-items-center">
-                <li className="px-3">
-                  <span className="material-symbols-outlined">
-                    {" "}
-                    chevron_left{" "}
-                  </span>
-                </li>
-                <li className="px-3 text-primary-60">1</li>
-                <li className="px-3">
-                  <span className="material-symbols-outlined">
-                    {" "}
-                    chevron_right{" "}
-                  </span>
-                </li>
-              </ul>
+
+                  <ul className="d-flex justify-content-center align-items-center">
+                    <li className="px-3">
+                      <span className="material-symbols-outlined">
+                        chevron_left
+                      </span>
+                    </li>
+                    <li className="px-3 text-primary-60">1</li>
+                    <li className="px-3">
+                      <span className="material-symbols-outlined">
+                        chevron_right
+                      </span>
+                    </li>
+                  </ul>
+                </>
+              )}
             </div>
           </div>
         </div>
       </section>
+
       {/* Modal */}
       {/* 購物車 */}
       <div
@@ -366,6 +296,7 @@ const ProductListClassic = () => {
           </div>
         </div>
       </div>
+
       {/* 收藏 */}
       <div
         className="modal fade"
@@ -385,6 +316,7 @@ const ProductListClassic = () => {
           </div>
         </div>
       </div>
+
       {/* 取消收藏 */}
       <div
         className="modal fade"
