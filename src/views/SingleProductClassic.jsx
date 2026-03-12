@@ -365,7 +365,7 @@ const SingleProductClassic = () => {
               <div className="recommend-commodity col-6 col-lg flex-shrink-1">
                 <div
                   className="card bg-transparent border-0 h-100 align-items-center text-center cursor-pointer"
-                  onClick={() => navigate("/item/berry")}
+                  onClick={() => navigate("/productList-classic/d72173e6-ef6f-49b7-8b26-6c29fccdb11f")}
                 >
                   <img
                     src={莓果甜甜}
@@ -386,7 +386,7 @@ const SingleProductClassic = () => {
               <div className="recommend-commodity col-6 col-lg flex-shrink-1">
                 <div
                   className="card bg-transparent border-0 h-100 align-items-center text-center cursor-pointer"
-                  onClick={() => navigate("/item/sesame")}
+                  onClick={() => navigate("/productList-classic/4f4c73aa-eb09-4a18-97ea-393d8219784a")}
                 >
                   <img
                     src={芝麻甜甜}
@@ -407,7 +407,7 @@ const SingleProductClassic = () => {
               <div className="recommend-commodity col-6 col-lg flex-shrink-1">
                 <div
                   className="card bg-transparent border-0 h-100 align-items-center text-center cursor-pointer"
-                  onClick={() => navigate("/item/matcha")}
+                  onClick={() => navigate("/productList-classic/99edfeff-dac9-41a5-bd00-c4c546983cad")}
                 >
                   <img
                     src={抹茶甜甜}
@@ -428,7 +428,7 @@ const SingleProductClassic = () => {
               <div className="recommend-commodity col-6 col-lg flex-shrink-1">
                 <div
                   className="card bg-transparent border-0 h-100 align-items-center text-center cursor-pointer"
-                  onClick={() => navigate("/item/caramelcocoa")}
+                  onClick={() => navigate("/productList-classic/92640f30-37dc-4965-82e7-6478bac03e52")}
                 >
                   <img
                     src={焦糖可可甜甜}
