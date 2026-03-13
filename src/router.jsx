@@ -28,6 +28,8 @@ import BackendAnnouncement from "./views/backend/backendAnnouncrment";
 import BackendCoupon from "./views/backend/BackendCoupon";
 import BackendLogin from "./views/backend/BackendLogin";
 import BackendLayout from "./layout/BackendLayout";
+import ProtectedRoute from "./components/ProtectedRoute";
+
 
 const router = createHashRouter([
   {
@@ -66,6 +68,30 @@ const router = createHashRouter([
         path: "news",
         element: <News />,
       },
+      {
+        path: "cart",
+        element: (
+          <ProtectedRoute>
+            <Cart />
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: "cart/checkout",
+        element: (
+          <ProtectedRoute>
+            <Checkout />
+          </ProtectedRoute>
+        )
+      },
+      {
+        path: "cart/checkout/order-success",
+        element: (
+          <ProtectedRoute>
+            <OrderSuccess />
+          </ProtectedRoute>
+        )
+      },     
       {
         path: "member",
         element: <MemberLayout />,
