@@ -11,10 +11,6 @@ const Header = () => {
 
   const [isLogin, setIsLogin] = useState(false);
   const [user, setUser] = useState(null);
-<<<<<<< HEAD
-  const [isDesktopDropdownOpen, setIsDesktopDropdownOpen] = useState(false);
-  const [isMobileDropdownOpen, setIsMobileDropdownOpen] = useState(false);
-=======
   const [isUserDropdownOpen, setIsUserDropdownOpen] = useState(false);
   const [isDesktopDropdownOpen, setIsDesktopDropdownOpen] = useState(false);
   const [isMobileMemberDropdownOpen, setIsMobileMemberDropdownOpen] =
@@ -22,7 +18,6 @@ const Header = () => {
   const [isMobileProductDropdownOpen, setIsMobileProductDropdownOpen] =
     useState(false);
   const [modalClose, setModalClose] = useState(false);
->>>>>>> main
 
   /**
    * 取得目前登入狀態
@@ -75,12 +70,8 @@ const Header = () => {
   useEffect(() => {
     checkLoginStatus();
     setIsDesktopDropdownOpen(false);
-<<<<<<< HEAD
-    setIsMobileDropdownOpen(false);
-=======
     setIsMobileMemberDropdownOpen(false);
     setIsMobileProductDropdownOpen(false);
->>>>>>> main
   }, [location]);
 
   /**
@@ -270,11 +261,7 @@ const Header = () => {
               <li className="nav-item dropdown p-4 position-relative">
                 <button
                   type="button"
-<<<<<<< HEAD
-                  className="nav-link dropdown-toggle no-caret fs-6 fw-700 text-neutral-100 border-0 bg-transparent p-0 d-flex align-items-center header-dropdown-btn"
-=======
                   className="nav-link dropdown-toggle no-caret fs-6 fw-700 text-neutral-100 bg-transparent p-0 d-flex align-items-center header-dropdown-btn"
->>>>>>> main
                   onClick={() => setIsDesktopDropdownOpen((prev) => !prev)}
                   aria-expanded={isDesktopDropdownOpen}
                 >
@@ -284,9 +271,6 @@ const Header = () => {
                 {isDesktopDropdownOpen && (
                   <ul
                     className="dropdown-menu show border-0 br-bl-16 br-br-16 text-center fs-6"
-<<<<<<< HEAD
-                    style={{ display: "block" }}
-=======
                     style={{
                       display: "block",
                       position: "absolute",
@@ -294,7 +278,6 @@ const Header = () => {
                       transform: "translateX(-50%)",
                       top: "100%",
                     }}
->>>>>>> main
                   >
                     <li>
                       <Link
@@ -511,15 +494,6 @@ const Header = () => {
                 <li className="nav-item dropdown">
                   <button
                     type="button"
-<<<<<<< HEAD
-                    className="nav-link d-flex justify-content-between align-items-center no-caret p-0 mb-4 fw-400 border-0 bg-transparent w-100"
-                    onClick={() => setIsMobileDropdownOpen((prev) => !prev)}
-                    aria-expanded={isMobileDropdownOpen}
-                  >
-                    <span className="py-3 ps-1 text-neutral-100">商品列表</span>
-                    <span className="material-symbols-outlined">
-                      {isMobileDropdownOpen
-=======
                     id="products"
                     className="nav-link d-flex justify-content-between align-items-center no-caret p-0 mb-6 fw-400 border-0 bg-transparent w-100"
                     onClick={() =>
@@ -530,37 +504,24 @@ const Header = () => {
                     <span className="py-3 ps-1 text-neutral-100">商品列表</span>
                     <span className="material-symbols-outlined">
                       {isMobileProductDropdownOpen
->>>>>>> main
                         ? "keyboard_arrow_up"
                         : "keyboard_arrow_down"}
                     </span>
                   </button>
 
-<<<<<<< HEAD
-                  {isMobileDropdownOpen && (
-                    <ul
-                      className="dropdown-menu show border-0 bg-primary-tint position-static w-100"
-                      style={{ display: "block" }}
-=======
                   {isMobileProductDropdownOpen && (
                     <ul
                       className="dropdown-menu show border-0 border-top rounded-top-0 border-primary-60 bg-primary-tint position-static w-100"
                       style={{ display: "block" }}
                       aria-labelledby="products"
->>>>>>> main
                     >
                       <li>
                         <Link
                           className="dropdown-item mx-4 py-3 ps-1 mb-2 text-neutral-100"
-<<<<<<< HEAD
-                          to="/productList-classic"
-                          data-bs-dismiss="modal"
-=======
                           data-bs-dismiss="modal"
                           onClick={() =>
                             handleLinkClick("/productList-classic")
                           }
->>>>>>> main
                         >
                           經典口味
                         </Link>
@@ -568,15 +529,10 @@ const Header = () => {
                       <li>
                         <Link
                           className="dropdown-item mx-4 py-3 ps-1 mb-2 text-neutral-100"
-<<<<<<< HEAD
-                          to="/productList-seasonal"
-                          data-bs-dismiss="modal"
-=======
                           data-bs-dismiss="modal"
                           onClick={() =>
                             handleLinkClick("/productList-seasonal")
                           }
->>>>>>> main
                         >
                           季節限定
                         </Link>
@@ -584,15 +540,10 @@ const Header = () => {
                       <li>
                         <Link
                           className="dropdown-item mx-4 py-3 ps-1 text-neutral-100"
-<<<<<<< HEAD
-                          to="/productList-giftbox"
-                          data-bs-dismiss="modal"
-=======
                           data-bs-dismiss="modal"
                           onClick={() =>
                             handleLinkClick("/productList-giftbox")
                           }
->>>>>>> main
                         >
                           甜甜禮盒
                         </Link>
