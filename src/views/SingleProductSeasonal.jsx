@@ -32,7 +32,6 @@ const SingleProductSeasonal = () => {
 
   const [isFavorite, setIsFavorite] = useState(false);
 
-
   /**
    * 依 id 取得單筆商品資料
    * 主圖使用 image_content_url
@@ -101,10 +100,9 @@ const SingleProductSeasonal = () => {
     }
   };
 
-
   /**
-* 檢查目前商品是否已收藏
-*/
+   * 檢查目前商品是否已收藏
+   */
   const checkIsFavorite = async (productId) => {
     const favoriteList = await getFavorite();
     const exists = favoriteList.some((item) => item.product_id === productId);
@@ -505,7 +503,7 @@ const SingleProductSeasonal = () => {
           </div>
         </div>
       </div>
-      {/* 取消收藏 modal */}   
+      {/* 取消收藏 modal */}
       <div
         className="modal fade"
         tabIndex="-1"
