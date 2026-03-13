@@ -149,7 +149,21 @@
   vertical-align: middle;
 }
 
+<<<<<<< HEAD
 .header-dropdown-btn:focus,
 .header-dropdown-btn:active {
   box-shadow: none;
 }
+=======
+.header-dropdown-btn:focus{
+  box-shadow: none;
+}
+
+.header-dropdown-btn:active,
+.header-dropdown-btn:hover {
+  box-shadow: none;
+  color: #e89018 !important;
+  font-weight: 700;
+  border-bottom: 2px solid #e89018!important;
+}
+>>>>>>> main

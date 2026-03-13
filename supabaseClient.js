@@ -1,9 +1,9 @@
 // supabaseClient.js 檔案
 import { createClient } from '@supabase/supabase-js';
 
-const supabaseUrl = 'https://hbziiuprrymhismfryey.supabase.co'
-const supabaseKey = 'sb_publishable_3c9mT_xUU5b8xdSZZCAjeg_h5Wx0dGe'
+const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
+const supabaseKey = import.meta.env.VITE_SUPABASE_KEY;
 
 // 初始化連線
-export const supabase = createClient(supabaseUrl, supabaseKey)
+export const supabase = createClient(supabaseUrl, supabaseKey);
     

@@ -2,7 +2,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useMemo, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import CommonSwiper from "@/components/CommonSwiper";
-import { supabase } from "../../supabaseClient";
+import { supabase } from "../../../supabaseClient";
 
 import login1 from "@/assets/images/login-1.webp";
 import login7 from "@/assets/images/login-7.webp";

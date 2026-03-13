@@ -11,8 +11,18 @@ const Header = () => {
 
   const [isLogin, setIsLogin] = useState(false);
   const [user, setUser] = useState(null);
+<<<<<<< HEAD
   const [isDesktopDropdownOpen, setIsDesktopDropdownOpen] = useState(false);
   const [isMobileDropdownOpen, setIsMobileDropdownOpen] = useState(false);
+=======
+  const [isUserDropdownOpen, setIsUserDropdownOpen] = useState(false);
+  const [isDesktopDropdownOpen, setIsDesktopDropdownOpen] = useState(false);
+  const [isMobileMemberDropdownOpen, setIsMobileMemberDropdownOpen] =
+    useState(false);
+  const [isMobileProductDropdownOpen, setIsMobileProductDropdownOpen] =
+    useState(false);
+  const [modalClose, setModalClose] = useState(false);
+>>>>>>> main
 
   /**
    * 取得目前登入狀態
@@ -65,7 +75,12 @@ const Header = () => {
   useEffect(() => {
     checkLoginStatus();
     setIsDesktopDropdownOpen(false);
+<<<<<<< HEAD
     setIsMobileDropdownOpen(false);
+=======
+    setIsMobileMemberDropdownOpen(false);
+    setIsMobileProductDropdownOpen(false);
+>>>>>>> main
   }, [location]);
 
   /**
@@ -174,6 +189,19 @@ const Header = () => {
     }
   };
 
+  const handleLinkClick = (path) => {
+    navigate(path);
+  };
+
+  // 關閉 Modal 則重置下拉選單的邏輯
+  const handleModalStatus = () => {
+    setModalClose((prev) => !prev);
+    if (modalClose) {
+      setIsMobileMemberDropdownOpen(false);
+      setIsMobileProductDropdownOpen(false);
+    }
+  };
+
   return (
     <header className="navbar navbar-expand-lg navbar-light bg-neutral-white">
       <div className="container d-flex justify-content-between align-items-center px-3 py-4 position-relative">
@@ -210,6 +238,7 @@ const Header = () => {
             aria-controls="menu"
             aria-expanded="false"
             aria-label="Toggle navigation"
+            onClick={() => handleModalStatus()}
           >
             <span className="material-symbols-outlined text-primary-40 p-4">
               menu
@@ -241,7 +270,11 @@ const Header = () => {
               <li className="nav-item dropdown p-4 position-relative">
                 <button
                   type="button"
+<<<<<<< HEAD
                   className="nav-link dropdown-toggle no-caret fs-6 fw-700 text-neutral-100 border-0 bg-transparent p-0 d-flex align-items-center header-dropdown-btn"
+=======
+                  className="nav-link dropdown-toggle no-caret fs-6 fw-700 text-neutral-100 bg-transparent p-0 d-flex align-items-center header-dropdown-btn"
+>>>>>>> main
                   onClick={() => setIsDesktopDropdownOpen((prev) => !prev)}
                   aria-expanded={isDesktopDropdownOpen}
                 >
@@ -251,7 +284,17 @@ const Header = () => {
                 {isDesktopDropdownOpen && (
                   <ul
                     className="dropdown-menu show border-0 br-bl-16 br-br-16 text-center fs-6"
+<<<<<<< HEAD
                     style={{ display: "block" }}
+=======
+                    style={{
+                      display: "block",
+                      position: "absolute",
+                      left: "50%",
+                      transform: "translateX(-50%)",
+                      top: "100%",
+                    }}
+>>>>>>> main
                   >
                     <li>
                       <Link
@@ -304,19 +347,70 @@ const Header = () => {
               </svg>
             </Link>
           ) : (
+            //
             <div className="d-flex align-items-center me-8">
-              <div className="headerBtn bg-primary-20 p-3 br-12 me-4 d-flex align-items-center">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="32"
-                  height="32"
-                  fill="currentColor"
-                  className="bi bi-person text-primary-40"
-                  viewBox="0 0 16 16"
+              <ul className="nav-item dropdown p-4 position-relative">
+                <button
+                  type="button"
+                  className="nav-link dropdown-toggle no-caret fs-6 fw-700 text-neutral-100 bg-transparent p-0 d-flex align-items-center header-dropdown-btn"
+                  onClick={() => setIsUserDropdownOpen((prev) => !prev)}
+                  aria-expanded={isUserDropdownOpen}
                 >
-                  <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6m2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0m4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4m-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10s-3.516.68-4.168 1.332c-.678.678-.83 1.418-.832 1.664z" />
-                </svg>
-              </div>
+                  <div className="headerBtn bg-primary-20 p-3 br-12 d-flex align-items-center">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="32"
+                      height="32"
+                      fill="currentColor"
+                      className="bi bi-person text-primary-40"
+                      viewBox="0 0 16 16"
+                    >
+                      <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6m2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0m4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4m-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10s-3.516.68-4.168 1.332c-.678.678-.83 1.418-.832 1.664z" />
+                    </svg>
+                  </div>
+                </button>
+
+                {isUserDropdownOpen && (
+                  <ul
+                    className="dropdown-menu show border-0 br-bl-16 br-br-16 text-center fs-6 shadow"
+                    style={{
+                      display: "block",
+                      position: "absolute",
+                      left: "50%",
+                      transform: "translateX(-50%)",
+                      top: "100%",
+                    }}
+                  >
+                    <li>
+                      <Link
+                        className="dropdown-item p-4 text-neutral-100"
+                        to="/member/myProfile"
+                        onClick={() => setIsUserDropdownOpen((prev) => !prev)}
+                      >
+                        個人資訊
+                      </Link>
+                    </li>
+                    <li>
+                      <Link
+                        className="dropdown-item p-4 text-neutral-100"
+                        to="/member/myFavorite"
+                        onClick={() => setIsUserDropdownOpen((prev) => !prev)}
+                      >
+                        我的收藏
+                      </Link>
+                    </li>
+                    <li>
+                      <Link
+                        className="dropdown-item p-4 text-neutral-100"
+                        to="/member/myOrders"
+                        onClick={() => setIsUserDropdownOpen((prev) => !prev)}
+                      >
+                        我的訂單
+                      </Link>
+                    </li>
+                  </ul>
+                )}
+              </ul>
 
               <span className="text-neutral-100 me-4">
                 您好，{user?.name || "會員"}
@@ -362,6 +456,7 @@ const Header = () => {
                 className="btn ms-auto p-0"
                 data-bs-dismiss="modal"
                 aria-label="關閉"
+                onClick={() => handleModalStatus()}
               >
                 <div className="position-relative">
                   <div className="bg-neutral-white br-bl-32 position-relative position-absolute top-0 end-0">
@@ -394,10 +489,9 @@ const Header = () => {
               <ul className="navbar-nav">
                 <li className="nav-item">
                   <Link
-                    to="/story"
-                    type="button"
                     className="nav-link mb-6 py-3 ps-1 text-neutral-100"
                     data-bs-dismiss="modal"
+                    onClick={() => handleLinkClick("/story")}
                   >
                     品牌故事
                   </Link>
@@ -405,19 +499,19 @@ const Header = () => {
 
                 <li className="nav-item">
                   <Link
-                    to="/news"
-                    type="button"
                     className="nav-link mb-6 py-3 ps-1 text-neutral-100"
                     data-bs-dismiss="modal"
+                    onClick={() => handleLinkClick("/news")}
                   >
                     最新消息
                   </Link>
                 </li>
 
-                {/* 下拉選單 */}
+                {/* 商品列表下拉選單 */}
                 <li className="nav-item dropdown">
                   <button
                     type="button"
+<<<<<<< HEAD
                     className="nav-link d-flex justify-content-between align-items-center no-caret p-0 mb-4 fw-400 border-0 bg-transparent w-100"
                     onClick={() => setIsMobileDropdownOpen((prev) => !prev)}
                     aria-expanded={isMobileDropdownOpen}
@@ -425,21 +519,48 @@ const Header = () => {
                     <span className="py-3 ps-1 text-neutral-100">商品列表</span>
                     <span className="material-symbols-outlined">
                       {isMobileDropdownOpen
+=======
+                    id="products"
+                    className="nav-link d-flex justify-content-between align-items-center no-caret p-0 mb-6 fw-400 border-0 bg-transparent w-100"
+                    onClick={() =>
+                      setIsMobileProductDropdownOpen((prev) => !prev)
+                    }
+                    aria-expanded={setIsMobileProductDropdownOpen}
+                  >
+                    <span className="py-3 ps-1 text-neutral-100">商品列表</span>
+                    <span className="material-symbols-outlined">
+                      {isMobileProductDropdownOpen
+>>>>>>> main
                         ? "keyboard_arrow_up"
                         : "keyboard_arrow_down"}
                     </span>
                   </button>
 
+<<<<<<< HEAD
                   {isMobileDropdownOpen && (
                     <ul
                       className="dropdown-menu show border-0 bg-primary-tint position-static w-100"
                       style={{ display: "block" }}
+=======
+                  {isMobileProductDropdownOpen && (
+                    <ul
+                      className="dropdown-menu show border-0 border-top rounded-top-0 border-primary-60 bg-primary-tint position-static w-100"
+                      style={{ display: "block" }}
+                      aria-labelledby="products"
+>>>>>>> main
                     >
                       <li>
                         <Link
                           className="dropdown-item mx-4 py-3 ps-1 mb-2 text-neutral-100"
+<<<<<<< HEAD
                           to="/productList-classic"
                           data-bs-dismiss="modal"
+=======
+                          data-bs-dismiss="modal"
+                          onClick={() =>
+                            handleLinkClick("/productList-classic")
+                          }
+>>>>>>> main
                         >
                           經典口味
                         </Link>
@@ -447,8 +568,15 @@ const Header = () => {
                       <li>
                         <Link
                           className="dropdown-item mx-4 py-3 ps-1 mb-2 text-neutral-100"
+<<<<<<< HEAD
                           to="/productList-seasonal"
                           data-bs-dismiss="modal"
+=======
+                          data-bs-dismiss="modal"
+                          onClick={() =>
+                            handleLinkClick("/productList-seasonal")
+                          }
+>>>>>>> main
                         >
                           季節限定
                         </Link>
@@ -456,8 +584,15 @@ const Header = () => {
                       <li>
                         <Link
                           className="dropdown-item mx-4 py-3 ps-1 text-neutral-100"
+<<<<<<< HEAD
                           to="/productList-giftbox"
                           data-bs-dismiss="modal"
+=======
+                          data-bs-dismiss="modal"
+                          onClick={() =>
+                            handleLinkClick("/productList-giftbox")
+                          }
+>>>>>>> main
                         >
                           甜甜禮盒
                         </Link>
@@ -465,6 +600,68 @@ const Header = () => {
                     </ul>
                   )}
                 </li>
+
+                {isLogin && (
+                  /* 會員資料下拉選單 */
+                  <li className="nav-item dropdown">
+                    <button
+                      type="button"
+                      id="memberProfile"
+                      className="nav-link d-flex justify-content-between align-items-center no-caret p-0 mb-6 fw-400 border-0 bg-transparent w-100"
+                      onClick={() =>
+                        setIsMobileMemberDropdownOpen((prev) => !prev)
+                      }
+                      aria-expanded={setIsMobileMemberDropdownOpen}
+                    >
+                      <span className="py-3 ps-1 text-neutral-100">
+                        會員資料
+                      </span>
+                      <span className="material-symbols-outlined">
+                        {isMobileMemberDropdownOpen
+                          ? "keyboard_arrow_up"
+                          : "keyboard_arrow_down"}
+                      </span>
+                    </button>
+
+                    {isMobileMemberDropdownOpen && (
+                      <ul
+                        className="dropdown-menu show border-0 border-top rounded-top-0 border-primary-60 bg-primary-tint position-static w-100"
+                        aria-labelledby="memberProfile"
+                        style={{ display: "block" }}
+                      >
+                        <li>
+                          <Link
+                            className="dropdown-item mx-4 py-3 ps-1 mb-2 text-neutral-100"
+                            data-bs-dismiss="modal"
+                            onClick={() => handleLinkClick("/member/myProfile")}
+                          >
+                            個人資訊
+                          </Link>
+                        </li>
+                        <li>
+                          <Link
+                            className="dropdown-item mx-4 py-3 ps-1 mb-2 text-neutral-100"
+                            data-bs-dismiss="modal"
+                            onClick={() =>
+                              handleLinkClick("/member/myFavorite")
+                            }
+                          >
+                            我的收藏
+                          </Link>
+                        </li>
+                        <li>
+                          <Link
+                            className="dropdown-item mx-4 py-3 ps-1 text-neutral-100"
+                            data-bs-dismiss="modal"
+                            onClick={() => handleLinkClick("/member/myOrders")}
+                          >
+                            我的訂單
+                          </Link>
+                        </li>
+                      </ul>
+                    )}
+                  </li>
+                )}
               </ul>
             </div>
 
