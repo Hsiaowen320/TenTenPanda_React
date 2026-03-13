@@ -1,6 +1,6 @@
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { supabase } from "../../supabaseClient";
+import { supabase } from "../../../supabaseClient";
 import { updateCart } from "@/api/cart";
 import { Modal } from "bootstrap";
 import { getFavorite, toggleFavorite } from "@/api/favorite";
@@ -11,9 +11,8 @@ import 芝麻甜甜 from "@/assets/images/芝麻甜甜.webp";
 import 抹茶甜甜 from "@/assets/images/抹茶甜甜.webp";
 import 焦糖可可甜甜 from "@/assets/images/焦糖可可甜甜.webp";
 
-const SingleProductGiftbox = () => {
+const SingleProductClassic = () => {
   const navigate = useNavigate();
-  const [showCartSuccess, setShowCartSuccess] = useState(false);
 
   // 從網址取得 id
   const { id } = useParams();
@@ -32,13 +31,11 @@ const SingleProductGiftbox = () => {
 
   const [isFavorite, setIsFavorite] = useState(false);
 
-
   /**
    * 依 id 取得單筆商品資料
    * 主圖使用 image_content_url
    */
   const getProductDetail = async () => {
-    console.log("step1");
     try {
       setLoading(true);
       setErrorMessage("");
@@ -101,10 +98,9 @@ const SingleProductGiftbox = () => {
     }
   };
 
-
   /**
-* 檢查目前商品是否已收藏
-*/
+   * 檢查目前商品是否已收藏
+   */
   const checkIsFavorite = async (productId) => {
     const favoriteList = await getFavorite();
     const exists = favoriteList.some((item) => item.product_id === productId);
@@ -185,10 +181,10 @@ const SingleProductGiftbox = () => {
                 </span>
               </li>
 
-              {/* 桌機版：甜甜禮盒 */}
+              {/* 桌機版：經典口味 */}
               <li className="bread-item d-none d-lg-block">
-                <Link to="/productList-giftbox" className="text-neutral-60">
-                  甜甜禮盒
+                <Link to="/productList-classic" className="text-neutral-60">
+                  經典口味
                 </Link>
               </li>
 
@@ -368,7 +364,7 @@ const SingleProductGiftbox = () => {
               <div className="recommend-commodity col-6 col-lg flex-shrink-1">
                 <div
                   className="card bg-transparent border-0 h-100 align-items-center text-center cursor-pointer"
-                  onClick={() => navigate("/item/berry")}
+                  onClick={() => navigate("/productList-classic/d72173e6-ef6f-49b7-8b26-6c29fccdb11f")}
                 >
                   <img
                     src={莓果甜甜}
@@ -389,7 +385,7 @@ const SingleProductGiftbox = () => {
               <div className="recommend-commodity col-6 col-lg flex-shrink-1">
                 <div
                   className="card bg-transparent border-0 h-100 align-items-center text-center cursor-pointer"
-                  onClick={() => navigate("/item/sesame")}
+                  onClick={() => navigate("/productList-classic/4f4c73aa-eb09-4a18-97ea-393d8219784a")}
                 >
                   <img
                     src={芝麻甜甜}
@@ -410,7 +406,7 @@ const SingleProductGiftbox = () => {
               <div className="recommend-commodity col-6 col-lg flex-shrink-1">
                 <div
                   className="card bg-transparent border-0 h-100 align-items-center text-center cursor-pointer"
-                  onClick={() => navigate("/item/matcha")}
+                  onClick={() => navigate("/productList-classic/99edfeff-dac9-41a5-bd00-c4c546983cad")}
                 >
                   <img
                     src={抹茶甜甜}
@@ -431,7 +427,7 @@ const SingleProductGiftbox = () => {
               <div className="recommend-commodity col-6 col-lg flex-shrink-1">
                 <div
                   className="card bg-transparent border-0 h-100 align-items-center text-center cursor-pointer"
-                  onClick={() => navigate("/item/caramelcocoa")}
+                  onClick={() => navigate("/productList-classic/92640f30-37dc-4965-82e7-6478bac03e52")}
                 >
                   <img
                     src={焦糖可可甜甜}
@@ -530,4 +526,4 @@ const SingleProductGiftbox = () => {
   );
 };
 
-export default SingleProductGiftbox;
+export default SingleProductClassic;

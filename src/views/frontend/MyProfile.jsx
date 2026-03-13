@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
-import { supabase } from "../../supabaseClient";
-import { useNavigate } from 'react-router-dom';
+import { supabase } from "../../../supabaseClient";
+import { useNavigate } from "react-router-dom";
 
 function MyProfile() {
   const [isEdit, setIsEdit] = useState(false); // 控制編輯模式
@@ -29,7 +29,7 @@ function MyProfile() {
 
         // 這裡可以寫程式碼 (如跳轉到登入頁面、警告未登入)
         if (!user) {
-          navigate('/login', { replace: true });
+          navigate("/login", { replace: true });
         }
 
         const response = await supabase
@@ -50,8 +50,7 @@ function MyProfile() {
 
     if (Object.keys(initialInfoData).length > 0) {
       reset(initialInfoData);
-    }    
-
+    }
   }, [reset]);
 
   // 更新會員資料的 API
@@ -64,7 +63,7 @@ function MyProfile() {
 
       // 這裡可以寫程式碼 (如跳轉到登入頁面、警告未登入)
       if (!user) {
-        navigate('/login', { replace: true });
+        navigate("/login", { replace: true });
       }
 
       // 將不想被更新的欄位分離出來，而 finalUpdates 就是要修改的內容
@@ -109,9 +108,9 @@ function MyProfile() {
             <button
               type="button"
               className="btn btn-primary-40 text-neutral-white"
-              style={{ 
+              style={{
                 visibility: isEdit ? "hidden" : "visible",
-                pointerEvents: isEdit ? "none" : "auto" // 隱藏時防止點擊
+                pointerEvents: isEdit ? "none" : "auto", // 隱藏時防止點擊
               }}
               onClick={() => setIsEdit(true)}
             >

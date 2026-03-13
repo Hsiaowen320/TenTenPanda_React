@@ -1,19 +1,19 @@
 import { Link, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { supabase } from "../../supabaseClient";
+import { supabase } from "../../../supabaseClient";
 import { updateCart } from "@/api/cart";
 import { getFavorite, toggleFavorite } from "@/api/favorite";
 import { Modal } from "bootstrap";
 
 import home from "@/assets/images/home.webp";
-import starberryImage from "@/assets/images/星塵草莓（光暈）.webp";
-import snowberryImage from "@/assets/images/白雪綿霜莓（光暈）.webp";
-import berryCocoImage from "@/assets/images/莓果可可（光暈）.webp";
-import snowberryMontImage from "@/assets/images/雪莓蒙布朗（光暈）.webp";
-import wineberryImage from "@/assets/images/熱紅酒莓果（光暈）.webp";
-import frostberryImage from "@/assets/images/莓果夾心（光暈）.webp";
+import 經典甜甜 from "@/assets/images/經典甜甜.webp";
+import 芝麻甜甜 from "@/assets/images/芝麻甜甜.webp";
+import 抹茶甜甜 from "@/assets/images/抹茶甜甜.webp";
+import 生乳檸檬甜甜 from "@/assets/images/生乳檸檬甜甜.webp";
+import 焦糖可可甜甜 from "@/assets/images/焦糖可可甜甜.webp";
+import 莓果甜甜 from "@/assets/images/莓果甜甜.webp";
 
-const ProductListSeasonal = () => {
+const ProductListClassic = () => {
   const navigate = useNavigate();
 
   // 商品資料
@@ -45,7 +45,7 @@ const ProductListSeasonal = () => {
       const { data, error } = await supabase
         .from("products")
         .select("*")
-        .eq("category_id", 2)
+        .eq("category_id", 1)
         .order("id", { ascending: true });
 
       if (error) {
@@ -78,7 +78,7 @@ const ProductListSeasonal = () => {
    * 使用 english_name 當 id
    */
   const handleGoDetail = (id) => {
-    navigate(`/productList-Seasonal/${id}`);
+    navigate(`/productList-classic/${id}`);
   };
 
   const handleAddToCart = async (productId, event) => {
@@ -115,33 +115,33 @@ const ProductListSeasonal = () => {
 
   //收藏切換
   const handleToggleFavorite = async (productId, event) => {
-  if (event) {
-    event.preventDefault();
-    event.stopPropagation();
-  }
-
-  const result = await toggleFavorite(productId);
-
-  if (!result.success) return;
-
-  if (result.isFavorite) {
-    setFavoriteIds((prev) => [...prev, productId]);
-
-    const modalElement = document.getElementById("favoriteModal");
-    if (modalElement) {
-      const modalInstance = new Modal(modalElement);
-      modalInstance.show();
+    if (event) {
+      event.preventDefault();
+      event.stopPropagation();
     }
-  } else {
-    setFavoriteIds((prev) => prev.filter((id) => id !== productId));
 
-    const modalElement = document.getElementById("cancelFavoriteModal");
-    if (modalElement) {
-      const modalInstance = new Modal(modalElement);
-      modalInstance.show();
+    const result = await toggleFavorite(productId);
+
+    if (!result.success) return;
+
+    if (result.isFavorite) {
+      setFavoriteIds((prev) => [...prev, productId]);
+
+      const modalElement = document.getElementById("favoriteModal");
+      if (modalElement) {
+        const modalInstance = new Modal(modalElement);
+        modalInstance.show();
+      }
+    } else {
+      setFavoriteIds((prev) => prev.filter((id) => id !== productId));
+
+      const modalElement = document.getElementById("cancelFavoriteModal");
+      if (modalElement) {
+        const modalInstance = new Modal(modalElement);
+        modalInstance.show();
+      }
     }
-  }
-};
+  };
 
   return (
     <>
@@ -168,7 +168,7 @@ const ProductListSeasonal = () => {
                 keyboard_double_arrow_right
               </span>
               <li className="breadcrumb-item d-flex align-items-center ms-5">
-                <Link to="/productList-Seasonal">季節限定</Link>
+                <Link to="/productList-classic">經典口味</Link>
               </li>
             </ol>
           </nav>
@@ -182,7 +182,7 @@ const ProductListSeasonal = () => {
                 <li className="mb-lg-12">
                   <Link
                     to="/productList-classic"
-                    className="text-neutral-90 fs-4"
+                    className="text-primary-60 fs-4"
                   >
                     經典口味
                   </Link>
@@ -190,7 +190,7 @@ const ProductListSeasonal = () => {
                 <li className="mb-lg-12">
                   <Link
                     to="/productList-seasonal"
-                    className="text-primary-60 fs-4"
+                    className="text-neutral-90 fs-4"
                   >
                     季節限定
                   </Link>
@@ -240,9 +240,7 @@ const ProductListSeasonal = () => {
                        * 1. 優先使用資料庫的 image_title_url
                        * 2. 若沒有值，才退回本地圖片
                        */
-                      const imageSrc =
-                        product.image_title_url ||
-                        "";
+                      const imageSrc = product.image_title_url || "";
 
                       return (
                         <div
@@ -255,11 +253,9 @@ const ProductListSeasonal = () => {
                           >
                             <div
                               className="position-relative d-inline-block w-100 cursor-pointer"
-                              onClick={() =>
-                                handleGoDetail(product.id)
-                              }
+                              onClick={() => handleGoDetail(product.id)}
                             >
-                              <div className="img-box p-18">
+                              <div className="img-box">
                                 <img
                                   src={imageSrc}
                                   alt={product.name}
@@ -270,9 +266,12 @@ const ProductListSeasonal = () => {
                               {/* 加入收藏 */}
                               <button
                                 type="button"
-                                className={`favorite-btn position-absolute top-0 end-0 fs-3 fs-lg-1 ${isFavorite ? "active" : ""
-                                  }`}
-                                onClick={(event) => handleToggleFavorite(product.id, event)}
+                                className={`favorite-btn position-absolute top-0 end-0 fs-3 fs-lg-1 ${
+                                  isFavorite ? "active" : ""
+                                }`}
+                                onClick={(event) =>
+                                  handleToggleFavorite(product.id, event)
+                                }
                               >
                                 <i className="bi bi-heart empty"></i>
                                 <i className="bi bi-heart-fill full"></i>
@@ -283,9 +282,7 @@ const ProductListSeasonal = () => {
                               <div>
                                 <h2
                                   className="fs-6 mb-2 cursor-pointer"
-                                  onClick={() =>
-                                    handleGoDetail(product.id)
-                                  }
+                                  onClick={() => handleGoDetail(product.id)}
                                 >
                                   {product.name}
                                 </h2>
@@ -392,4 +389,5 @@ const ProductListSeasonal = () => {
     </>
   );
 };
-export default ProductListSeasonal;
+
+export default ProductListClassic;

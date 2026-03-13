@@ -1,6 +1,6 @@
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { supabase } from "../../supabaseClient";
+import { supabase } from "../../../supabaseClient";
 import { updateCart } from "@/api/cart";
 import { Modal } from "bootstrap";
 import { getFavorite, toggleFavorite } from "@/api/favorite";
@@ -11,7 +11,7 @@ import 芝麻甜甜 from "@/assets/images/芝麻甜甜.webp";
 import 抹茶甜甜 from "@/assets/images/抹茶甜甜.webp";
 import 焦糖可可甜甜 from "@/assets/images/焦糖可可甜甜.webp";
 
-const SingleProductSeasonal = () => {
+const SingleProductGiftbox = () => {
   const navigate = useNavigate();
   const [showCartSuccess, setShowCartSuccess] = useState(false);
 
@@ -183,10 +183,10 @@ const SingleProductSeasonal = () => {
                 </span>
               </li>
 
-              {/* 桌機版：季節限定 */}
+              {/* 桌機版：甜甜禮盒 */}
               <li className="bread-item d-none d-lg-block">
-                <Link to="/productList-seasonal" className="text-neutral-60">
-                  季節限定
+                <Link to="/productList-giftbox" className="text-neutral-60">
+                  甜甜禮盒
                 </Link>
               </li>
 
@@ -366,7 +366,7 @@ const SingleProductSeasonal = () => {
               <div className="recommend-commodity col-6 col-lg flex-shrink-1">
                 <div
                   className="card bg-transparent border-0 h-100 align-items-center text-center cursor-pointer"
-                  onClick={() => navigate("/item/berry")}
+                  onClick={() => navigate("/productList-classic/d72173e6-ef6f-49b7-8b26-6c29fccdb11f")}
                 >
                   <img
                     src={莓果甜甜}
@@ -387,7 +387,7 @@ const SingleProductSeasonal = () => {
               <div className="recommend-commodity col-6 col-lg flex-shrink-1">
                 <div
                   className="card bg-transparent border-0 h-100 align-items-center text-center cursor-pointer"
-                  onClick={() => navigate("/item/sesame")}
+                  onClick={() => navigate("/productList-classic/4f4c73aa-eb09-4a18-97ea-393d8219784a")}
                 >
                   <img
                     src={芝麻甜甜}
@@ -408,7 +408,7 @@ const SingleProductSeasonal = () => {
               <div className="recommend-commodity col-6 col-lg flex-shrink-1">
                 <div
                   className="card bg-transparent border-0 h-100 align-items-center text-center cursor-pointer"
-                  onClick={() => navigate("/item/matcha")}
+                  onClick={() => navigate("/productList-classic/99edfeff-dac9-41a5-bd00-c4c546983cad")}
                 >
                   <img
                     src={抹茶甜甜}
@@ -429,7 +429,7 @@ const SingleProductSeasonal = () => {
               <div className="recommend-commodity col-6 col-lg flex-shrink-1">
                 <div
                   className="card bg-transparent border-0 h-100 align-items-center text-center cursor-pointer"
-                  onClick={() => navigate("/item/caramelcocoa")}
+                  onClick={() => navigate("/productList-classic/92640f30-37dc-4965-82e7-6478bac03e52")}
                 >
                   <img
                     src={焦糖可可甜甜}
@@ -528,4 +528,4 @@ const SingleProductSeasonal = () => {
   );
 };
 
-export default SingleProductSeasonal;
+export default SingleProductGiftbox;

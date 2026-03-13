@@ -1,6 +1,6 @@
 import { Link, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { supabase } from "../../supabaseClient";
+import { supabase } from "../../../supabaseClient";
 import { updateCart } from "@/api/cart";
 import { getFavorite, toggleFavorite } from "@/api/favorite";
 import { Modal } from "bootstrap";
@@ -121,33 +121,33 @@ const ProductListGiftbox = () => {
 
   //收藏切換
   const handleToggleFavorite = async (productId, event) => {
-  if (event) {
-    event.preventDefault();
-    event.stopPropagation();
-  }
-
-  const result = await toggleFavorite(productId);
-
-  if (!result.success) return;
-
-  if (result.isFavorite) {
-    setFavoriteIds((prev) => [...prev, productId]);
-
-    const modalElement = document.getElementById("favoriteModal");
-    if (modalElement) {
-      const modalInstance = new Modal(modalElement);
-      modalInstance.show();
+    if (event) {
+      event.preventDefault();
+      event.stopPropagation();
     }
-  } else {
-    setFavoriteIds((prev) => prev.filter((id) => id !== productId));
 
-    const modalElement = document.getElementById("cancelFavoriteModal");
-    if (modalElement) {
-      const modalInstance = new Modal(modalElement);
-      modalInstance.show();
+    const result = await toggleFavorite(productId);
+
+    if (!result.success) return;
+
+    if (result.isFavorite) {
+      setFavoriteIds((prev) => [...prev, productId]);
+
+      const modalElement = document.getElementById("favoriteModal");
+      if (modalElement) {
+        const modalInstance = new Modal(modalElement);
+        modalInstance.show();
+      }
+    } else {
+      setFavoriteIds((prev) => prev.filter((id) => id !== productId));
+
+      const modalElement = document.getElementById("cancelFavoriteModal");
+      if (modalElement) {
+        const modalInstance = new Modal(modalElement);
+        modalInstance.show();
+      }
     }
-  }
-};
+  };
 
   return (
     <>
@@ -246,9 +246,7 @@ const ProductListGiftbox = () => {
                        * 1. 優先使用資料庫的 image_title_url
                        * 2. 若沒有值，才退回本地圖片
                        */
-                      const imageSrc =
-                        product.image_title_url ||
-                        "";
+                      const imageSrc = product.image_title_url || "";
 
                       return (
                         <div
@@ -261,9 +259,7 @@ const ProductListGiftbox = () => {
                           >
                             <div
                               className="position-relative d-inline-block w-100 cursor-pointer"
-                              onClick={() =>
-                                handleGoDetail(product.id)
-                              }
+                              onClick={() => handleGoDetail(product.id)}
                             >
                               <div className="img-box p-25">
                                 <img
@@ -276,9 +272,12 @@ const ProductListGiftbox = () => {
                               {/* 加入收藏 */}
                               <button
                                 type="button"
-                                className={`favorite-btn position-absolute top-0 end-0 fs-3 fs-lg-1 ${isFavorite ? "active" : ""
-                                  }`}
-                                onClick={(event) => handleToggleFavorite(product.id, event)}
+                                className={`favorite-btn position-absolute top-0 end-0 fs-3 fs-lg-1 ${
+                                  isFavorite ? "active" : ""
+                                }`}
+                                onClick={(event) =>
+                                  handleToggleFavorite(product.id, event)
+                                }
                               >
                                 <i className="bi bi-heart empty"></i>
                                 <i className="bi bi-heart-fill full"></i>
@@ -289,9 +288,7 @@ const ProductListGiftbox = () => {
                               <div>
                                 <h2
                                   className="fs-6 mb-2 cursor-pointer"
-                                  onClick={() =>
-                                    handleGoDetail(product.id)
-                                  }
+                                  onClick={() => handleGoDetail(product.id)}
                                 >
                                   {product.name}
                                 </h2>

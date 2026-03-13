@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { supabase } from "../../supabaseClient";
+import { supabase } from "../../../supabaseClient";
 import { Link } from "react-router-dom";
 
 function MyFavorite() {
@@ -22,7 +22,7 @@ function MyFavorite() {
 
       // 這裡可以寫程式碼 (如跳轉到登入頁面、警告未登入)
       if (!user) {
-        navigate('/login', { replace: true });
+        navigate("/login", { replace: true });
         return;
       }
 
@@ -52,7 +52,7 @@ function MyFavorite() {
 
       // 這裡可以寫程式碼 (如跳轉到登入頁面、警告未登入)
       if (!user) {
-        navigate('/login', { replace: true });
+        navigate("/login", { replace: true });
         return;
       }
 
@@ -80,7 +80,7 @@ function MyFavorite() {
 
       // 這裡可以寫程式碼 (如跳轉到登入頁面、警告未登入)
       if (!user) {
-        navigate('/login', { replace: true });
+        navigate("/login", { replace: true });
         return;
       }
 
@@ -153,7 +153,9 @@ function MyFavorite() {
                 >
                   <div className="mb-lg-8 product">
                     <div className="position-relative d-inline-block">
-                      <Link to={`${product.products.path}/${product.products.id}`}>
+                      <Link
+                        to={`${product.products.path}/${product.products.id}`}
+                      >
                         <div
                           className={`img-box ${
                             product.products.category_id === 1

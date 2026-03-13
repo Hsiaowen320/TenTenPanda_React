@@ -2,19 +2,18 @@ import { Link, useNavigate } from "react-router-dom";
 import { useMemo, useRef, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import CommonSwiper from "@/components/CommonSwiper";
-import { supabase } from "../../supabaseClient";
+import { supabase } from "../../../supabaseClient";
 import { useLocation } from "react-router";
 
 import login3 from "@/assets/images/login-3.webp";
 import login4 from "@/assets/images/login-4.webp";
 import login2 from "@/assets/images/login-2.webp";
 
-
 const Login = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const params = new URLSearchParams(location.search);
-  const redirectTo = params.get("redirect") || "/"; 
+  const redirectTo = params.get("redirect") || "/";
 
   // 右側表單卡片 ref，右側表單卡片高度（同步給左側照片區）
   const cardRef = useRef(null);
