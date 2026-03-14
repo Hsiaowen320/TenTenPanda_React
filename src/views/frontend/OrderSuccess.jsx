@@ -108,12 +108,7 @@ const OrderSuccess = () => {
                     <div
                       className="d-flex gap-4 w-100 px-lg-15 my-lg-5 flex-column flex-lg-row px-3 mb-8"
                     >
-                      <a
-                        href="myOrders.html"
-                        className="btn btn-outline-primary-80 bg-white w-100 py-3 fs-6"
-                        target="_blank"
-                        >查看訂單資訊</a
-                      >
+                      <NavLink to="/member/myOrders" className="btn btn-outline-primary-80 bg-white w-100 py-3 fs-6">查看訂單資訊</NavLink>
                       <NavLink to="/" className="btn btn-primary-40 text-white w-100 py-3 fs-6">繼續逛逛</NavLink>
                     </div>
                   </div>

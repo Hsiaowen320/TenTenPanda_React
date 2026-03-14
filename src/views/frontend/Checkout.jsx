@@ -8,7 +8,8 @@ const Checkout = () => {
   const navigate = useNavigate();
   const [cart, setCart] = useState([]);
   const [totalPrice, setTotalPrice] = useState(0);
-  const { couponCode, setCouponCode, couponDiscount } = useCoupon();
+  const { couponCode, couponDiscount } = useCoupon();
+  const isCartEmpty = cart.length === 0;
   const shippingFee = 60;
 
   useEffect(() => {
@@ -16,6 +17,7 @@ const Checkout = () => {
       const {
         data: { user },
       } = await supabase.auth.getUser();
+      if (!user) return;
       const res = await supabase
         .from("carts")
         .select(`*, profiles(*), products(*)`)
@@ -470,6 +472,7 @@ const Checkout = () => {
                 <button
                   type="button"
                   className="btn btn-primary-40 text-white w-100 py-4 fs-6"
+                  disabled={isCartEmpty}
                   onClick={() =>
                     document.getElementById("myForm").requestSubmit()
                   }
