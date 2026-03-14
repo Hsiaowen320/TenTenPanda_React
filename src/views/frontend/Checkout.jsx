@@ -65,8 +65,8 @@ const Checkout = () => {
             qty: item.qty
         }));
     const { data: { user } } = await supabase.auth.getUser(); 
-    console.log(couponCode);
-    console.log(typeof couponCode);
+    // console.log(couponCode);
+    // console.log(typeof couponCode);
 
     try {
         const res = await supabase

@@ -1,13 +1,38 @@
 
 import { NavLink } from "react-router";
-
+import { useState, useEffect } from "react";
+import { supabase } from "../../../supabaseClient.js";
 import orderSuccessImg from "@/assets/images/order-success/order-success-img.png";
 import orderSuccessDone from "@/assets/images/order-success/order-success-done.png";
+import { set } from "react-hook-form";
 
 const OrderSuccess = () => {
+  const [orderID, setOrderID] = useState([]);
+
+  const getOrder = async () => {
+    try {
+      const {
+        data: { user },
+      } = await supabase.auth.getUser();
+      if (!user) return;
+      const res = await supabase
+        .from("carts")
+        .select(`*, profiles(*), products(*)`)
+        .eq("user_id", user.id)
+        .throwOnError();
+      setOrderID(res.data[0].id.slice(-6));
+    } catch (error) {
+      alert("資料錯誤");
+    }
+  };
+
+  useEffect(() => {
+    getOrder();
+  }, []);
+
     return (
-        <>
-            <main className="order-bg">
+      <>
+        <main className="order-bg">
               <section className="py-lg-14 py-8 container">
                 {/* <!-- 進度條 --> */}
                 <ol
@@ -71,7 +96,7 @@ const OrderSuccess = () => {
                     <div
                       className="d-flex flex-column gap-2 align-items-center fs-lg-6 fs-7"
                     >
-                      <p>您的訂單編號為：A1234567890</p>
+                      <p>您的訂單編號末6碼為：{orderID}</p>
                       <p>我們會盡快為您處理，並於出貨時通知您</p>
                     </div>
                     <div
@@ -88,8 +113,8 @@ const OrderSuccess = () => {
                   </div>
                 </div>
               </section>
-            </main>
-        </>
+        </main>
+      </>
     )
 }
 

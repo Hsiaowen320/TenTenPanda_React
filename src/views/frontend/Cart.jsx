@@ -89,7 +89,6 @@ const Cart = () => {
           .eq("is_active", true)
           .maybeSingle()
           .throwOnError();
-        console.log(res);
         if (!res.data) {
           setCouponMessage("查無此優惠券或已失效");
           setCouponDiscount(0);
