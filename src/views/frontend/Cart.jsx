@@ -1,16 +1,15 @@
 import { supabase } from "../../../supabaseClient.js";
 import { useNavigate, NavLink } from "react-router";
 import { useState, useEffect } from "react";
+import { useCoupon } from "../../components/CouponContext.jsx";
 
 const Cart = () => {
   const [cart, setCart] = useState([]);
   const [totalPrice, setTotalPrice] = useState(0);
-  const [couponCode, setCouponCode] = useState("");
   const [couponMessage, setCouponMessage] = useState("");
-  const [couponDiscount, setCouponDiscount] = useState(0);
-  const [couponPercentDiscount, setCouponPercentDiscount] = useState(0);
   const isCartEmpty = cart.length === 0;
   const navigate = useNavigate();
+  const { couponCode, setCouponCode, couponDiscount, setCouponDiscount } = useCoupon();
 
   // 更新購物車商品數量 - 新增/減少
   const increaseQty = (item) => {
@@ -174,7 +173,7 @@ const Cart = () => {
                   <div className="cart-border-top border-neutral-40 pb-lg-10 w-100 pb-6 d-flex flex-column pt-lg-5 pt-2">
                     {cart.map((item) => {
                       return (
-                        <div key={item.id}>
+                        <div key={item.id} className="pb-3 pb-lg-0">
                           <button
                             type="button"
                             className="cart-checkout-btn cart-checkout-btn-x align-self-baseline ms-auto mb-1 d-lg-block d-none"
@@ -313,7 +312,7 @@ const Cart = () => {
                 )}
               </div>
             </div>
-            <div className="col-lg-4 mt-8 mt-lg-0">
+            <div className="col-lg-4 mt-0">
               <div>
                 <div className="orer-details-bg py-lg-8 py-6 px-4 px-lg-6 rounded-4">
                   <h2 className="fw-bold fs-4 text-neutral-100">優惠折扣</h2>
@@ -362,12 +361,16 @@ const Cart = () => {
                   </div>
                 </div>
                 <div className="mt-lg-10 mt-8 d-flex flex-column justify-content-center align-items-center gap-4 gap-lg-6">
-                  <NavLink
-                    to="/cart/checkout"
-                    className="btn btn-primary-40 text-white w-100 py-4 fs-6"
-                  >
-                    填寫收件資料
-                  </NavLink>
+                  {isCartEmpty ? (
+                      <button className="btn btn-primary-40 text-white w-100 py-4 fs-6" disabled>填寫收件資料</button>
+                  ) : (
+                      <NavLink
+                        to="/cart/checkout"
+                        className="btn btn-primary-40 text-white w-100 py-4 fs-6"
+                      >
+                        填寫收件資料
+                      </NavLink>
+                  )}
                   <button
                     className="btn btn-outline-primary-80 w-100 py-4 fs-6"
                     onClick={() => navigate(-1)}
