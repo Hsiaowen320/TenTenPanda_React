@@ -19,7 +19,7 @@ function AdminLayout() {
                 <NavLink
                   to="/admin/product"
                   className={({ isActive }) =>
-                    `fs-6 lh-base py-3 px-6 d-block ${isActive ? "bg-white border-start border-5 border-primary-40" : "text-dark"}`
+                    `fs-6 lh-base py-3 px-6 d-block ${isActive ? "text-primary-80 bg-white border-start border-5 border-primary-40" : "text-dark"}`
                   }
                   style={{ letterSpacing: "0.04em" }}
                 >
@@ -30,7 +30,7 @@ function AdminLayout() {
                 <NavLink
                   to="/admin/order"
                   className={({ isActive }) =>
-                    `fs-6  lh-base py-3 px-6 d-block ${isActive ? "bg-white border-start border-5 border-primary-40" : "text-dark"}`
+                    `fs-6  lh-base py-3 px-6 d-block ${isActive ? "text-primary-80 bg-white border-start border-5 border-primary-40" : "text-dark"}`
                   }
                   style={{ letterSpacing: "0.04em" }}
                 >
@@ -41,7 +41,7 @@ function AdminLayout() {
                 <NavLink
                   to="/admin/announcement"
                   className={({ isActive }) =>
-                    `fs-6  lh-base py-3 px-6 d-block ${isActive ? "bg-white border-start border-5 border-primary-40" : "text-dark"}`
+                    `fs-6  lh-base py-3 px-6 d-block ${isActive ? "text-primary-80 bg-white border-start border-5 border-primary-40" : "text-dark"}`
                   }
                   style={{ letterSpacing: "0.04em" }}
                 >
@@ -52,7 +52,7 @@ function AdminLayout() {
                 <NavLink
                   to="/admin/member"
                   className={({ isActive }) =>
-                    `fs-6 lh-base py-3 px-6 d-block ${isActive ? "bg-white border-start border-5 border-primary-40" : "text-dark"}`
+                    `fs-6 lh-base py-3 px-6 d-block ${isActive ? "text-primary-80 bg-white border-start border-5 border-primary-40" : "text-dark"}`
                   }
                   style={{ letterSpacing: "0.04em" }}
                 >
@@ -63,7 +63,7 @@ function AdminLayout() {
                 <NavLink
                   to="/admin/coupon"
                   className={({ isActive }) =>
-                    `fs-6 lh-base py-3 px-6 d-block ${isActive ? "bg-white border-start border-5 border-primary-40" : "text-dark"}`
+                    `fs-6 lh-base py-3 px-6 d-block ${isActive ? "text-primary-80 bg-white border-start border-5 border-primary-40" : "text-dark"}`
                   }
                   style={{ letterSpacing: "0.04em" }}
                 >
