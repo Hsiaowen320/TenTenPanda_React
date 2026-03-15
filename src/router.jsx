@@ -29,6 +29,7 @@ import BackendCoupon from "./views/backend/BackendCoupon";
 import BackendLogin from "./views/backend/BackendLogin";
 import BackendLayout from "./layout/BackendLayout";
 import ProtectedRoute from "./components/ProtectedRoute";
+import BackendMember from "./views/backend/BackendMember";
 
 
 const router = createHashRouter([
@@ -163,6 +164,10 @@ const router = createHashRouter([
             {
               path: "coupon",
               element: <BackendCoupon />,
+            },
+            {
+              path: "member",
+              element: <BackendMember />,
             },
         ],
       },
