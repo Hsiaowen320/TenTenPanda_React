@@ -30,6 +30,7 @@ import BackendLogin from "./views/backend/BackendLogin";
 import BackendLayout from "./layout/BackendLayout";
 import ProtectedRoute from "./components/ProtectedRoute";
 import BackendMember from "./views/backend/BackendMember";
+import BackendOrderDetail from "./views/backend/BackendOrderDetail";
 
 
 const router = createHashRouter([
@@ -157,6 +158,10 @@ const router = createHashRouter([
               path: "order",
               element: <BackendOrder />,
             },
+            {
+              path: "order/:id",
+              element: <BackendOrderDetail />,
+            },            
             {
               path: "announcement",
               element: <BackendAnnouncement />,

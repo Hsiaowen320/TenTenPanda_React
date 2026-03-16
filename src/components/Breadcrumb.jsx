@@ -15,8 +15,10 @@ export default function Breadcrumb() {
         "order": "訂單資訊",
         "announcement": "消息公告",
         "coupon": "折扣優惠",
-        "member": "會員列表"
+        "member": "會員列表",
     };
+
+
 
     return (
         <nav>
@@ -31,6 +33,7 @@ export default function Breadcrumb() {
                 {paths.map((p, idx) => {
                 const to = "/" + paths.slice(0, idx + 1).join("/");
                 const isLast = idx === paths.length - 1;
+                const label = nameMap[p] ?? "訂單詳情";
 
                 return (
                     <React.Fragment key={to}>
@@ -42,9 +45,9 @@ export default function Breadcrumb() {
                         {/* 麵包屑文字 */}
                         <li className="ms-5">
                             {isLast ? (
-                            <p className="text-neutral-80 fw-bold fs-6">{nameMap[p] || p}</p>
+                            <p className="text-neutral-80 fw-bold fs-6">{label}</p>
                             ) : (
-                            <Link to={to} className="text-neutral-80 fs-6">{nameMap[p] || p}</Link>
+                            <Link to={to} className="text-neutral-80 fs-6">{label}</Link>
                             )}
                         </li>
                     </React.Fragment>
