@@ -118,29 +118,29 @@ const router = createHashRouter([
       {
         index: true,
         element: <BackendLogin />,
-      },      
+      },
       {
         element: <AdminLayout />,
-        children: [     
-            {
-              path: "product",
-              element: <BackendProduct />,
-            },
-            {
-              path: "order",
-              element: <BackendOrder />,
-            },
-            {
-              path: "announcement",
-              element: <BackendAnnouncement />,
-            },
-            {
-              path: "coupon",
-              element: <BackendCoupon />,
-            },
+        children: [
+          {
+            path: "product",
+            element: <BackendProduct />,
+          },
+          {
+            path: "order",
+            element: <BackendOrder />,
+          },
+          {
+            path: "announcement",
+            element: <BackendAnnouncement />,
+          },
+          {
+            path: "coupon",
+            element: <BackendCoupon />,
+          },
         ],
       },
-    ]
+    ],
   },
   {
     path: "*",
