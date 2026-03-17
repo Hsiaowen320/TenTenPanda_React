@@ -1,13 +1,43 @@
 
 import { NavLink } from "react-router";
-
+import { useState, useEffect } from "react";
+import { supabase } from "../../../supabaseClient.js";
 import orderSuccessImg from "@/assets/images/order-success/order-success-img.png";
 import orderSuccessDone from "@/assets/images/order-success/order-success-done.png";
 
 const OrderSuccess = () => {
+  const [orderID, setOrderID] = useState([]);
+
+  const getOrder = async () => {
+    try {
+      const {
+        data: { user },
+      } = await supabase.auth.getUser();
+      if (!user) return;
+      const res = await supabase
+        .from("orders")
+        .select(`id`)
+        .eq("user_id", user.id)
+        .throwOnError();
+      setOrderID(res.data.at(-1).id.slice(-6));
+      // 刪除購物車資料
+      const response = await supabase
+          .from('carts')
+          .delete()
+          .eq('user_id', user.id)
+          .throwOnError();
+    } catch (error) {
+      alert("資料錯誤");
+    }
+  };
+
+  useEffect(() => {
+    getOrder();
+  }, []);
+
     return (
-        <>
-            <main className="order-bg">
+      <>
+        <main className="order-bg">
               <section className="py-lg-14 py-8 container">
                 {/* <!-- 進度條 --> */}
                 <ol
@@ -71,25 +101,20 @@ const OrderSuccess = () => {
                     <div
                       className="d-flex flex-column gap-2 align-items-center fs-lg-6 fs-7"
                     >
-                      <p>您的訂單編號為：A1234567890</p>
+                      <p>您的訂單編號末6碼為：{orderID}</p>
                       <p>我們會盡快為您處理，並於出貨時通知您</p>
                     </div>
                     <div
                       className="d-flex gap-4 w-100 px-lg-15 my-lg-5 flex-column flex-lg-row px-3 mb-8"
                     >
-                      <a
-                        href="myOrders.html"
-                        className="btn btn-outline-primary-80 bg-white w-100 py-3 fs-6"
-                        target="_blank"
-                        >查看訂單資訊</a
-                      >
+                      <NavLink to="/member/myOrders" className="btn btn-outline-primary-80 bg-white w-100 py-3 fs-6">查看訂單資訊</NavLink>
                       <NavLink to="/" className="btn btn-primary-40 text-white w-100 py-3 fs-6">繼續逛逛</NavLink>
                     </div>
                   </div>
                 </div>
               </section>
-            </main>
-        </>
+        </main>
+      </>
     )
 }
 

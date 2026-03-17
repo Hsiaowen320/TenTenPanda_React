@@ -26,9 +26,11 @@ import sectionListDonutImage from "@/assets/images/section-list-donut.webp";
 import { useMemo } from "react";
 import { useSwiperInit } from "@/hooks/useSwiperInit";
 import { useNewsHoverPreview } from "@/hooks/useNewsHoverPreview";
+import { useNavigate } from "react-router-dom";
 import "swiper/css";
 
 const Home = () => {
+  const navigate = useNavigate();
   const swiperOptions = useMemo(
     () => ({
       slidesPerView: "auto",
@@ -280,9 +282,9 @@ const Home = () => {
                       </div>
                       <div className="row g-6">
                         <div className="recommend-commodity col-6 col-lg-4 flex-shrink-1">
-                          <a
-                            href="./item_details-starberry.html"
+                          <div
                             className="card bg-transparent border-0 h-100 align-items-center text-center"
+                            onClick={() => navigate("/productList-seasonal/a537e9f1-2592-44d0-8dcb-e3f27f4108ab")}
                           >
                             <img
                               src={starberryImage}
@@ -297,12 +299,12 @@ const Home = () => {
                                 $ 95/入
                               </p>
                             </div>
-                          </a>
+                          </div>
                         </div>
                         <div className="recommend-commodity col-6 col-lg-4 flex-shrink-1">
-                          <a
-                            href="./item_details-snowberry.html"
+                          <div
                             className="card bg-transparent border-0 h-100 align-items-center text-center"
+                            onClick={() => navigate("/productList-seasonal/9ee925f9-7964-4721-b92f-f5688a4ae7ec")}
                           >
                             <img
                               src={snowberryImage}
@@ -317,12 +319,12 @@ const Home = () => {
                                 $ 95/入
                               </p>
                             </div>
-                          </a>
+                          </div>
                         </div>
                         <div className="recommend-commodity col-6 col-lg-4 flex-shrink-1">
-                          <a
-                            href="./item_details-berrycoco.html"
+                          <div
                             className="card bg-transparent border-0 h-100 align-items-center text-center"
+                            onClick={() => navigate("/productList-seasonal/0f16e83f-69d8-4f58-b4a5-8baadea728ba")}
                           >
                             <img
                               src={berryCocoImage}
@@ -337,12 +339,12 @@ const Home = () => {
                                 $ 95/入
                               </p>
                             </div>
-                          </a>
+                          </div>
                         </div>
                         <div className="recommend-commodity col-6 col-lg-4 flex-shrink-1">
-                          <a
-                            href="./item_details-SnowberryMont.html"
+                          <div
                             className="card bg-transparent border-0 h-100 align-items-center text-center"
+                            onClick={() => navigate("/productList-seasonal/c371cb65-dbfe-463f-927a-b5a2aaa4c6e6")}
                           >
                             <img
                               src={snowberryMontImage}
@@ -357,12 +359,12 @@ const Home = () => {
                                 $ 95/入
                               </p>
                             </div>
-                          </a>
+                          </div>
                         </div>
                         <div className="recommend-commodity col-6 col-lg-4 flex-shrink-1">
-                          <a
-                            href="./item_details-wineberry.html"
+                          <div
                             className="card bg-transparent border-0 h-100 align-items-center text-center"
+                            onClick={() => navigate("/productList-seasonal/038801d8-aebe-4ab6-b002-3ec2db87eb6c")}
                           >
                             <img
                               src={wineberryImage}
@@ -377,12 +379,12 @@ const Home = () => {
                                 $ 95/入
                               </p>
                             </div>
-                          </a>
+                          </div>
                         </div>
                         <div className="recommend-commodity col-6 col-lg-4 flex-shrink-1">
-                          <a
-                            href="./item_details-frostberry.html"
+                          <div
                             className="card bg-transparent border-0 h-100 align-items-center text-center"
+                            onClick={() => navigate("/productList-seasonal/49f0114b-7501-46df-be8b-586205503eb0")}
                           >
                             <img
                               src={frostberryImage}
@@ -397,7 +399,7 @@ const Home = () => {
                                 $ 95/入
                               </p>
                             </div>
-                          </a>
+                          </div>
                         </div>
                       </div>
                     </div>
@@ -421,9 +423,9 @@ const Home = () => {
                       </div>
                       <div className="row g-6">
                         <div className="recommend-commodity col-6 col-lg-4 flex-shrink-1">
-                          <a
-                            href="./item_details-classic.html"
+                          <div
                             className="card bg-transparent border-0 h-100 align-items-center text-center"
+                            onClick={() => navigate("/productList-classic/d72173e6-ef6f-49b7-8b26-6c29fccdb11f")}
                           >
                             <img
                               src={classicImage}
@@ -438,12 +440,12 @@ const Home = () => {
                                 $ 65/入
                               </p>
                             </div>
-                          </a>
+                          </div>
                         </div>
                         <div className="recommend-commodity col-6 col-lg-4 flex-shrink-1">
-                          <a
-                            href="./item_details-berry.html"
+                          <div
                             className="card bg-transparent border-0 h-100 align-items-center text-center"
+                            onClick={() => navigate("/productList-classic/1954950a-7a07-42bb-98ae-2c3c6ff91107")}
                           >
                             <img
                               src={berryImage}
@@ -458,12 +460,12 @@ const Home = () => {
                                 $ 65/入
                               </p>
                             </div>
-                          </a>
+                          </div>
                         </div>
                         <div className="recommend-commodity col-6 col-lg-4 flex-shrink-1">
-                          <a
-                            href="./item_details-sesame.html"
+                          <div
                             className="card bg-transparent border-0 h-100 align-items-center text-center"
+                            onClick={() => navigate("/productList-classic/4f4c73aa-eb09-4a18-97ea-393d8219784a")}
                           >
                             <img
                               src={sesameImage}
@@ -478,12 +480,12 @@ const Home = () => {
                                 $ 65/入
                               </p>
                             </div>
-                          </a>
+                          </div>
                         </div>
                         <div className="recommend-commodity col-6 col-lg-4 flex-shrink-1">
-                          <a
-                            href="./item_details-matcha.html"
+                          <div
                             className="card bg-transparent border-0 h-100 align-items-center text-center"
+                            onClick={() => navigate("/productList-classic/99edfeff-dac9-41a5-bd00-c4c546983cad")}
                           >
                             <img
                               src={matchaImage}
@@ -498,12 +500,12 @@ const Home = () => {
                                 $ 65/入
                               </p>
                             </div>
-                          </a>
+                          </div>
                         </div>
                         <div className="recommend-commodity col-6 col-lg-4 flex-shrink-1">
-                          <a
-                            href="./item_details-creamlemon.html"
+                          <div
                             className="card bg-transparent border-0 h-100 align-items-center text-center"
+                            onClick={() => navigate("/productList-classic/4f9f92b0-a07b-4da2-ac5c-603addb136f9")}
                           >
                             <img
                               src={creamLemonImage}
@@ -518,12 +520,12 @@ const Home = () => {
                                 $ 65/入
                               </p>
                             </div>
-                          </a>
+                          </div>
                         </div>
                         <div className="recommend-commodity col-6 col-lg-4 flex-shrink-1">
-                          <a
-                            href="./item_details-caramelcocoa.html"
+                          <div
                             className="card bg-transparent border-0 h-100 align-items-center text-center"
+                            onClick={() => navigate("/productList-classic/92640f30-37dc-4965-82e7-6478bac03e52")}
                           >
                             <img
                               src={caramelCocoaImage}
@@ -538,7 +540,7 @@ const Home = () => {
                                 $ 65/入
                               </p>
                             </div>
-                          </a>
+                          </div>
                         </div>
                       </div>
                     </div>
