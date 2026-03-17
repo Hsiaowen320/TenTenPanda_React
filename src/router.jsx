@@ -28,6 +28,10 @@ import BackendAnnouncement from "./views/backend/backendAnnouncrment";
 import BackendCoupon from "./views/backend/BackendCoupon";
 import BackendLogin from "./views/backend/BackendLogin";
 import BackendLayout from "./layout/BackendLayout";
+import ProtectedRoute from "./components/ProtectedRoute";
+import BackendMember from "./views/backend/BackendMember";
+import BackendOrderDetail from "./views/backend/BackendOrderDetail";
+
 
 const router = createHashRouter([
   {
@@ -66,6 +70,30 @@ const router = createHashRouter([
         path: "news",
         element: <News />,
       },
+      {
+        path: "cart",
+        element: (
+          <ProtectedRoute>
+            <Cart />
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: "cart/checkout",
+        element: (
+          <ProtectedRoute>
+            <Checkout />
+          </ProtectedRoute>
+        )
+      },
+      {
+        path: "cart/checkout/order-success",
+        element: (
+          <ProtectedRoute>
+            <OrderSuccess />
+          </ProtectedRoute>
+        )
+      },     
       {
         path: "member",
         element: <MemberLayout />,
@@ -121,23 +149,31 @@ const router = createHashRouter([
       },
       {
         element: <AdminLayout />,
-        children: [
-          {
-            path: "product",
-            element: <BackendProduct />,
-          },
-          {
-            path: "order",
-            element: <BackendOrder />,
-          },
-          {
-            path: "announcement",
-            element: <BackendAnnouncement />,
-          },
-          {
-            path: "coupon",
-            element: <BackendCoupon />,
-          },
+        children: [     
+            {
+              path: "product",
+              element: <BackendProduct />,
+            },
+            {
+              path: "order",
+              element: <BackendOrder />,
+            },
+            {
+              path: "order/:id",
+              element: <BackendOrderDetail />,
+            },            
+            {
+              path: "announcement",
+              element: <BackendAnnouncement />,
+            },
+            {
+              path: "coupon",
+              element: <BackendCoupon />,
+            },
+            {
+              path: "member",
+              element: <BackendMember />,
+            },
         ],
       },
     ],
