@@ -31,6 +31,7 @@ import BackendLayout from "./layout/BackendLayout";
 import ProtectedRoute from "./components/ProtectedRoute";
 import BackendMember from "./views/backend/BackendMember";
 import BackendOrderDetail from "./views/backend/BackendOrderDetail";
+import AdminProtectedRoute from "./components/AdminProtectedRoute";
 
 
 const router = createHashRouter([
@@ -141,38 +142,62 @@ const router = createHashRouter([
   },
   {
     path: "/admin",
+    element: <BackendLogin />,
+  },
+  {
+    path: "/admin",
     element: <BackendLayout />,
     children: [
-      {
-        index: true,
-        element: <BackendLogin />,
-      },      
       {
         element: <AdminLayout />,
         children: [     
             {
               path: "product",
-              element: <BackendProduct />,
+              element: (
+                <AdminProtectedRoute>
+                  <BackendProduct />
+                </AdminProtectedRoute>
+              )
             },
             {
               path: "order",
-              element: <BackendOrder />,
+              element: (
+                <AdminProtectedRoute>
+                  <BackendOrder />
+                </AdminProtectedRoute>
+              )
             },
             {
               path: "order/:id",
-              element: <BackendOrderDetail />,
+              element: (
+                <AdminProtectedRoute>
+                  <BackendOrderDetail />
+                </AdminProtectedRoute>
+              )
             },            
             {
               path: "announcement",
-              element: <BackendAnnouncement />,
+              element: (
+                <AdminProtectedRoute>
+                  <BackendAnnouncement />
+                </AdminProtectedRoute>
+              )
             },
             {
               path: "coupon",
-              element: <BackendCoupon />,
+              element: (
+                <AdminProtectedRoute>
+                  <BackendCoupon />
+                </AdminProtectedRoute>
+              )
             },
             {
               path: "member",
-              element: <BackendMember />,
+              element: (
+                <AdminProtectedRoute>
+                  <BackendMember />
+                </AdminProtectedRoute>
+              )
             },
         ],
       },
