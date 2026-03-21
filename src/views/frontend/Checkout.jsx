@@ -184,12 +184,12 @@ const Checkout = () => {
                         type="text"
                         className={`form-control ${errors.receiverTel && "border border-primary-40"}`}
                         id="receiverTel"
-                        placeholder="例如：0912-345678"
+                        placeholder="例如：0912 345 678"
                         {...register("receiverTel", {
                           required: "※請輸入電話號碼",
                           pattern: {
-                            value: /^09\d{2}-\d{6}$/,
-                            message: "※請依照手機格式 09XX-XXXXXX 輸入",
+                            value: /^09\d{8}$/,
+                            message: "※請依照手機格式 09XX XXX XXX 輸入",
                           },
                         })}
                       />
