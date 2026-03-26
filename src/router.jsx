@@ -31,6 +31,10 @@ import BackendLayout from "./layout/BackendLayout";
 import ProtectedRoute from "./components/ProtectedRoute";
 import BackendMember from "./views/backend/BackendMember";
 import BackendOrderDetail from "./views/backend/BackendOrderDetail";
+import BackendProductEdit from "./views/backend/BackendProductEdit";
+import BackendProductCreate from "./views/backend/BackendProductCreate";
+import BackendCouponEdit from "./views/backend/BackendCouponEdit";
+import BackendCouponCreate from "./views/backend/BackendCouponCreate";
 
 
 const router = createHashRouter([
@@ -155,6 +159,14 @@ const router = createHashRouter([
               element: <BackendProduct />,
             },
             {
+              path: "productedit/:id",
+              element: <BackendProductEdit />,
+            },
+            {
+              path: "productcreate",
+              element: <BackendProductCreate />,
+            },
+            {
               path: "order",
               element: <BackendOrder />,
             },
@@ -170,6 +182,15 @@ const router = createHashRouter([
               path: "coupon",
               element: <BackendCoupon />,
             },
+            {
+              path: "couponEdit/:id",
+              element: <BackendCouponEdit />,
+            },
+            {
+              path: "couponCreate",
+              element: <BackendCouponCreate />,
+            },
+
             {
               path: "member",
               element: <BackendMember />,
