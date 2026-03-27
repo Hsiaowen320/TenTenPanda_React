@@ -1,12 +1,23 @@
 import { useNavigate, Link } from "react-router-dom";
 import logo from "@/assets/images/logo.webp";
+import { supabase } from '../../supabaseClient.js'
 
 const BackendHeader = () => {
   const navigate = useNavigate();
 
-  const handleLogout = () => {
-    localStorage.removeItem("token");
-    navigate("/");
+  const handleLogout = async () => {
+    try {
+      // 登出 Supabase
+      const { error } = await supabase.auth.signOut();
+      if (error) {
+        console.error("登出失敗:", error.message);
+        return;
+      }
+      localStorage.removeItem("token");
+      navigate("/admin");
+    } catch (error) {
+      console.error("登出過程發生錯誤:", error);
+    }
   };
 
   return (

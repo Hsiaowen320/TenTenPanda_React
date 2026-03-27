@@ -88,7 +88,83 @@ function AdminLayout() {
         </main>
         {/* 手機 */}
         <main className="col-12 d-lg-none d-block">
-          <div className="pt-8 mb-12">
+          {/* 手機版-麵包屑和漢堡 */}
+          <div className="pt-8 pb-4 d-flex justify-content-between align-items-center">
+            <Breadcrumb/>
+            <button class="btn btn-primary-40 text-white mb-4" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" aria-controls="offcanvasExample">
+              <i class="bi bi-list"></i>
+            </button>
+          </div>
+          {/* 手機版-摺疊功能選單 */}
+          <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
+            <div class="offcanvas-header">
+              <h5 class="offcanvas-title fw-bold" id="offcanvasExampleLabel">甜甜熊貓｜管理員 功能列表</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+            </div>
+            <div class="offcanvas-body">
+              <div class="mt-3">
+                <ul className="d-flex flex-column">
+                  <li>
+                    <NavLink
+                      to="/admin/product"
+                      className={({ isActive }) =>
+                        `fs-6 lh-base py-3 px-6 d-block ${isActive ? "text-primary-80 bg-white border-start border-5 border-primary-40" : "text-dark"}`
+                      }
+                      style={{ letterSpacing: "0.04em" }}
+                    >
+                      商品資訊
+                    </NavLink>
+                  </li>
+                  <li>
+                    <NavLink
+                      to="/admin/order"
+                      className={({ isActive }) =>
+                        `fs-6  lh-base py-3 px-6 d-block ${isActive ? "text-primary-80 bg-white border-start border-5 border-primary-40" : "text-dark"}`
+                      }
+                      style={{ letterSpacing: "0.04em" }}
+                    >
+                      訂單資訊
+                    </NavLink>
+                  </li>
+                  <li>
+                    <NavLink
+                      to="/admin/announcement"
+                      className={({ isActive }) =>
+                        `fs-6  lh-base py-3 px-6 d-block ${isActive ? "text-primary-80 bg-white border-start border-5 border-primary-40" : "text-dark"}`
+                      }
+                      style={{ letterSpacing: "0.04em" }}
+                    >
+                      消息公告
+                    </NavLink>
+                  </li>
+                  <li>
+                    <NavLink
+                      to="/admin/member"
+                      className={({ isActive }) =>
+                        `fs-6 lh-base py-3 px-6 d-block ${isActive ? "text-primary-80 bg-white border-start border-5 border-primary-40" : "text-dark"}`
+                      }
+                      style={{ letterSpacing: "0.04em" }}
+                    >
+                      會員列表
+                    </NavLink>
+                  </li>
+                  <li>
+                    <NavLink
+                      to="/admin/coupon"
+                      className={({ isActive }) =>
+                        `fs-6 lh-base py-3 px-6 d-block ${isActive ? "text-primary-80 bg-white border-start border-5 border-primary-40" : "text-dark"}`
+                      }
+                      style={{ letterSpacing: "0.04em" }}
+                    >
+                      折扣優惠
+                    </NavLink>
+                  </li>            
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div className="pt-lg-8 mb-12 pt-0">
             <Outlet />
           </div>
         </main>

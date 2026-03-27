@@ -1,16 +1,24 @@
 
 import newsBright from "@/assets/images/news/news-bright.webp";
 import newsLetter from "@/assets/images/news/news-letter.webp";
+import newsCircle from "@/assets/images/news/news-circle.webp";
 import adNews1 from "@/assets/images/ad-news-1.webp";
 import adNews2 from "@/assets/images/ad-news-2.webp";
 import adNews3 from "@/assets/images/ad-news-3.webp";
 import adNews4 from "@/assets/images/ad-news-4.webp";
-
+import { useState } from "react";
+import { Link } from "react-router-dom";
 
 const News = () => {
+
+  const [openId, setOpenId] = useState(null);
+  const toggleAccordion = (id) => {
+    setOpenId(openId === id ? null : id)
+  }
+
   return (
     <>
-      <main className="news-bg position-relative" >
+      <main className="news-bg position-relative" style={{ backgroundImage: `url(${newsCircle})` }}>
       <section className="py-lg-12 py-8 container">
         <div
           className="d-flex flex-column gap-2 align-items-center align-items-lg-start position-relative mb-6 mb-lg-12"
@@ -32,16 +40,12 @@ const News = () => {
         <div className="accordion d-flex flex-column gap-lg-6 gap-5 pb-12">
           {/* <!-- 最新消息-1 --> */}
           <div
-            className="accordion-item shadow rounded-4 border-0 overflow-hidden p-lg-8 p-5 animate__animated animate__slideInUp animate__faster"
-            id="news-title-1"
+            className="accordion-item shadow rounded-4 border-0 overflow-hidden p-lg-8 p-5 animate__animated animate__slideInUp animate__faster"             
           >
             {/* <!-- 收合 --> */}
             <button
-              className="news-accordion-btn"
-              data-bs-toggle="collapse"
-              data-bs-target="#news-list-1"
-              aria-expanded="false"
-              aria-controls="news-list-1"
+              className={`news-accordion-btn ${openId === 1 ? "d-none" : "d-block"}`}
+              onClick={() => toggleAccordion(1)}
             >
               <div className="d-flex gap-5 flex-column flex-lg-row">
                 <div className="news-img rounded-4 overflow-hidden flex-shrink-0">
@@ -82,7 +86,7 @@ const News = () => {
               </div>
             </button>
             {/* <!-- 展開 --> */}
-            <div id="news-list-1" className="accordion-collapse collapse">
+            <div className={`accordion-collapse smooth-collapse ${openId === 1 ? "open" : ""}`}>
               <div className="accordion-body px-lg-10 py-lg-10 p-2">
                 <div className="news-img-open rounded-4 overflow-hidden">
                   <img src={adNews1} alt="" className="img-fluid" />
@@ -157,20 +161,13 @@ const News = () => {
                         <p>
                           冬夜裡，一口甜甜圈、一口熱飲，<br
                             className="d-block d-lg-none"
-                          />是最幸福的小確幸<br /><a
-                            href="productList-seasonal.html"
-                            className="fw-bold rounded-pill news-link-font-hover"
-                            target="_blank"
-                            >前往季節限定商品</a
-                          >
+                          />是最幸福的小確幸<br />
+                          <Link to="/productList-seasonal" className="fw-bold rounded-pill news-link-font-hover news-link" target="_blank">前往季節限定商品</Link>
                         </p>
                         <button
                           className="btn btn-outline-primary-40 rounded-circle news-btn-hover fw-bold align-self-end px-2 py-1 d-lg-none d-block"
                           type="button"
-                          data-bs-toggle="collapse"
-                          data-bs-target="#news-list-1"
-                          aria-expanded="true"
-                          aria-controls="news-title-1"
+                          onClick={() => toggleAccordion(1)}
                         >
                           <i
                             className="bi bi-caret-up-fill d-block"
@@ -182,10 +179,7 @@ const News = () => {
                     <button
                       className="btn btn-outline-primary-40 rounded-circle news-btn-hover fw-bold align-self-end px-2 py-1 d-lg-block d-none mb-3"
                       type="button"
-                      data-bs-toggle="collapse"
-                      data-bs-target="#news-list-1"
-                      aria-expanded="true"
-                      aria-controls="news-title-1"
+                      onClick={() => toggleAccordion(1)}
                     >
                       <i
                         className="bi bi-caret-up-fill d-block"
@@ -200,15 +194,11 @@ const News = () => {
           {/* <!-- 最新消息-2 --> */}
           <div
             className="accordion-item shadow rounded-4 border-0 overflow-hidden p-lg-8 p-5 animate__animated animate__slideInUp animate__fast"
-            id="news-title-2"
           >
             {/* <!-- 收合 --> */}
             <button
-              className="news-accordion-btn"
-              data-bs-toggle="collapse"
-              data-bs-target="#news-list-2"
-              aria-expanded="false"
-              aria-controls="news-list-2"
+              className={`news-accordion-btn ${openId === 2 ? "d-none" : "d-block"}`}
+              onClick={() => toggleAccordion(2)}
             >
               <div className="d-flex gap-5 flex-column flex-lg-row">
                 <div className="news-img rounded-4 overflow-hidden flex-shrink-0">
@@ -251,7 +241,7 @@ const News = () => {
               </div>
             </button>
             {/* <!-- 展開 --> */}
-            <div id="news-list-2" className="accordion-collapse collapse">
+            <div className={`accordion-collapse smooth-collapse ${openId === 2 ? "open" : ""}`}>
               <div className="accordion-body px-lg-10 py-lg-10 p-2">
                 <div className="news-img-open rounded-4 overflow-hidden">
                   <img src={adNews2} alt="" className="img-fluid" />
@@ -314,20 +304,13 @@ const News = () => {
 
                       <div className="d-flex justify-content-between">
                         <p>
-                          快來店裡嚐嚐這 6 款只屬於冬天的甜蜜滋味吧！<br /><a
-                            href="productList-seasonal.html"
-                            className="fw-bold rounded-pill news-link-font-hover news-link"
-                            target="_blank"
-                            >前往季節限定商品</a
-                          >
+                          快來店裡嚐嚐這 6 款只屬於冬天的甜蜜滋味吧！<br />
+                          <Link to="/productList-seasonal" className="fw-bold rounded-pill news-link-font-hover news-link" target="_blank">前往季節限定商品</Link>
                         </p>
                         <button
                           className="btn btn-outline-primary-40 rounded-circle news-btn-hover fw-bold align-self-end px-2 py-1 d-lg-none d-block"
                           type="button"
-                          data-bs-toggle="collapse"
-                          data-bs-target="#news-list-2"
-                          aria-expanded="true"
-                          aria-controls="news-title-2"
+                          onClick={() => toggleAccordion(2)}
                         >
                           <i
                             className="bi bi-caret-up-fill d-block"
@@ -339,10 +322,7 @@ const News = () => {
                     <button
                       className="btn btn-outline-primary-40 rounded-circle news-btn-hover fw-bold align-self-end px-2 py-1 d-lg-block d-none mb-3"
                       type="button"
-                      data-bs-toggle="collapse"
-                      data-bs-target="#news-list-2"
-                      aria-expanded="true"
-                      aria-controls="news-title-2"
+                      onClick={() => toggleAccordion(2)}
                     >
                       <i
                         className="bi bi-caret-up-fill d-block"
@@ -357,15 +337,11 @@ const News = () => {
           {/* <!-- 最新消息-3 --> */}
           <div
             className="accordion-item shadow rounded-4 border-0 overflow-hidden p-lg-8 p-5 animate__animated animate__slideInUp"
-            id="news-title-3"
           >
             {/* <!-- 收合 --> */}
             <button
-              className="news-accordion-btn"
-              data-bs-toggle="collapse"
-              data-bs-target="#news-list-3"
-              aria-expanded="false"
-              aria-controls="news-list-3"
+              className={`news-accordion-btn ${openId === 3 ? "d-none" : "d-block"}`}
+              onClick={() => toggleAccordion(3)}
             >
               <div className="d-flex gap-5 flex-column flex-lg-row w-100">
                 <div className="news-img rounded-4 overflow-hidden flex-shrink-0">
@@ -405,7 +381,7 @@ const News = () => {
               </div>
             </button>
             {/* <!-- 展開 --> */}
-            <div id="news-list-3" className="accordion-collapse collapse">
+            <div className={`accordion-collapse smooth-collapse ${openId === 3 ? "open" : ""}`}>
               <div className="accordion-body px-lg-10 py-lg-10 p-2">
                 <div className="news-img-open rounded-4 overflow-hidden">
                   <img src={adNews3} alt="" className="img-fluid" />
@@ -438,19 +414,11 @@ const News = () => {
                         <br />數量有限，手刀把握最新出爐的好吃甜甜圈吧！😋<br />※單筆消費限折扣乙次
                       </p>
                       <div className="d-flex justify-content-between">
-                        <a
-                          href="item_details-caramelcocoa.html.html"
-                          className="fw-bold rounded-pill news-link-font-hover news-link"
-                          target="_blank"
-                          >享用迷人的午後時光</a
-                        >
+                        <Link to="/productList-classic/92640f30-37dc-4965-82e7-6478bac03e52" className="fw-bold rounded-pill news-link-font-hover news-link" target="_blank">享用迷人的午後時光</Link>
                         <button
                           className="btn btn-outline-primary-40 rounded-circle news-btn-hover fw-bold align-self-end px-2 py-1 d-lg-none d-block"
                           type="button"
-                          data-bs-toggle="collapse"
-                          data-bs-target="#news-list-3"
-                          aria-expanded="true"
-                          aria-controls="news-title-3"
+                          onClick={() => toggleAccordion(3)}
                         >
                           <i
                             className="bi bi-caret-up-fill d-block"
@@ -462,10 +430,7 @@ const News = () => {
                     <button
                       className="btn btn-outline-primary-40 rounded-circle news-btn-hover fw-bold align-self-end px-2 py-1 d-lg-block d-none mb-3"
                       type="button"
-                      data-bs-toggle="collapse"
-                      data-bs-target="#news-list-3"
-                      aria-expanded="true"
-                      aria-controls="news-title-3"
+                      onClick={() => toggleAccordion(3)}
                     >
                       <i
                         className="bi bi-caret-up-fill d-block"
@@ -480,15 +445,11 @@ const News = () => {
           {/* <!-- 最新消息-4 --> */}
           <div
             className="accordion-item shadow rounded-4 border-0 overflow-hidden p-lg-8 p-5 animate__animated animate__slideInUp"
-            id="news-title-4"
           >
             {/* <!-- 收合 --> */}
             <button
-              className="news-accordion-btn"
-              data-bs-toggle="collapse"
-              data-bs-target="#news-list-4"
-              aria-expanded="false"
-              aria-controls="news-list-4"
+              className={`news-accordion-btn ${openId === 4 ? "d-none" : "d-block"}`}
+              onClick={() => toggleAccordion(4)}
             >
               <div className="d-flex gap-5 flex-column flex-lg-row w-100">
                 <div className="news-img rounded-4 overflow-hidden flex-shrink-0">
@@ -531,7 +492,7 @@ const News = () => {
               </div>
             </button>
             {/* <!-- 展開 --> */}
-            <div id="news-list-4" className="accordion-collapse collapse">
+            <div id="news-list-4" className={`accordion-collapse smooth-collapse ${openId === 4 ? "open" : ""}`}>
               <div className="accordion-body px-lg-10 py-lg-10 p-2">
                 <div className="news-img-open rounded-4 overflow-hidden">
                   <img src={adNews4} alt="" className="img-fluid" />
@@ -564,19 +525,11 @@ const News = () => {
                         ><br />※單筆消費限折扣乙次
                       </p>
                       <div className="d-flex justify-content-between">
-                        <a
-                          href="item_details-creamlemon.html"
-                          className="fw-bold rounded-pill news-link-font-hover news-link"
-                          target="_blank"
-                          >享用夏日的透心涼</a
-                        >
+                        <Link to="/productList-classic/4f9f92b0-a07b-4da2-ac5c-603addb136f9" className="fw-bold rounded-pill news-link-font-hover news-link" target="_blank">享用夏日的透心涼</Link>
                         <button
                           className="btn btn-outline-primary-40 rounded-circle news-btn-hover fw-bold align-self-end px-2 py-1 d-lg-none d-block"
                           type="button"
-                          data-bs-toggle="collapse"
-                          data-bs-target="#news-list-4"
-                          aria-expanded="true"
-                          aria-controls="news-title-4"
+                          onClick={() => toggleAccordion(4)}
                         >
                           <i
                             className="bi bi-caret-up-fill d-block"
@@ -588,10 +541,7 @@ const News = () => {
                     <button
                       className="btn btn-outline-primary-40 rounded-circle news-btn-hover fw-bold align-self-end px-2 py-1 d-lg-block d-none mb-3"
                       type="button"
-                      data-bs-toggle="collapse"
-                      data-bs-target="#news-list-4"
-                      aria-expanded="true"
-                      aria-controls="news-title-4"
+                      onClick={() => toggleAccordion(4)}
                     >
                       <i
                         className="bi bi-caret-up-fill d-block"

@@ -145,6 +145,10 @@ const router = createHashRouter([
   },
   {
     path: "/admin",
+    element: <BackendLogin />,
+  },
+  {
+    path: "/admin",
     element: <BackendLayout />,
     children: [
       {
@@ -156,7 +160,11 @@ const router = createHashRouter([
         children: [     
             {
               path: "product",
-              element: <BackendProduct />,
+              element: (
+                <AdminProtectedRoute>
+                  <BackendProduct />
+                </AdminProtectedRoute>
+              )
             },
             {
               path: "productedit/:id",
@@ -168,19 +176,35 @@ const router = createHashRouter([
             },
             {
               path: "order",
-              element: <BackendOrder />,
+              element: (
+                <AdminProtectedRoute>
+                  <BackendOrder />
+                </AdminProtectedRoute>
+              )
             },
             {
               path: "order/:id",
-              element: <BackendOrderDetail />,
+              element: (
+                <AdminProtectedRoute>
+                  <BackendOrderDetail />
+                </AdminProtectedRoute>
+              )
             },            
             {
               path: "announcement",
-              element: <BackendAnnouncement />,
+              element: (
+                <AdminProtectedRoute>
+                  <BackendAnnouncement />
+                </AdminProtectedRoute>
+              )
             },
             {
               path: "coupon",
-              element: <BackendCoupon />,
+              element: (
+                <AdminProtectedRoute>
+                  <BackendCoupon />
+                </AdminProtectedRoute>
+              )
             },
             {
               path: "couponEdit/:id",
@@ -193,7 +217,11 @@ const router = createHashRouter([
 
             {
               path: "member",
-              element: <BackendMember />,
+              element: (
+                <AdminProtectedRoute>
+                  <BackendMember />
+                </AdminProtectedRoute>
+              )
             },
         ],
       },
