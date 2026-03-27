@@ -35,7 +35,7 @@ import BackendProductEdit from "./views/backend/BackendProductEdit";
 import BackendProductCreate from "./views/backend/BackendProductCreate";
 import BackendCouponEdit from "./views/backend/BackendCouponEdit";
 import BackendCouponCreate from "./views/backend/BackendCouponCreate";
-
+import AdminProtectedRoute from "./components/AdminProtectedRoute";
 
 const router = createHashRouter([
   {
@@ -88,7 +88,7 @@ const router = createHashRouter([
           <ProtectedRoute>
             <Checkout />
           </ProtectedRoute>
-        )
+        ),
       },
       {
         path: "cart/checkout/order-success",
@@ -96,8 +96,8 @@ const router = createHashRouter([
           <ProtectedRoute>
             <OrderSuccess />
           </ProtectedRoute>
-        )
-      },     
+        ),
+      },
       {
         path: "member",
         element: <MemberLayout />,
@@ -145,10 +145,6 @@ const router = createHashRouter([
   },
   {
     path: "/admin",
-    element: <BackendLogin />,
-  },
-  {
-    path: "/admin",
     element: <BackendLayout />,
     children: [
       {
@@ -157,72 +153,39 @@ const router = createHashRouter([
       },
       {
         element: <AdminLayout />,
-        children: [     
-            {
-              path: "product",
-              element: (
-                <AdminProtectedRoute>
-                  <BackendProduct />
-                </AdminProtectedRoute>
-              )
-            },
-            {
-              path: "productedit/:id",
-              element: <BackendProductEdit />,
-            },
-            {
-              path: "productcreate",
-              element: <BackendProductCreate />,
-            },
-            {
-              path: "order",
-              element: (
-                <AdminProtectedRoute>
-                  <BackendOrder />
-                </AdminProtectedRoute>
-              )
-            },
-            {
-              path: "order/:id",
-              element: (
-                <AdminProtectedRoute>
-                  <BackendOrderDetail />
-                </AdminProtectedRoute>
-              )
-            },            
-            {
-              path: "announcement",
-              element: (
-                <AdminProtectedRoute>
-                  <BackendAnnouncement />
-                </AdminProtectedRoute>
-              )
-            },
-            {
-              path: "coupon",
-              element: (
-                <AdminProtectedRoute>
-                  <BackendCoupon />
-                </AdminProtectedRoute>
-              )
-            },
-            {
-              path: "couponEdit/:id",
-              element: <BackendCouponEdit />,
-            },
-            {
-              path: "couponCreate",
-              element: <BackendCouponCreate />,
-            },
-
-            {
-              path: "member",
-              element: (
-                <AdminProtectedRoute>
-                  <BackendMember />
-                </AdminProtectedRoute>
-              )
-            },
+        children: [
+          {
+            path: "product",
+            element: (
+              <AdminProtectedRoute>
+                <BackendProduct />
+              </AdminProtectedRoute>
+            ),
+          },
+          {
+            path: "productedit/:id",
+            element: <BackendProductEdit />,
+          },
+          {
+            path: "productcreate",
+            element: <BackendProductCreate />,
+          },
+          {
+            path: "order",
+            element: (
+              <AdminProtectedRoute>
+                <BackendOrder />
+              </AdminProtectedRoute>
+            ),
+          },
+          {
+            path: "order/:id",
+            element: (
+              <AdminProtectedRoute>
+                <BackendOrderDetail />
+              </AdminProtectedRoute>
+            ),
+          },
         ],
       },
     ],

@@ -40,12 +40,12 @@ function BackendOrder() {
   };
 
   const updateStatus = async (orderId, orderStatus) => {
-    console.log(orderId, orderStatus)
+    console.log(orderId, orderStatus);
     try {
       await supabase
-        .from('orders')
+        .from("orders")
         .update({ order_status_id: orderStatus })
-        .eq('id', orderId)
+        .eq("id", orderId)
         .select(`*`, `order_statuses(*)`)
         .throwOnError();
 
@@ -56,7 +56,7 @@ function BackendOrder() {
             : order,
         ),
       );
-      alert("更改成功")
+      alert("更改成功");
     } catch (error) {
       alert("資料錯誤");
     }
@@ -124,7 +124,12 @@ function BackendOrder() {
                   </div>
                   <div className="col-4 col-lg-2">
                     <select
-                      className="form-select br-999 fs-8 fs-lg-9 ps-4 ps-lg-20 py-2"
+                      style={{
+                        appearance: "none",
+                        WebkitAppearance: "none",
+                        MozAppearance: "none",
+                      }}
+                      className="form-select br-999 fs-8 fs-lg-7 ps-4 ps-lg-10 py-2"
                       value={order.order_status_id}
                       onChange={(e) =>
                         handleChangeStatus(order.id, Number(e.target.value))
