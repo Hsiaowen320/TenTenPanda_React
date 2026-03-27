@@ -1,0 +1,108 @@
+.coupon-create-page {
+  min-height: 100vh;
+  background: #f6f6f6;
+  padding: 48px 40px;
+  box-sizing: border-box;
+}
+
+.coupon-create-card {
+  width: 100%;
+  max-width: 760px;
+  background: transparent;
+}
+
+.coupon-create-form {
+  width: 100%;
+}
+
+.coupon-form-row {
+  display: grid;
+  grid-template-columns: 170px 1fr;
+  align-items: center;
+  column-gap: 18px;
+  margin-bottom: 34px;
+}
+
+.coupon-form-label {
+  font-size: 26px;
+  font-weight: 800;
+  color: #2e2e2e;
+  line-height: 1.4;
+}
+
+.coupon-form-input {
+  width: 100%;
+  max-width: 420px;
+  height: 42px;
+  border: 1px solid #b6b6b6;
+  border-radius: 4px;
+  background: #fff;
+  font-size: 16px;
+  color: #333;
+  padding: 8px 14px;
+  box-sizing: border-box;
+  outline: none;
+}
+
+.coupon-form-input:focus {
+  border-color: #888;
+}
+
+.coupon-form-select {
+  appearance: auto;
+  cursor: pointer;
+}
+
+.coupon-form-actions {
+  display: flex;
+  gap: 24px;
+  margin-top: 24px;
+  padding-left: 188px;
+}
+
+.coupon-action-btn {
+  min-width: 98px;
+  height: 42px;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  border: 1px solid #9a9a9a;
+  background: #fff;
+  color: #2f2f2f;
+}
+
+.coupon-action-btn-submit {
+  background: #ffffff;
+}
+
+.coupon-action-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+@media (max-width: 768px) {
+  .coupon-create-page {
+    padding: 24px 20px;
+  }
+
+  .coupon-form-row {
+    grid-template-columns: 1fr;
+    row-gap: 8px;
+    margin-bottom: 20px;
+  }
+
+  .coupon-form-label {
+    font-size: 20px;
+  }
+
+  .coupon-form-input {
+    max-width: 100%;
+  }
+
+  .coupon-form-actions {
+    padding-left: 0;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+}
