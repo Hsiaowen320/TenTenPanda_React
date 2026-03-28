@@ -164,11 +164,35 @@ const router = createHashRouter([
           },
           {
             path: "productedit/:id",
-            element: <BackendProductEdit />,
+            element: (
+              <AdminProtectedRoute>
+                <BackendProductEdit />
+              </AdminProtectedRoute>
+            ),
           },
           {
             path: "productcreate",
-            element: <BackendProductCreate />,
+            element: (
+              <AdminProtectedRoute>
+                <BackendProductCreate />
+              </AdminProtectedRoute>
+            ),
+          },
+          {
+            path: "couponcreate",
+            element: (
+              <AdminProtectedRoute>
+                <BackendCouponCreate />
+              </AdminProtectedRoute>
+            ),
+          },
+          {
+            path: "couponedit/:id",
+            element: (
+              <AdminProtectedRoute>
+                <BackendCouponEdit />
+              </AdminProtectedRoute>
+            ),
           },
           {
             path: "order",
@@ -183,6 +207,30 @@ const router = createHashRouter([
             element: (
               <AdminProtectedRoute>
                 <BackendOrderDetail />
+              </AdminProtectedRoute>
+            ),
+          },
+          {
+            path: "announcement",
+            element: (
+              <AdminProtectedRoute>
+                <BackendAnnouncement />
+              </AdminProtectedRoute>
+            ),
+          },
+          {
+            path: "coupon",
+            element: (
+              <AdminProtectedRoute>
+                <BackendCoupon />
+              </AdminProtectedRoute>
+            ),
+          },
+          {
+            path: "member",
+            element: (
+              <AdminProtectedRoute>
+                <BackendMember />
               </AdminProtectedRoute>
             ),
           },
