@@ -47,7 +47,7 @@ const BackendHeader = () => {
           const isAdmin = await adminChecked();
           setIsLogin(isAdmin);
           if (isAdmin) {
-            navigate("/admin");
+            navigate("/admin/product", { replace: true });
           }
         } else {
           setIsLogin(false);
