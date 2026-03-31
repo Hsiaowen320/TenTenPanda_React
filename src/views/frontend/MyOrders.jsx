@@ -10,43 +10,39 @@ function MyOrders() {
   const ITEMS_PER_PAGE = 10;
 
   useEffect(() => {
+    const getOrders = async () => {
+      try {
+        // 先獲取當前登入使用者的 ID (確保有登入)
+        const {
+          data: { user },
+        } = await supabase.auth.getUser();
+  
+        // 這裡可以寫程式碼 (如跳轉到登入頁面、警告未登入)
+        if (!user) {
+          navigate("/login", { replace: true });
+          return;
+        }
+  
+        const response = await supabase
+          .from("orders") // 資料表名稱
+          .select(`*, order_status_id(*), user_id(*)`) // 取得資料
+          .eq("user_id", user.id) // 加上 user_id 確保是該會員的訂單
+          .throwOnError(); // 如果發生錯誤，會直接跳進 catch 區塊
+  
+        // 這裡寫取得訂單成功的執行程式碼
+        const myOrderList = response.data;
+        setMyOrders(myOrderList);
+      } catch (error) {
+        console.error("修改失敗：", error.message);
+      }
+    };
     getOrders();
   }, []);
 
   // 取得訂單的 API
-  const getOrders = async () => {
-    try {
-      // 先獲取當前登入使用者的 ID (確保有登入)
-      const {
-        data: { user },
-      } = await supabase.auth.getUser();
-
-      // 這裡可以寫程式碼 (如跳轉到登入頁面、警告未登入)
-      if (!user) {
-        navigate("/login", { replace: true });
-        return;
-      }
-
-      const response = await supabase
-        .from("orders") // 資料表名稱
-        .select(`*, order_status_id(*), user_id(*)`) // 取得資料
-        .eq("user_id", user.id) // 加上 user_id 確保是該會員的訂單
-        .throwOnError(); // 如果發生錯誤，會直接跳進 catch 區塊
-
-      // 這裡寫取得訂單成功的執行程式碼
-      const myOrderList = response.data;
-      setMyOrders(myOrderList);
-    } catch (error) {
-      console.error("修改失敗：", error.message);
-    }
-  };
 
   // 分頁邏輯計算
   const totalPages = Math.ceil(myOrders.length / ITEMS_PER_PAGE);
-  const currentItems = myOrders.slice(
-    (currentPage - 1) * ITEMS_PER_PAGE,
-    currentPage * ITEMS_PER_PAGE,
-  );
 
   const toggleOrder = (id) => {
     setOpenOrderId((prevId) => (prevId === id ? null : id));

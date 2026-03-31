@@ -26,19 +26,6 @@ function BackendOrder() {
     ? orderData.filter((o) => o.id.startsWith(searchId)) // 可以改成 includes(value)
     : orderData;
 
-  const getOrderInfo = async () => {
-    try {
-      const res = await supabase
-        .from("orders")
-        .select(`*, order_statuses(*)`)
-        .throwOnError();
-      setOrderData(res.data);
-      console.log(res.data);
-    } catch (error) {
-      alert("資料錯誤");
-    }
-  };
-
   const updateStatus = async (orderId, orderStatus) => {
     console.log(orderId, orderStatus);
     try {
@@ -67,6 +54,18 @@ function BackendOrder() {
   };
 
   useEffect(() => {
+    const getOrderInfo = async () => {
+      try {
+        const res = await supabase
+          .from("orders")
+          .select(`*, order_statuses(*)`)
+          .throwOnError();
+        setOrderData(res.data);
+        console.log(res.data);
+      } catch (error) {
+        alert("資料錯誤");
+      }
+    };
     getOrderInfo();
   }, []);
 
