@@ -1,11 +1,10 @@
 import { supabase } from "../../../supabaseClient.js";
 import { useNavigate, NavLink } from "react-router";
-import { useState, useEffect } from "react";
-import { useCoupon } from "../../components/CouponContext.jsx";
+import { useState, useEffect, useMemo } from "react";
+import { useCoupon } from "../../components/UseCoupon.jsx";
 
 const Cart = () => {
   const [cart, setCart] = useState([]);
-  const [totalPrice, setTotalPrice] = useState(0);
   const [couponMessage, setCouponMessage] = useState("");
   const isCartEmpty = cart.length === 0;
   const navigate = useNavigate();
@@ -76,7 +75,10 @@ const Cart = () => {
   //優惠券
   useEffect(() => {
     if (!couponCode) {
-      setCouponMessage("");
+      setTimeout(() => {
+        setCouponDiscount(0);
+        setCouponMessage("");
+      }, 0);
       return;
     }
 
@@ -102,10 +104,8 @@ const Cart = () => {
     })();
   }, [couponCode]);
 
-  useEffect(() => {
-    setTotalPrice(
-      cart.reduce((sum, item) => sum + item.products.price * item.qty, 0),
-    );
+  const totalPrice = useMemo(() => {
+    return cart.reduce((sum, item) => sum + item.products.price * item.qty, 0);
   }, [cart]);
 
   useEffect(() => {
@@ -327,7 +327,7 @@ const Cart = () => {
                       className="form-control"
                       id="coupon-code"
                       placeholder="冬季限定 \ WINTER50 /"
-                      value={couponCode}
+                      value={couponCode || ""}
                       onChange={(e) => setCouponCode(e.target.value)}
                     />
                     {couponMessage && (

@@ -23,7 +23,7 @@ import SingleProductGiftbox from "./views/frontend/SingleProductGiftbox";
 import MemberLayout from "./layout/MemberLayout";
 import AdminLayout from "./layout/AdminLayout";
 import BackendProduct from "./views/backend/BackendProduct";
-import BackendOrder from "./views/backend/backendOrder";
+import BackendOrder from "./views/backend/BackendOrder";
 import BackendAnnouncement from "./views/backend/backendAnnouncrment";
 import BackendCoupon from "./views/backend/BackendCoupon";
 import BackendLogin from "./views/backend/BackendLogin";

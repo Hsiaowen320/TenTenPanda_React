@@ -8,31 +8,31 @@ import orderSuccessDone from "@/assets/images/order-success/order-success-done.p
 const OrderSuccess = () => {
   const [orderID, setOrderID] = useState([]);
 
-  const getOrder = async () => {
-    try {
-      const {
-        data: { user },
-      } = await supabase.auth.getUser();
-      if (!user) return;
-      const res = await supabase
-        .from("orders")
-        .select(`id`)
-        .eq("user_id", user.id)
-        .throwOnError();
-      setOrderID(res.data.at(-1).id.slice(-6));
-      // 刪除購物車資料
-      const response = await supabase
-          .from('carts')
-          .delete()
-          .eq('user_id', user.id)
-          .throwOnError();
-    } catch (error) {
-      alert("資料錯誤");
-    }
-  };
-
   useEffect(() => {
-    getOrder();
+    const fetchOrder = async () => {
+      try {
+        const {
+          data: { user },
+        } = await supabase.auth.getUser();
+        if (!user) return;
+        const res = await supabase
+          .from("orders")
+          .select(`id`)
+          .eq("user_id", user.id)
+          .throwOnError();
+        setOrderID(res.data.at(-1).id.slice(-6));
+        // 刪除購物車資料
+        await supabase
+            .from('carts')
+            .delete()
+            .eq('user_id', user.id)
+            .throwOnError();
+      } catch (error) {
+        console.error(error);
+        alert("資料錯誤");
+      }
+    };
+    fetchOrder();
   }, []);
 
     return (

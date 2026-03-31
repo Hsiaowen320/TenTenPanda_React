@@ -8,19 +8,19 @@ function BackendMember() {
         setOpenId(prev => prev === id ? null : id); 
     };
 
-    const getMemberInfo = async () => {
-        try {
-            const res = await supabase
-                .from('profiles') 
-                .select(`*`) 
-                .throwOnError();
-            setMemberData(res.data);
-        } catch (error) {
-            alert("資料錯誤");
-        }
-    };
-
+    
     useEffect(() => {
+        const getMemberInfo = async () => {
+            try {
+                const res = await supabase
+                    .from('profiles') 
+                    .select(`*`) 
+                    .throwOnError();
+                setMemberData(res.data);
+            } catch (error) {
+                alert("資料錯誤");
+            }
+        };
         getMemberInfo();
     }, []);
 

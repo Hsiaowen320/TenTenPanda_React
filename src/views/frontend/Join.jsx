@@ -518,7 +518,7 @@ const Join = () => {
                           validate: (value) => {
                             if (!value.trim()) return "請輸入地址";
                             return (
-                              /^[\u4e00-\u9fa5a-zA-Z0-9\s\-\#之號巷弄樓]{6,}$/.test(
+                              /^[\u4e00-\u9fa5a-zA-Z0-9\s\-#之號巷弄樓]{6,}$/.test(
                                 value,
                               ) || "請輸入有效地址"
                             );

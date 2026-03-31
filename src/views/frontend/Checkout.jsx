@@ -1,13 +1,12 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useMemo } from "react";
 import { useForm, useWatch } from "react-hook-form";
 import { useNavigate } from "react-router";
 import { supabase } from "../../../supabaseClient.js";
-import { useCoupon } from "../../components/CouponContext.jsx";
+import { useCoupon } from "../../components/UseCoupon.jsx";
 
 const Checkout = () => {
   const navigate = useNavigate();
   const [cart, setCart] = useState([]);
-  const [totalPrice, setTotalPrice] = useState(0);
   const { couponCode, couponDiscount } = useCoupon();
   const isCartEmpty = cart.length === 0;
   const shippingFee = 60;
@@ -27,12 +26,9 @@ const Checkout = () => {
     })();
   }, []);
 
-  useEffect(() => {
-    setTotalPrice(
-      cart.reduce((sum, item) => sum + item.products.price * item.qty, 0),
-    );
+  const totalPrice = useMemo(() => {
+    return cart.reduce((sum, item) => sum + item.products.price * item.qty, 0);
   }, [cart]);
-
 
 
   const {
@@ -71,7 +67,7 @@ const Checkout = () => {
     // console.log(typeof couponCode);
 
     try {
-        const res = await supabase
+        await supabase
             .from('orders') // 資料表名稱
             .insert({
                 user_id: user.id, // 帶入使用者 ID

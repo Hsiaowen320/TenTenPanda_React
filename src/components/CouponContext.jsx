@@ -1,6 +1,7 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, useState } from "react";
 
 const CouponContext = createContext();
+export default CouponContext;
 
 export function CouponProvider({ children }) {
   const [couponCode, setCouponCode] = useState(null); 
@@ -20,7 +21,3 @@ export function CouponProvider({ children }) {
   );
 }
 
-// 自訂 Hook
-export function useCoupon() {
-  return useContext(CouponContext);
-}
