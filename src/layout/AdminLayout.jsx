@@ -91,18 +91,18 @@ function AdminLayout() {
           {/* 手機版-麵包屑和漢堡 */}
           <div className="pt-8 pb-4 d-flex justify-content-between align-items-center">
             <Breadcrumb/>
-            <button class="btn btn-primary-40 text-white mb-4" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" aria-controls="offcanvasExample">
-              <i class="bi bi-list"></i>
+            <button className="btn btn-primary-40 text-white mb-4" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" aria-controls="offcanvasExample">
+              <i className="bi bi-list"></i>
             </button>
           </div>
           {/* 手機版-摺疊功能選單 */}
-          <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
-            <div class="offcanvas-header">
-              <h5 class="offcanvas-title fw-bold" id="offcanvasExampleLabel">甜甜熊貓｜管理員 功能列表</h5>
-              <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+          <div className="offcanvas offcanvas-end" tabIndex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
+            <div className="offcanvas-header">
+              <h5 className="offcanvas-title fw-bold" id="offcanvasExampleLabel">甜甜熊貓｜管理員 功能列表</h5>
+              <button type="button" className="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
             </div>
-            <div class="offcanvas-body">
-              <div class="mt-3">
+            <div className="offcanvas-body">
+              <div className="mt-3">
                 <ul className="d-flex flex-column">
                   <li>
                     <NavLink
