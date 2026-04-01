@@ -32,6 +32,9 @@ function FrontendLayout() {
           </div>
           <div className="d-lg-flex align-items-lg-center">
             <div className="mb-10">
+              <Link to="/admin" className="fs-T-M me-3 px-lg-5 py-lg-4">
+                管理員通道
+              </Link>
               <Link to="/return" className="fs-T-M me-3 px-lg-5 py-lg-4">
                 退換貨政策
               </Link>

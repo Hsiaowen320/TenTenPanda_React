@@ -61,7 +61,7 @@ function BackendOrder() {
           .select(`*, order_statuses(*)`)
           .throwOnError();
         setOrderData(res.data);
-        console.log(res.data);
+        // console.log(res.data);
       } catch (error) {
         alert("資料錯誤");
       }
