@@ -32,6 +32,20 @@ const SingleProductSeasonal = () => {
 
   const [isFavorite, setIsFavorite] = useState(false);
 
+  // 自動關閉 modal
+  const showBootstrapModal = (modalId, duration = 2000) => {
+    const modalElement = document.getElementById(modalId);
+    if (!modalElement) return;
+
+    const modalInstance = new Modal(modalElement);
+    modalInstance.show();
+
+    // 自動關閉
+    setTimeout(() => {
+      modalInstance.hide();
+    }, duration);
+  };
+
   /**
    * 依 id 取得單筆商品資料
    * 主圖使用 image_content_url
@@ -92,11 +106,7 @@ const SingleProductSeasonal = () => {
     const success = await updateCart(product.id, quantity, true);
 
     if (success) {
-      const modalElement = document.getElementById("joinCart");
-      if (modalElement) {
-        const modalInstance = new Modal(modalElement);
-        modalInstance.show();
-      }
+      showBootstrapModal("joinCart", 2000); // 2 秒後自動關閉
     }
   };
 
@@ -115,11 +125,7 @@ const SingleProductSeasonal = () => {
     if (!result.success) return;
     setIsFavorite(result.isFavorite);
     const modalId = result.isFavorite ? "joinFavorite" : "cancelFavorite";
-    const modalElement = document.getElementById(modalId);
-    if (modalElement) {
-      const modalInstance = new Modal(modalElement);
-      modalInstance.show();
-    }
+    showBootstrapModal(modalId, 2000); // 2 秒後自動關閉
   };
 
   /**

@@ -33,6 +33,19 @@ const ProductListSeasonal = () => {
    * 就先退回本地圖片
    */
 
+  // 自動關閉 modal
+  const showBootstrapModal = (modalId, duration = 2000) => {
+    const modalElement = document.getElementById(modalId);
+    if (!modalElement) return;
+
+    const modalInstance = new Modal(modalElement);
+    modalInstance.show();
+
+    // 自動關閉
+    setTimeout(() => {
+      modalInstance.hide();
+    }, duration);
+  };
   /**
    * 取得經典口味商品
    * category_id = 1
@@ -93,11 +106,8 @@ const ProductListSeasonal = () => {
     // 沒成功（例如未登入）就直接結束，不開 modal
     if (success !== true) return;
 
-    const modalElement = document.getElementById("cartModal");
-    if (modalElement) {
-      const modalInstance = new Modal(modalElement);
-      modalInstance.show();
-    }
+    // 使用自動關閉 modal
+    showBootstrapModal("cartModal", 2000); // 2 秒後自動關閉
   };
 
   //收藏清單踩入
@@ -127,19 +137,11 @@ const ProductListSeasonal = () => {
     if (result.isFavorite) {
       setFavoriteIds((prev) => [...prev, productId]);
 
-      const modalElement = document.getElementById("favoriteModal");
-      if (modalElement) {
-        const modalInstance = new Modal(modalElement);
-        modalInstance.show();
-      }
+      showBootstrapModal("favoriteModal", 2000); // 自動關閉
     } else {
       setFavoriteIds((prev) => prev.filter((id) => id !== productId));
 
-      const modalElement = document.getElementById("cancelFavoriteModal");
-      if (modalElement) {
-        const modalInstance = new Modal(modalElement);
-        modalInstance.show();
-      }
+      showBootstrapModal("favoriteModal", 2000); // 自動關閉
     }
   };
 
