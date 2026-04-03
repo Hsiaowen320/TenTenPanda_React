@@ -328,6 +328,12 @@
     z-index: -1;
   }
 
+  .sloganBtn:hover {
+    color: #ffffff !important;
+    background-color: #e89018 !important;
+    border-color: #e89018 !important;
+  }
+
   @include media-breakpoint-up(lg) {
     background-position: 75% 95%;
     height: 473px;

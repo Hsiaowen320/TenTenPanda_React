@@ -565,7 +565,7 @@ const Home = () => {
             <a
               href="productList-classic.html"
               type="button"
-              className="btn bg-white text-primary-80 border-primary-80 px-8 py-4"
+              className="sloganBtn btn bg-white text-primary-80 border-primary-80 px-8 py-4"
             >
               前往商品列表
             </a>
