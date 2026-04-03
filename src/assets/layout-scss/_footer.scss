@@ -1,3 +1,14 @@
+.footerBtn:hover,
+.footerBtn:active {
+  background-color: #e89018 !important;
+  border-color: #e89018 !important;
+}
+
+.footerBtn:hover svg,
+.footerBtn:active svg {
+  fill: #ffffff !important;
+}
+
 .fs-T-S {
   font-size: 14px;
   line-height: 1.5;

@@ -1,8 +1,14 @@
 // LOGO 尺寸設定
 .logo {
-  max-height: 42px;
+  max-height: 84px;
   height: auto;
   width: auto;
+}
+
+.modal-logo {
+  max-height: 108px;
+  height: auto;
+  width: auto;  
 }
 
 @media (min-width: 992px) {

@@ -195,9 +195,9 @@ const Header = () => {
 
   return (
     <header className="navbar navbar-expand-lg navbar-light bg-neutral-white">
-      <div className="container d-flex justify-content-between align-items-center px-3 py-4 position-relative">
+      <div className="container d-flex justify-content-lg-center justify-content-between align-items-center px-3 py-4 position-relative">
         {/* LOGO */}
-        <div className="order-0 mx-lg-auto">
+        <div className="order-0 mx-lg-auto ps-lg-30">
           <Link className="navbar-brand" to="/">
             <img className="logo" src={logo} alt="TenTen-Logo" />
           </Link>
@@ -433,7 +433,13 @@ const Header = () => {
       >
         <div className="modal-dialog modal-fullscreen-sm-down">
           <div className="modal-content p-3 modal-height">
-            <div className="modal-header p-0 border-0 header-height align-items-start bg-primary-tint br-tl-40">
+            <div className="modal-header p-0 border-0 header-height align-items-start bg-primary-tint br-tl-40 position-relative">
+              {/* LOGO */}
+              <div className="position-absolute top-50 start-50 translate-middle">
+                <Link className="navbar-brand" to="/" >
+                  <img className="modal-logo" src={logo} alt="TenTen-Logo" style={{ height: '240px', width: 'auto' }}/>
+                </Link>
+              </div>
               <button
                 type="button"
                 className="btn ms-auto p-0"
