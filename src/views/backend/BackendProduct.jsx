@@ -154,7 +154,7 @@ const BackendProduct = () => {
         <div className="product-add-row">
           <button
             type="button"
-            className="add-product-btn"
+            className="add-product-btn btn-link text-decoration-none"
             onClick={() => navigate("/admin/productcreate")}
           >
             ＋ 新增商品
@@ -208,7 +208,7 @@ const BackendProduct = () => {
                 <div className="product-action-group">
                   <button
                     type="button"
-                    className="icon-btn"
+                    className="icon-btn btn-link text-decoration-none"
                     onClick={() => handleEdit(product.id)}
                     aria-label={`編輯 ${product.name}`}
                     title="編輯"
@@ -220,7 +220,7 @@ const BackendProduct = () => {
 
                   <button
                     type="button"
-                    className="icon-btn"
+                    className="icon-btn btn-link text-decoration-none"
                     onClick={() => handleDelete(product.id, product.name)}
                     aria-label={`刪除 ${product.name}`}
                     title="刪除"

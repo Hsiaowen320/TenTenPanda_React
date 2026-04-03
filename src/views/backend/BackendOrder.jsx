@@ -27,7 +27,7 @@ function BackendOrder() {
     : orderData;
 
   const updateStatus = async (orderId, orderStatus) => {
-    console.log(orderId, orderStatus);
+    // console.log(orderId, orderStatus);
     try {
       await supabase
         .from("orders")

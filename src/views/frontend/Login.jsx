@@ -213,7 +213,7 @@ const Login = () => {
       const user = loginData.user || loginData.session?.user || null;
       localStorage.setItem("user", JSON.stringify(user));
 
-      console.log("登入成功！歡迎回來");
+      // console.log("登入成功！歡迎回來");
 
       setShowSuccess(true);
     } catch (error) {

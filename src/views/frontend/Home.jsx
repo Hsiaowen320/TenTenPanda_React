@@ -168,6 +168,26 @@ const Home = () => {
                   </div>
                 </div>
               </div>
+              {/* AD-1 */}
+              <div className="swiper-slide">
+                <div className="sales-ad sales-ad-1 shadow-sm mb-10">
+                  <div className="d-flex gap-4 gap-lg-12 flex-column align-items-start justify-content-center h-100">
+                    <div>
+                      <img
+                        src={bannerTitle}
+                        alt=""
+                        className="sales-ad-title"
+                      />
+                    </div>
+                    <h3 className="fs-7 fs-lg-2 text-neutral-100">
+                      六款冬季新品上市！
+                    </h3>
+                    <p className="bg-primary-40 fs-8 fs-lg-6 py-1 py-lg-2 px-2 px-lg-12 text-white rounded-pill">
+                      2025.10.11~2026.01.11
+                    </p>
+                  </div>
+                </div>
+              </div>
             </div>
             {/* If we need pagination */}
             <div

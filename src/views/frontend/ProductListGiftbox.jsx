@@ -254,7 +254,7 @@ const ProductListGiftbox = () => {
                           key={product.id}
                         >
                           <div
-                            className="mb-lg-8 product"
+                            className="mb-lg-8 product productList-card"
                             data-id={product.english_name}
                           >
                             <div

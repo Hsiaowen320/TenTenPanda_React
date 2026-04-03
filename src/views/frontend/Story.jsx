@@ -10,8 +10,18 @@ import login10 from "@/assets/images/login-10.webp";
 import login8 from "@/assets/images/login-8.webp";
 import login11 from "@/assets/images/login-11.webp";
 import login7 from "@/assets/images/login-7.webp";
+import { useEffect } from "react";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 const Story = () => {
+    useEffect(() => {
+      AOS.init({
+        duration: 800,
+        once: true,
+      });
+    }, []);
+
   return (
     <>
       <main className="position-relative overflow-hidden">
@@ -23,10 +33,10 @@ const Story = () => {
         />
 
         {/* section 1 生活小確幸 */}
-        <section className="container py-lg-18 py-8 px-lg-0 position-relative">
+        <section className="container py-lg-18 py-8 px-lg-0 position-relative" >
           <div className="d-lg-flex flex-column justify-content-center">
             {/* title */}
-            <div className="d-lg-flex mb-4 mb-lg-6">
+            <div className="d-lg-flex mb-4 mb-lg-6" data-aos="fade-right">
               <h4 className="fs-lg-2 fs-4 fw-bold text-neutral-100">
                 每一口甜甜，
               </h4>
@@ -34,11 +44,11 @@ const Story = () => {
                 都是<span className="text-primary-40">生活的小確幸</span>。
               </h4>
             </div>
-            <p className="text-neutral-60 fs-7 fs-lg-9 mb-6 mb-lg-10">
+            <p className="text-neutral-60 fs-7 fs-lg-9 mb-6 mb-lg-10" data-aos="fade-right">
               幸福藏在每個靜謐的午後，Tenten Panda 輕輕守候。
             </p>
             {/* 照片 */}
-            <div className="w-100">
+            <div className="w-100" data-aos="fade-left">
               <div className="img-col br-40 br-lg-56 overflow-hidden">
                 <img
                   src={login4}
@@ -51,15 +61,15 @@ const Story = () => {
         </section>
 
         {/*  section 2 日常溫暖陪伴 */}
-        <section className="container d-lg-flex justify-content-center py-lg-16 py-10 text-neutral-100 fw-bold fs-4 fs-lg-2 position-relative">
+        <section className="container d-lg-flex justify-content-center py-lg-16 py-10 text-neutral-100 fw-bold fs-4 fs-lg-2 position-relative" >
           {/* 背景素材 */}
           <img
             src={graphic3}
             alt=""
             className="graphic-3 position-absolute z-n1 d-none d-lg-block"
           />
-          <p className="">TenTen是甜甜、也是天天，</p>
-          <p>
+          <p data-aos="zoom-in">TenTen是甜甜、也是天天，</p>
+          <p data-aos="zoom-in">
             象徵<span className="text-primary-40">日常的溫暖陪伴</span>。
           </p>
         </section>
@@ -73,7 +83,7 @@ const Story = () => {
             className="graphic-4 position-absolute z-n1 d-lg-none d-block"
           />
           {/* s3 介紹文 */}
-          <div className="w-100">
+          <div className="w-100" data-aos="zoom-in-right">
             {/* title */}
             <h4 className="fs-lg-3 fs-6 fw-bold text-neutral-100 mb-3 mb-lg-6">
               熊貓懂得慢，甜甜圈懂得安慰
@@ -94,7 +104,7 @@ const Story = () => {
           {/* 照片 */}
           <div className="d-flex w-100">
             {/* 左圖 */}
-            <div className="w-50 pe-3 pt-18 pt-lg-30">
+            <div className="w-50 pe-3 pt-18 pt-lg-30" data-aos="zoom-in-left">
               <div className="team-panda br-40 br-lg-56 overflow-hidden">
                 <img
                   src={login1}
@@ -104,7 +114,7 @@ const Story = () => {
               </div>
             </div>
             {/* 右圖 */}
-            <div className="w-50 ps-3 pt-6 pt-lg-8">
+            <div className="w-50 ps-3 pt-6 pt-lg-8" data-aos="zoom-in-left">
               <div className="single-panda br-40 br-lg-56 overflow-hidden">
                 <img
                   src={login3}
@@ -125,7 +135,7 @@ const Story = () => {
             className="s4-graphic-4 position-absolute z-n1 d-lg-block d-none"
           />
           {/* s4 介紹文 */}
-          <div className="px-3 s4-intro w-100 px-lg-0 align-self-end">
+          <div className="px-3 s4-intro w-100 px-lg-0 align-self-end" data-aos="fade-left">
             <h5 className="fs-5 fs-lg-3 fw-bold mb-3 mb-lg-6">每一口的講究</h5>
             <ul className="text-neutral-80 fs-9 fs-lg-5 mb-8 mb-lg-0">
               <li className="lh-base mb-5 mb-lg-6">
@@ -147,7 +157,7 @@ const Story = () => {
             </ul>
           </div>
           {/* 照片 */}
-          <div className="s4-img px-3 ps-lg-0 w-100 me-lg-6 pb-lg-30">
+          <div className="s4-img px-3 ps-lg-0 w-100 me-lg-6 pb-lg-30" data-aos="fade-right">
             <div className="s4-img-col br-40 br-lg-56 br-tl-lg-0 br-bl-lg-0 overflow-hidden">
               <img
                 src={login5}
@@ -167,7 +177,7 @@ const Story = () => {
             className="graphic-5 position-absolute z-n1"
           />
           {/* s3 介紹文 */}
-          <div className="w-100">
+          <div className="w-100" data-aos="fade-right">
             {/* title */}
             <h4 className="fs-lg-3 fs-6 fw-bold text-neutral-100 mb-3 mb-lg-6">
               想陪你一起的未來

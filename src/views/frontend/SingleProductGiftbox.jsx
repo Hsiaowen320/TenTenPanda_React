@@ -37,7 +37,7 @@ const SingleProductGiftbox = () => {
    * 主圖使用 image_content_url
    */
   const getProductDetail = async () => {
-    console.log("step1");
+    // console.log("step1");
     try {
       setLoading(true);
       setErrorMessage("");
@@ -267,6 +267,8 @@ const SingleProductGiftbox = () => {
                       type="button"
                       className="btn p-3 text-neutral-100"
                       onClick={handleDecrease}
+                      style={{opacity: quantity === 1 ? 0.5 : 1,
+                        cursor:quantity === 1 ? "not-allowed" : "pointer"}}
                     >
                       <span className="material-symbols-outlined align-bottom">
                         remove
@@ -363,7 +365,7 @@ const SingleProductGiftbox = () => {
             <h4 className="fs-4 fw-bold text-neutral-100 mb-8">相關商品</h4>
 
             <div className="row g-6">
-              <div className="recommend-commodity col-6 col-lg flex-shrink-1">
+              <div className="recommend-commodity col-6 col-lg flex-shrink-1 productSingle-card">
                 <div
                   className="card bg-transparent border-0 h-100 align-items-center text-center cursor-pointer"
                   onClick={() => navigate("/productList-classic/d72173e6-ef6f-49b7-8b26-6c29fccdb11f")}
@@ -384,7 +386,7 @@ const SingleProductGiftbox = () => {
                 </div>
               </div>
 
-              <div className="recommend-commodity col-6 col-lg flex-shrink-1">
+              <div className="recommend-commodity col-6 col-lg flex-shrink-1 productSingle-card">
                 <div
                   className="card bg-transparent border-0 h-100 align-items-center text-center cursor-pointer"
                   onClick={() => navigate("/productList-classic/4f4c73aa-eb09-4a18-97ea-393d8219784a")}
@@ -405,7 +407,7 @@ const SingleProductGiftbox = () => {
                 </div>
               </div>
 
-              <div className="recommend-commodity col-6 col-lg flex-shrink-1">
+              <div className="recommend-commodity col-6 col-lg flex-shrink-1 productSingle-card">
                 <div
                   className="card bg-transparent border-0 h-100 align-items-center text-center cursor-pointer"
                   onClick={() => navigate("/productList-classic/99edfeff-dac9-41a5-bd00-c4c546983cad")}
@@ -426,7 +428,7 @@ const SingleProductGiftbox = () => {
                 </div>
               </div>
 
-              <div className="recommend-commodity col-6 col-lg flex-shrink-1">
+              <div className="recommend-commodity col-6 col-lg flex-shrink-1 productSingle-card">
                 <div
                   className="card bg-transparent border-0 h-100 align-items-center text-center cursor-pointer"
                   onClick={() => navigate("/productList-classic/92640f30-37dc-4965-82e7-6478bac03e52")}
