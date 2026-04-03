@@ -276,6 +276,7 @@
   //商品圖片大小調整
   .recommend-commodity {
     cursor: pointer;
+
     // 限定口味圖片
     .img-limited {
       width: 90%; //
@@ -283,6 +284,10 @@
       @include media-breakpoint-up(lg) {
         width: 50%; //
         height: auto; /* 保持比例 */
+      }
+      &:hover {
+        transform: scale(1.05) !important; // 放大 5%
+        transition: transform 0.3s ease !important; // 平滑過渡
       }
     }
 
@@ -294,6 +299,10 @@
         width: 60%; //
         height: auto; /* 保持比例 */
         max-width: 230px;
+      }
+      &:hover {
+        transform: scale(1.05) !important; // 放大 5%
+        transition: transform 0.3s ease !important; // 平滑過渡
       }
     }
   }

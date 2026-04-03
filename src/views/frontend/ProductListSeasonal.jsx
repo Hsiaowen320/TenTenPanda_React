@@ -209,8 +209,15 @@ const ProductListSeasonal = () => {
             <div className="col-12 col-lg-9">
               {/* 載入中 */}
               {loading && (
-                <div className="text-center py-10">
-                  <p className="fs-5 text-neutral-100">商品載入中...</p>
+                <div className="text-center py-20">
+                  <div
+                    className="spinner-border text-primary-80"
+                    role="status"
+                    style={{ width: "3rem", height: "3rem" }}
+                  >
+                    <span className="visually-hidden">Loading...</span>
+                  </div>
+                  <p className="mt-3 fs-5">商品載入中...</p>
                 </div>
               )}
 

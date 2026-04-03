@@ -200,7 +200,20 @@ const SingleProductSeasonal = () => {
                 className="bread-item text-neutral-80 fw-bold active"
                 aria-current="page"
               >
-                {loading ? "載入中..." : product?.name || "商品詳情"}
+                {loading ? (
+                  <div className="text-center py-20">
+                    <div
+                      className="spinner-border text-primary-80"
+                      role="status"
+                      style={{ width: "3rem", height: "3rem" }}
+                    >
+                      <span className="visually-hidden">Loading...</span>
+                    </div>
+                    <p className="mt-3 fs-5">商品載入中...</p>
+                  </div>
+                ) : (
+                  product?.name || "商品詳情"
+                )}
               </li>
             </ol>
           </nav>
@@ -366,7 +379,11 @@ const SingleProductSeasonal = () => {
               <div className="recommend-commodity col-6 col-lg flex-shrink-1">
                 <div
                   className="card bg-transparent border-0 h-100 align-items-center text-center cursor-pointer"
-                  onClick={() => navigate("/productList-classic/d72173e6-ef6f-49b7-8b26-6c29fccdb11f")}
+                  onClick={() =>
+                    navigate(
+                      "/productList-classic/d72173e6-ef6f-49b7-8b26-6c29fccdb11f",
+                    )
+                  }
                 >
                   <img
                     src={莓果甜甜}
@@ -387,7 +404,11 @@ const SingleProductSeasonal = () => {
               <div className="recommend-commodity col-6 col-lg flex-shrink-1">
                 <div
                   className="card bg-transparent border-0 h-100 align-items-center text-center cursor-pointer"
-                  onClick={() => navigate("/productList-classic/4f4c73aa-eb09-4a18-97ea-393d8219784a")}
+                  onClick={() =>
+                    navigate(
+                      "/productList-classic/4f4c73aa-eb09-4a18-97ea-393d8219784a",
+                    )
+                  }
                 >
                   <img
                     src={芝麻甜甜}
@@ -408,7 +429,11 @@ const SingleProductSeasonal = () => {
               <div className="recommend-commodity col-6 col-lg flex-shrink-1">
                 <div
                   className="card bg-transparent border-0 h-100 align-items-center text-center cursor-pointer"
-                  onClick={() => navigate("/productList-classic/99edfeff-dac9-41a5-bd00-c4c546983cad")}
+                  onClick={() =>
+                    navigate(
+                      "/productList-classic/99edfeff-dac9-41a5-bd00-c4c546983cad",
+                    )
+                  }
                 >
                   <img
                     src={抹茶甜甜}
@@ -429,7 +454,11 @@ const SingleProductSeasonal = () => {
               <div className="recommend-commodity col-6 col-lg flex-shrink-1">
                 <div
                   className="card bg-transparent border-0 h-100 align-items-center text-center cursor-pointer"
-                  onClick={() => navigate("/productList-classic/92640f30-37dc-4965-82e7-6478bac03e52")}
+                  onClick={() =>
+                    navigate(
+                      "/productList-classic/92640f30-37dc-4965-82e7-6478bac03e52",
+                    )
+                  }
                 >
                   <img
                     src={焦糖可可甜甜}

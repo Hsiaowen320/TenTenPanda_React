@@ -141,7 +141,16 @@ function MyFavorite() {
     <>
       <p className="fs-2 fw-semibold mb-lg-18 mb-8">我的收藏</p>
       {loading ? (
-        <div className="text-center py-20">努力翻找收藏中...</div>
+        <div className="text-center py-20">
+          <div
+            className="spinner-border text-primary-80"
+            role="status"
+            style={{ width: "3rem", height: "3rem" }}
+          >
+            <span className="visually-hidden">Loading...</span>
+          </div>
+          <p className="mt-3 fs-5">努力翻找收藏中...</p>
+        </div>
       ) : (
         <div className="container" style={{ minHeight: "350px" }}>
           <div className="row" id="favorites-list">
