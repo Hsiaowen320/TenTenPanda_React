@@ -44,9 +44,16 @@ const BackendProductCreate = () => {
   const handleChange = (e) => {
     const { name, value } = e.target;
 
+    // 針對價格或特定數字欄位進行防呆
+    let newValue = value;
+    if (name === "price") {
+      // 確保數值不小於 0，若為空字串則保持空（方便使用者刪除重新輸入）
+      newValue = value === "" ? "" : Math.max(0, parseFloat(value));
+    }
+
     setFormData((prev) => ({
       ...prev,
-      [name]: value,
+      [name]: newValue,
     }));
   };
 
@@ -194,6 +201,8 @@ const BackendProductCreate = () => {
               value={formData.price}
               onChange={handleChange}
               placeholder="請輸入價格"
+              min="0"
+              onKeyDown={(e) => { if (e.key === '-') e.preventDefault(); }}
             />
           </div>
 
