@@ -37,6 +37,7 @@ import BackendProductCreate from "./views/backend/BackendProductCreate";
 import BackendCouponEdit from "./views/backend/BackendCouponEdit";
 import BackendCouponCreate from "./views/backend/BackendCouponCreate";
 import AdminProtectedRoute from "./components/AdminProtectedRoute";
+import BackendHome from "./views/backend/BackendHome";
 
 const router = createHashRouter([
   {
@@ -144,9 +145,13 @@ const router = createHashRouter([
       },
     ],
   },
+  // {
+  //   path: "/admin",
+  //   element: <Navigate to="/admin/login" replace />,
+  // },
   {
     path: "/admin",
-    element: <Navigate to="/admin/login" replace />,
+    element: <BackendHome />,
   },
   {
     path: "/admin",
