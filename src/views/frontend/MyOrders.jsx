@@ -103,8 +103,95 @@ function MyOrders() {
                         style={{ display: isExpanded ? "block" : "none" }}
                       >
                         <div className="accordion-body ms-lg-8">
-                          {/* 訂單資訊、收貨人資訊、商品資訊 */}
-                          {/* 內容同之前 */}
+                          <p className="infoHeading fs-6 fs-lg-5 mb-5 fw-bold">
+                            訂單資訊
+                          </p>
+                          <ul className="mb-12">
+                            <li className="fs-7 fs-lg-6 mb-4">
+                              訂單時間
+                              <span className="ms-6">{myorder.date}</span>
+                            </li>
+                            <li className="fs-7 fs-lg-6 mb-4">
+                              訂單狀態
+                              <span className="ms-6">
+                                {myorder.order_status_id.status}
+                              </span>
+                            </li>
+                            <li className="fs-7 fs-lg-6 mb-4">
+                              付款方式
+                              <span className="ms-6">
+                                {myorder.payment_method}
+                              </span>
+                            </li>
+                          </ul>
+
+                          <p className="infoHeading fs-6 fs-lg-5 mb-5 fw-bold">
+                            收貨人資訊
+                          </p>
+                          <ul className="mb-12">
+                            <li className="fs-7 fs-lg-6 mb-4">
+                              姓　　名
+                              <span className="ms-6">
+                                {myorder.receiver_name}
+                              </span>
+                            </li>
+                            <li className="fs-7 fs-lg-6 mb-4">
+                              電子信箱
+                              <span className="ms-6">
+                                {myorder.receiver_email}
+                              </span>
+                            </li>
+                            <li className="fs-7 fs-lg-6 mb-4">
+                              聯絡電話
+                              <span className="ms-6">
+                                {myorder.receiver_tel}
+                              </span>
+                            </li>
+                            <li className="fs-7 fs-lg-6 mb-4">
+                              收貨地址
+                              <span className="ms-6">
+                                {myorder.receiver_address}
+                              </span>
+                            </li>
+                          </ul>
+
+                          <p className="infoHeading fs-6 fs-lg-5 mb-5 fw-bold">
+                            商品與金額資訊
+                          </p>
+                          <ul className="mb-12">
+                            <li className="fs-7 fs-lg-6 mb-4">
+                              購買品項
+                              <div className="mt-4 mt-lg-0 ms-3 ms-lg-6 itemsList">
+                                {myorder.order_detail?.map((item, index) => (
+                                  <ul className="mb-4 item" key={index}>
+                                    <li>{item.product_name}</li>
+                                    <li>NT$ {item.price}</li>
+                                    <li>X {item.qty}</li>
+                                  </ul>
+                                ))}
+                              </div>
+                            </li>
+                            <li className="fs-7 fs-lg-6 mb-4">
+                              優惠折扣
+                              <span className="ms-6">
+                                {myorder.discount_amount === 0
+                                  ? "(無)"
+                                  : `NT$ ${myorder.discount_amount}`}
+                              </span>
+                            </li>
+                            <li className="fs-7 fs-lg-6 mb-4">
+                              運　　費
+                              <span className="ms-6">
+                                NT$ {myorder.shipping_fee}
+                              </span>
+                            </li>
+                            <li className="fs-7 fs-lg-6 mb-4">
+                              訂單總額
+                              <span className="ms-6">
+                                NT$ {myorder.total_amount}
+                              </span>
+                            </li>
+                          </ul>
                         </div>
                       </div>
                     </div>

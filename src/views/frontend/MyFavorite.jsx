@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { supabase } from "../../../supabaseClient";
 import { Link } from "react-router-dom";
+import { Modal } from "bootstrap";
 
 function MyFavorite() {
   const [favorites, setFavorites] = useState([]); // 存儲收藏商品
@@ -11,6 +12,20 @@ function MyFavorite() {
   useEffect(() => {
     getFavorite();
   }, []);
+
+  // 自動關閉 modal
+  const showBootstrapModal = (modalId, duration = 2000) => {
+    const modalElement = document.getElementById(modalId);
+    if (!modalElement) return;
+
+    const modalInstance = new Modal(modalElement);
+    modalInstance.show();
+
+    // 自動關閉
+    setTimeout(() => {
+      modalInstance.hide();
+    }, duration);
+  };
 
   // 取得會員資收藏商品的 API
   const getFavorite = async () => {
@@ -64,6 +79,7 @@ function MyFavorite() {
         .throwOnError(); // 如果發生錯誤，會直接跳進 catch 區塊
 
       // 再次渲染收藏
+      showBootstrapModal("cancelFavoriteModal");
       getFavorite();
     } catch (error) {
       console.error("修改失敗：", error.message);
@@ -124,6 +140,7 @@ function MyFavorite() {
         .throwOnError(); // 如果發生錯誤，會直接跳進 catch 區塊
 
       // 這裡寫更新購物車成功的執行程式碼
+      showBootstrapModal("cartModal");
       // console.log("購物車已更新！");
     } catch (error) {
       console.error("操作失敗：", error.message);
@@ -187,8 +204,6 @@ function MyFavorite() {
                       <button
                         type="button"
                         className="favorite-btn active position-absolute top-0 end-0 fs-3 fs-lg-1 border-0 bg-transparent"
-                        data-bs-toggle="modal"
-                        data-bs-target="#cancelFavoriteModal"
                         onClick={() => RemoveFavorite(product.products.id)}
                       >
                         <i className="bi bi-heart-fill full text-danger"></i>
@@ -202,8 +217,6 @@ function MyFavorite() {
                       <button
                         type="button"
                         className="producList-cart-btn br-999"
-                        data-bs-toggle="modal"
-                        data-bs-target="#cartModal"
                         onClick={() => updateCart(product.products.id, 1)}
                       >
                         <i className="bi bi-cart2 fs-3 fs-lg-2"></i>
