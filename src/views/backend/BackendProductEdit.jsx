@@ -94,9 +94,17 @@ const BackendProductEdit = () => {
   const handleChange = (e) => {
     const { name, value } = e.target;
 
+    // 判斷是否為需要「防呆」的欄位（例如價格）
+    let finalValue = value;
+
+    if (name === "price") {
+      // 如果使用者輸入負數，強制轉回 0；若為空字串則保持空（方便使用者編輯）
+      finalValue = value === "" ? "" : Math.max(0, parseFloat(value));
+    }
+
     setFormData((prev) => ({
       ...prev,
-      [name]: name === "price" || name === "category_id" ? value : value,
+      [name]: finalValue,
     }));
   };
 
@@ -109,18 +117,18 @@ const BackendProductEdit = () => {
       const checked = adminChecked();
 
       // 尚未登入的情況
-    //   if (checked === undefined) {
-    //     alert("請先登入！");
-    //     navigate("/login", { replace: true });
-    //     return false;
-    //   }
+      //   if (checked === undefined) {
+      //     alert("請先登入！");
+      //     navigate("/login", { replace: true });
+      //     return false;
+      //   }
 
       // 非管理者的情況
-    //   if (!checked) {
-    //     alert("無此權限！");
-    //     navigate("/", { replace: true });
-    //     return false;
-    //   }
+      //   if (!checked) {
+      //     alert("無此權限！");
+      //     navigate("/", { replace: true });
+      //     return false;
+      //   }
 
       // 將不想被更新的欄位分離出來，而 finalUpdates 就是要修改的內容
       const { path, ...finalUpdates } = updates;
@@ -247,6 +255,8 @@ const BackendProductEdit = () => {
               className="form-input"
               value={formData.price}
               onChange={handleChange}
+              min="0"
+              onKeyDown={(e) => { if (e.key === '-') e.preventDefault(); }}
             />
           </div>
 
