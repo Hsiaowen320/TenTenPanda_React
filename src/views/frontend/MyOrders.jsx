@@ -33,6 +33,7 @@ function MyOrders() {
         const myOrderList = response.data;
         setMyOrders(myOrderList);
       } catch (error) {
+        alert("修改失敗：", error.message);
         console.error("修改失敗：", error.message);
       }
     };
