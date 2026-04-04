@@ -22,11 +22,11 @@ function FrontendLayout() {
             <div className="my-lg-7">
               <p className="d-flex align-items-center justify-content-center mb-4 fs-T-M justify-content-lg-start mb-lg-2">
                 <span className="material-symbols-outlined me-2"> mail </span>
-                tenten@gmail.com
+                <a href="mailto:tenten@gmail.com" className="btn-link text-decoration-none">tenten@gmail.com</a>
               </p>
               <p className="d-flex align-items-center justify-content-center fs-T-M justify-content-lg-start">
                 <span className="material-symbols-outlined me-2"> call </span>
-                0912-345-678
+                <a href="tel:0912345678" className="btn-link text-decoration-none">0912-345-678</a>
               </p>
             </div>
           </div>

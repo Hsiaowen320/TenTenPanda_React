@@ -57,7 +57,7 @@ export async function updateCart(productId, amount, isRelative = true) {
       )
       .throwOnError();
 
-    console.log("購物車已更新！");
+    // console.log("購物車已更新！");
     return true;
   } catch (error) {
     console.error("操作失敗：", error.message);

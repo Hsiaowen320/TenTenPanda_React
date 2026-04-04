@@ -44,9 +44,16 @@ const BackendProductCreate = () => {
   const handleChange = (e) => {
     const { name, value } = e.target;
 
+    // 針對價格或特定數字欄位進行防呆
+    let newValue = value;
+    if (name === "price") {
+      // 確保數值不小於 0，若為空字串則保持空（方便使用者刪除重新輸入）
+      newValue = value === "" ? "" : Math.max(0, parseFloat(value));
+    }
+
     setFormData((prev) => ({
       ...prev,
-      [name]: value,
+      [name]: newValue,
     }));
   };
 
@@ -147,8 +154,8 @@ const BackendProductCreate = () => {
 
   return (
     <div className="backend-product-create-page">
-      <div className="backend-product-create-card">
-        <form className="backend-product-create-form" onSubmit={handleSubmit}>
+      <div className="backend-product-create-card d-flex justify-content-center align-items-center py-lg-12 py-2">
+        <form className="col-lg-9 col-12" onSubmit={handleSubmit}>
           {/* 中文名稱 */}
           <div className="form-row">
             <label className="form-label" htmlFor="name">
@@ -158,7 +165,7 @@ const BackendProductCreate = () => {
               id="name"
               name="name"
               type="text"
-              className="form-input"
+              className="form-control bg-white"
               value={formData.name}
               onChange={handleChange}
               placeholder="請輸入商品中文名稱"
@@ -174,7 +181,7 @@ const BackendProductCreate = () => {
               id="english_name"
               name="english_name"
               type="text"
-              className="form-input"
+              className="form-control bg-white"
               value={formData.english_name}
               onChange={handleChange}
               placeholder="請輸入商品英文名稱"
@@ -190,10 +197,12 @@ const BackendProductCreate = () => {
               id="price"
               name="price"
               type="number"
-              className="form-input"
+              className="form-control bg-white"
               value={formData.price}
               onChange={handleChange}
               placeholder="請輸入價格"
+              min="0"
+              onKeyDown={(e) => { if (e.key === '-') e.preventDefault(); }}
             />
           </div>
 
@@ -205,7 +214,8 @@ const BackendProductCreate = () => {
             <select
               id="category_id"
               name="category_id"
-              className="form-input form-select"
+              className="bg-white form-select"
+              style={{ appearance: 'none' }}
               value={formData.category_id}
               onChange={handleChange}
             >
@@ -230,7 +240,7 @@ const BackendProductCreate = () => {
               id="slogan"
               name="slogan"
               type="text"
-              className="form-input"
+              className="form-control bg-white"
               value={formData.slogan}
               onChange={handleChange}
               placeholder="請輸入商品 slogan"
@@ -245,7 +255,7 @@ const BackendProductCreate = () => {
             <textarea
               id="highlight"
               name="highlight"
-              className="form-input form-textarea"
+              className="form-control bg-white form-textarea"
               value={formData.highlight}
               onChange={handleChange}
               placeholder="請輸入商品 highlight"
@@ -260,7 +270,7 @@ const BackendProductCreate = () => {
             <textarea
               id="description"
               name="description"
-              className="form-input form-textarea"
+              className="form-control bg-white form-textarea"
               value={formData.description}
               onChange={handleChange}
               placeholder="請輸入商品詳情"
@@ -276,7 +286,7 @@ const BackendProductCreate = () => {
               id="note"
               name="note"
               type="text"
-              className="form-input"
+              className="form-control bg-white"
               value={formData.note}
               onChange={handleChange}
               placeholder="請輸入備註"
@@ -292,7 +302,7 @@ const BackendProductCreate = () => {
               id="image_title_url"
               name="image_title_url"
               type="text"
-              className="form-input"
+              className="form-control bg-white"
               value={formData.image_title_url}
               onChange={handleChange}
               placeholder="https://xxxxx"
@@ -308,7 +318,7 @@ const BackendProductCreate = () => {
               id="image_content_url"
               name="image_content_url"
               type="text"
-              className="form-input"
+              className="form-control bg-white"
               value={formData.image_content_url}
               onChange={handleChange}
               placeholder="https://xxxxx"
@@ -319,7 +329,7 @@ const BackendProductCreate = () => {
           <div className="form-actions">
             <button
               type="button"
-              className="action-btn action-btn-cancel"
+              className="action-btn action-btn-cancel btn btn-primary-40 w-25"
               onClick={handleCancel}
             >
               取消新增
@@ -327,7 +337,7 @@ const BackendProductCreate = () => {
 
             <button
               type="submit"
-              className="action-btn action-btn-submit"
+              className="action-btn action-btn-submit btn btn-primary-40 w-25"
               disabled={submitting}
             >
               {submitting ? "新增中..." : "確認新增"}

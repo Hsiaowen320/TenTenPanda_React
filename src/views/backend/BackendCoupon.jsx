@@ -108,7 +108,7 @@ const BackendCoupon = () => {
 
           <button
             type="button"
-            className="coupon-add-btn"
+            className="coupon-add-btn btn btn-primary-40"
             onClick={() => navigate("/admin/CouponCreate")}
           >
             ＋ 新增優惠券
@@ -165,7 +165,7 @@ const BackendCoupon = () => {
                 <div className="coupon-action-group">
                   <button
                     type="button"
-                    className="coupon-icon-btn"
+                    className="coupon-icon-btn btn-link text-decoration-none"
                     onClick={() => handleEdit(coupon.id)}
                     aria-label={`編輯 ${coupon.title}`}
                     title="編輯"
@@ -177,7 +177,7 @@ const BackendCoupon = () => {
 
                   <button
                     type="button"
-                    className="coupon-icon-btn"
+                    className="coupon-icon-btn btn-link text-decoration-none"
                     onClick={() => handleDelete(coupon.id, coupon.title)}
                     aria-label={`刪除 ${coupon.title}`}
                     title="刪除"

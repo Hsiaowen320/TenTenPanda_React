@@ -171,7 +171,7 @@ const Header = () => {
       document.body.style.removeProperty("overflow");
 
       // 這裡寫登出成功的執行程式碼
-      console.log("已成功登出");
+      // console.log("已成功登出");
 
       navigate("/login");
     } catch (error) {

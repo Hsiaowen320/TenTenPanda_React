@@ -94,9 +94,17 @@ const BackendProductEdit = () => {
   const handleChange = (e) => {
     const { name, value } = e.target;
 
+    // 判斷是否為需要「防呆」的欄位（例如價格）
+    let finalValue = value;
+
+    if (name === "price") {
+      // 如果使用者輸入負數，強制轉回 0；若為空字串則保持空（方便使用者編輯）
+      finalValue = value === "" ? "" : Math.max(0, parseFloat(value));
+    }
+
     setFormData((prev) => ({
       ...prev,
-      [name]: name === "price" || name === "category_id" ? value : value,
+      [name]: finalValue,
     }));
   };
 
@@ -109,18 +117,18 @@ const BackendProductEdit = () => {
       const checked = adminChecked();
 
       // 尚未登入的情況
-    //   if (checked === undefined) {
-    //     alert("請先登入！");
-    //     navigate("/login", { replace: true });
-    //     return false;
-    //   }
+      //   if (checked === undefined) {
+      //     alert("請先登入！");
+      //     navigate("/login", { replace: true });
+      //     return false;
+      //   }
 
       // 非管理者的情況
-    //   if (!checked) {
-    //     alert("無此權限！");
-    //     navigate("/", { replace: true });
-    //     return false;
-    //   }
+      //   if (!checked) {
+      //     alert("無此權限！");
+      //     navigate("/", { replace: true });
+      //     return false;
+      //   }
 
       // 將不想被更新的欄位分離出來，而 finalUpdates 就是要修改的內容
       const { path, ...finalUpdates } = updates;
@@ -203,8 +211,8 @@ const BackendProductEdit = () => {
 
   return (
     <div className="backend-product-edit-page">
-      <div className="backend-product-edit-card">
-        <form className="backend-product-edit-form" onSubmit={handleSubmit}>
+      <div className="backend-product-create-card d-flex justify-content-center align-items-center py-2">
+        <form className="col-lg-9 col-12" onSubmit={handleSubmit}>
           {/* 中文名稱 */}
           <div className="form-row">
             <label className="form-label" htmlFor="name">
@@ -214,7 +222,7 @@ const BackendProductEdit = () => {
               id="name"
               name="name"
               type="text"
-              className="form-input"
+              className="form-control bg-white"
               value={formData.name}
               onChange={handleChange}
             />
@@ -229,7 +237,7 @@ const BackendProductEdit = () => {
               id="english_name"
               name="english_name"
               type="text"
-              className="form-input"
+              className="form-control bg-white"
               value={formData.english_name}
               onChange={handleChange}
             />
@@ -244,9 +252,11 @@ const BackendProductEdit = () => {
               id="price"
               name="price"
               type="number"
-              className="form-input"
+              className="form-control bg-white"
               value={formData.price}
               onChange={handleChange}
+              min="0"
+              onKeyDown={(e) => { if (e.key === '-') e.preventDefault(); }}
             />
           </div>
 
@@ -258,7 +268,8 @@ const BackendProductEdit = () => {
             <select
               id="category_id"
               name="category_id"
-              className="form-input form-select"
+              className="form-control bg-white form-select"
+              style={{ appearance: 'none' }}
               value={formData.category_id}
               onChange={handleChange}
             >
@@ -283,7 +294,7 @@ const BackendProductEdit = () => {
               id="slogan"
               name="slogan"
               type="text"
-              className="form-input"
+              className="form-control bg-white"
               value={formData.slogan}
               onChange={handleChange}
             />
@@ -297,7 +308,8 @@ const BackendProductEdit = () => {
             <textarea
               id="highlight"
               name="highlight"
-              className="form-input form-textarea"
+              className="form-control bg-white"
+              rows="3"
               value={formData.highlight}
               onChange={handleChange}
             />
@@ -311,7 +323,8 @@ const BackendProductEdit = () => {
             <textarea
               id="description"
               name="description"
-              className="form-input form-textarea"
+              className="form-control bg-white form-textarea"
+              rows="3"
               value={formData.description}
               onChange={handleChange}
             />
@@ -326,7 +339,7 @@ const BackendProductEdit = () => {
               id="note"
               name="note"
               type="text"
-              className="form-input"
+              className="form-control bg-white"
               value={formData.note}
               onChange={handleChange}
             />
@@ -341,7 +354,7 @@ const BackendProductEdit = () => {
               id="image_title_url"
               name="image_title_url"
               type="text"
-              className="form-input"
+              className="form-control bg-white"
               value={formData.image_title_url}
               onChange={handleChange}
               placeholder="https://xxxxx"
@@ -357,7 +370,7 @@ const BackendProductEdit = () => {
               id="image_content_url"
               name="image_content_url"
               type="text"
-              className="form-input"
+              className="form-control bg-white"
               value={formData.image_content_url}
               onChange={handleChange}
               placeholder="https://xxxxx"
@@ -368,7 +381,7 @@ const BackendProductEdit = () => {
           <div className="form-actions">
             <button
               type="button"
-              className="action-btn action-btn-cancel"
+              className="action-btn action-btn-cancel btn btn-primary-40 w-25"
               onClick={handleCancel}
             >
               取消修改
@@ -376,7 +389,7 @@ const BackendProductEdit = () => {
 
             <button
               type="submit"
-              className="action-btn action-btn-submit"
+              className="action-btn action-btn-submit btn btn-primary-40 w-25"
               disabled={submitting}
             >
               {submitting ? "修改中..." : "確認修改"}

@@ -68,7 +68,6 @@ const Password = () => {
   const onSubmit = async (data) => {
     // 這裡先示範前端成功流程
     // 若之後接 API，可在這裡用 axios/fetch
-    // console.log(data);
 
     setShowSuccess(true);
   };

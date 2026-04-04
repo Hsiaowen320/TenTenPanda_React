@@ -43,6 +43,7 @@ function MyProfile() {
         // 拿到資料馬上重製表單
         reset(response.data[0]);
       } catch (error) {
+        alert("取得會員資料失敗：", error.message);
         console.error("取得會員資料失敗：", error.message);
       }
     };
@@ -79,6 +80,7 @@ function MyProfile() {
       // 這裡寫更新成功的執行程式碼
       alert("資料修改成功！");
     } catch (error) {
+      alert("修改失敗：", error.message);
       console.error("修改失敗：", error.message);
     }
   };

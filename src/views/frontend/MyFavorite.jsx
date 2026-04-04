@@ -124,7 +124,7 @@ function MyFavorite() {
         .throwOnError(); // 如果發生錯誤，會直接跳進 catch 區塊
 
       // 這裡寫更新購物車成功的執行程式碼
-      console.log("購物車已更新！");
+      // console.log("購物車已更新！");
     } catch (error) {
       console.error("操作失敗：", error.message);
     }

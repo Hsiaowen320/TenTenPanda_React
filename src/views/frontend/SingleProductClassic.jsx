@@ -283,6 +283,8 @@ const SingleProductClassic = () => {
                       type="button"
                       className="btn p-3 text-neutral-100"
                       onClick={handleDecrease}
+                      style={{opacity: quantity === 1 ? 0.5 : 1,
+                        cursor:quantity === 1 ? "not-allowed" : "pointer"}}
                     >
                       <span className="material-symbols-outlined align-bottom">
                         remove
@@ -379,7 +381,7 @@ const SingleProductClassic = () => {
             <h4 className="fs-4 fw-bold text-neutral-100 mb-8">相關商品</h4>
 
             <div className="row g-6">
-              <div className="recommend-commodity col-6 col-lg flex-shrink-1">
+              <div className="recommend-commodity col-6 col-lg flex-shrink-1 productSingle-card">
                 <div
                   className="card bg-transparent border-0 h-100 align-items-center text-center cursor-pointer"
                   onClick={() =>
@@ -404,7 +406,7 @@ const SingleProductClassic = () => {
                 </div>
               </div>
 
-              <div className="recommend-commodity col-6 col-lg flex-shrink-1">
+              <div className="recommend-commodity col-6 col-lg flex-shrink-1 productSingle-card">
                 <div
                   className="card bg-transparent border-0 h-100 align-items-center text-center cursor-pointer"
                   onClick={() =>
@@ -429,7 +431,7 @@ const SingleProductClassic = () => {
                 </div>
               </div>
 
-              <div className="recommend-commodity col-6 col-lg flex-shrink-1">
+              <div className="recommend-commodity col-6 col-lg flex-shrink-1 productSingle-card">
                 <div
                   className="card bg-transparent border-0 h-100 align-items-center text-center cursor-pointer"
                   onClick={() =>
@@ -454,7 +456,7 @@ const SingleProductClassic = () => {
                 </div>
               </div>
 
-              <div className="recommend-commodity col-6 col-lg flex-shrink-1">
+              <div className="recommend-commodity col-6 col-lg flex-shrink-1 productSingle-card">
                 <div
                   className="recommend-commodity card bg-transparent border-0 h-100 align-items-center text-center cursor-pointer"
                   onClick={() =>

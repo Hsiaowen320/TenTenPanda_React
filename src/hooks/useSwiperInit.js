@@ -1,6 +1,6 @@
 import { useEffect, useRef } from "react";
 import Swiper from "swiper";
-import "swiper/css";
+import { Autoplay, Pagination } from "swiper/modules";
 
 export function useSwiperInit(options) {
   const swiperRef = useRef(null);
@@ -11,7 +11,13 @@ export function useSwiperInit(options) {
     if (!swiperRef.current) return;
 
     const finalOptions = {
+      modules: [Autoplay, Pagination],
+      loop: true,
       ...options,
+      autoplay: {
+        delay: 3000, 
+        disableOnInteraction: false,
+      },
       pagination: options.pagination
         ? {
             ...options.pagination,
