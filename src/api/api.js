@@ -70,7 +70,7 @@ export async function addFavorite(productId) {
       })
       .throwOnError();
 
-    console.log("已加入願望清單！");
+    // console.log("已加入願望清單！");
     return true;
   } catch (error) {
     console.error("加入收藏失敗：", error.message);

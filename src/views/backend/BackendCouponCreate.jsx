@@ -215,7 +215,7 @@ const BackendCouponCreate = () => {
           <div className="coupon-form-actions">
             <button
               type="button"
-              className="coupon-action-btn coupon-action-btn-cancel"
+              className="coupon-action-btn coupon-action-btn-cancel btn btn-primary-40"
               onClick={handleCancel}
             >
               取消新增
@@ -223,7 +223,7 @@ const BackendCouponCreate = () => {
 
             <button
               type="submit"
-              className="coupon-action-btn coupon-action-btn-submit"
+              className="coupon-action-btn coupon-action-btn-submit btn btn-primary-40"
               disabled={submitting}
             >
               {submitting ? "新增中..." : "確認新增"}

@@ -24,7 +24,7 @@ export default function Breadcrumb() {
             <ol className="breadcrumb">
                 {/* 首頁 */}
                 <li className="breadcrumb-item d-flex align-items-center">
-                    <Link to="/">
+                    <Link to="/admin">
                         <i className="bi bi-house-door text-neutral-60 fs-4"></i>
                     </Link>
                 </li>

@@ -229,7 +229,7 @@ const Join = () => {
         throw error; // 手動把錯誤丟給 catch
       }
 
-      console.log("註冊成功！資料如下：", data);
+      // console.log("註冊成功！資料如下：", data);
 
       reset();
       setShowSuccess(true);

@@ -203,8 +203,8 @@ const BackendProductEdit = () => {
 
   return (
     <div className="backend-product-edit-page">
-      <div className="backend-product-edit-card">
-        <form className="backend-product-edit-form" onSubmit={handleSubmit}>
+      <div className="backend-product-create-card d-flex justify-content-center align-items-center py-2">
+        <form className="col-lg-9 col-12" onSubmit={handleSubmit}>
           {/* 中文名稱 */}
           <div className="form-row">
             <label className="form-label" htmlFor="name">
@@ -214,7 +214,7 @@ const BackendProductEdit = () => {
               id="name"
               name="name"
               type="text"
-              className="form-input"
+              className="form-control bg-white"
               value={formData.name}
               onChange={handleChange}
             />
@@ -229,7 +229,7 @@ const BackendProductEdit = () => {
               id="english_name"
               name="english_name"
               type="text"
-              className="form-input"
+              className="form-control bg-white"
               value={formData.english_name}
               onChange={handleChange}
             />
@@ -244,7 +244,7 @@ const BackendProductEdit = () => {
               id="price"
               name="price"
               type="number"
-              className="form-input"
+              className="form-control bg-white"
               value={formData.price}
               onChange={handleChange}
             />
@@ -258,7 +258,8 @@ const BackendProductEdit = () => {
             <select
               id="category_id"
               name="category_id"
-              className="form-input form-select"
+              className="form-control bg-white form-select"
+              style={{ appearance: 'none' }}
               value={formData.category_id}
               onChange={handleChange}
             >
@@ -283,7 +284,7 @@ const BackendProductEdit = () => {
               id="slogan"
               name="slogan"
               type="text"
-              className="form-input"
+              className="form-control bg-white"
               value={formData.slogan}
               onChange={handleChange}
             />
@@ -297,7 +298,8 @@ const BackendProductEdit = () => {
             <textarea
               id="highlight"
               name="highlight"
-              className="form-input form-textarea"
+              className="form-control bg-white"
+              rows="3"
               value={formData.highlight}
               onChange={handleChange}
             />
@@ -311,7 +313,8 @@ const BackendProductEdit = () => {
             <textarea
               id="description"
               name="description"
-              className="form-input form-textarea"
+              className="form-control bg-white form-textarea"
+              rows="3"
               value={formData.description}
               onChange={handleChange}
             />
@@ -326,7 +329,7 @@ const BackendProductEdit = () => {
               id="note"
               name="note"
               type="text"
-              className="form-input"
+              className="form-control bg-white"
               value={formData.note}
               onChange={handleChange}
             />
@@ -341,7 +344,7 @@ const BackendProductEdit = () => {
               id="image_title_url"
               name="image_title_url"
               type="text"
-              className="form-input"
+              className="form-control bg-white"
               value={formData.image_title_url}
               onChange={handleChange}
               placeholder="https://xxxxx"
@@ -357,7 +360,7 @@ const BackendProductEdit = () => {
               id="image_content_url"
               name="image_content_url"
               type="text"
-              className="form-input"
+              className="form-control bg-white"
               value={formData.image_content_url}
               onChange={handleChange}
               placeholder="https://xxxxx"
@@ -368,7 +371,7 @@ const BackendProductEdit = () => {
           <div className="form-actions">
             <button
               type="button"
-              className="action-btn action-btn-cancel"
+              className="action-btn action-btn-cancel btn btn-primary-40 w-25"
               onClick={handleCancel}
             >
               取消修改
@@ -376,7 +379,7 @@ const BackendProductEdit = () => {
 
             <button
               type="submit"
-              className="action-btn action-btn-submit"
+              className="action-btn action-btn-submit btn btn-primary-40 w-25"
               disabled={submitting}
             >
               {submitting ? "修改中..." : "確認修改"}

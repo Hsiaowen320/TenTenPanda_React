@@ -112,7 +112,7 @@ const BackendCouponEdit = () => {
         throw error;
       }
 
-      console.log("優惠券編輯成功！");
+      // console.log("優惠券編輯成功！");
       alert("優惠券修改成功！");
       return true;
     } catch (error) {
@@ -278,7 +278,7 @@ const BackendCouponEdit = () => {
           <div className="coupon-form-actions">
             <button
               type="button"
-              className="coupon-action-btn coupon-action-btn-cancel"
+              className="coupon-action-btn coupon-action-btn-cancel btn btn-primary-40"
               onClick={handleCancel}
             >
               取消修改
@@ -286,7 +286,7 @@ const BackendCouponEdit = () => {
 
             <button
               type="submit"
-              className="coupon-action-btn coupon-action-btn-submit"
+              className="coupon-action-btn coupon-action-btn-submit btn btn-primary-40"
               disabled={submitting}
             >
               {submitting ? "修改中..." : "確認修改"}
